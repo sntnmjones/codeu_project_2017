@@ -15,64 +15,60 @@ public class NewAccount extends JFrame {
     // constructor
     public NewAccount () {
 
+        // groundwork
+        JFrame frame = new JFrame();
         JPanel panel = new JPanel(new GridBagLayout());
+        panel.setAlignmentX(LEFT_ALIGNMENT);
         GridBagConstraints gbConstraints = new GridBagConstraints();
+
+        // create welcome label
+        JLabel welcomeLabel = new JLabel("Welcome to ChatU!\nPlease select a username and password.");
+        gbConstraints.gridx = 0;
+        gbConstraints.gridy = 0;
+        panel.add(welcomeLabel, gbConstraints);
 
         // create user label
         JLabel userNameLabel = new JLabel("Please create a user name");
-        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
         gbConstraints.gridx = 0;
-        gbConstraints.gridy = 0;
+        gbConstraints.gridy = 1;
         panel.add(userNameLabel, gbConstraints);
 
         // username textfield
-        JTextField usernameTextField = new JTextField("", 20);
-        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        JTextField userNameTextField = new JTextField("", 20);
         gbConstraints.gridx = 0;
-        gbConstraints.gridy = 1;
-        panel.add(usernameTextField, gbConstraints);
+        gbConstraints.gridy = 2;
+        panel.add(userNameTextField, gbConstraints);
 
         // create password label
         JLabel userPasswordLabel = new JLabel("Please create a password");
-        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
         gbConstraints.gridx = 0;
-        gbConstraints.gridy = 2;
+        gbConstraints.gridy = 3;
         panel.add(userPasswordLabel, gbConstraints);
 
         // password textfield
         JTextField userpasswordTextField = new JTextField("", 20);
-        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
         gbConstraints.gridx = 0;
-        gbConstraints.gridy = 3;
+        gbConstraints.gridy = 4;
         panel.add(userpasswordTextField, gbConstraints);
 
         // create account button
         JButton createAccountButton = new JButton("Create");
-        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
         gbConstraints.gridx = 0;
-        gbConstraints.gridy = 3;
+        gbConstraints.gridy = 5;
         panel.add(createAccountButton, gbConstraints);
 
         // cancel button
         JButton cancelButton = new JButton("Cancel");
-        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gbConstraints.gridx = 0;
-        gbConstraints.gridy = 4;
+        gbConstraints.gridx = 1;
+        gbConstraints.gridy = 5;
         panel.add(cancelButton, gbConstraints);
 
-        this.setSize(400, 400);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("Create an Account");
-        panel.add(cancelButton);
-        panel.add(userNameLabel);
-        panel.add(userPasswordLabel);
-        panel.add(usernameTextField);
-        panel.add(userpasswordTextField);
-        //this.add(panel);
-        
-        this.pack();
-        this.setVisible(true);
-    }   // end of NewAccount()
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Create an Account");
+        frame.getContentPane().add(panel);
+        frame.pack();
+        frame.setVisible(true);
+    } // end of NewAccount()
 
 
 
