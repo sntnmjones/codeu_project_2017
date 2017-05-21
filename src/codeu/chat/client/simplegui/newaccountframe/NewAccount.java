@@ -4,6 +4,7 @@ import java.awt.Button;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,55 +18,50 @@ public class NewAccount extends JFrame {
 
         // groundwork
         JFrame frame = new JFrame();
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setAlignmentX(LEFT_ALIGNMENT);
-        GridBagConstraints gbConstraints = new GridBagConstraints();
+        JPanel mainPanel = new JPanel();
+        JPanel welcomeTextPanel = new JPanel();
+        JPanel usernameAndPasswordPanel = new JPanel();
+        JPanel buttonsPanel = new JPanel();
+        BoxLayout mainLayout = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
+        mainPanel.setLayout(mainLayout);
 
-        // create welcome label
-        JLabel welcomeLabel = new JLabel("Welcome to ChatU!\nPlease select a username and password.");
-        gbConstraints.gridx = 0;
-        gbConstraints.gridy = 0;
-        panel.add(welcomeLabel, gbConstraints);
+        // fill welcomeTextPanel
+        JLabel welcomeLabel = new JLabel("Welcome to ChatU!");
+        JLabel instructionLabel = 
+            new JLabel("Please select a username and password.");
+        welcomeTextPanel.add(welcomeLabel);
+        welcomeTextPanel.add(instructionLabel);
+        BoxLayout welcomeLayout = 
+            new BoxLayout(welcomeTextPanel, BoxLayout.Y_AXIS);
+        welcomeTextPanel.setLayout(welcomeLayout);
 
-        // create user label
-        JLabel userNameLabel = new JLabel("Please create a user name");
-        gbConstraints.gridx = 0;
-        gbConstraints.gridy = 1;
-        panel.add(userNameLabel, gbConstraints);
+        // fill usernameAndPasswordPanel
+        JLabel userNameLabel = new JLabel("Choose a user name");
+        usernameAndPasswordPanel.add(userNameLabel);
+        JTextField userNameTextField = new JTextField(10);
+        usernameAndPasswordPanel.add(userNameTextField);
+        JLabel userPasswordLabel = new JLabel("Choose a password");
+        usernameAndPasswordPanel.add(userPasswordLabel);
+        JTextField userpasswordTextField = new JTextField(10);
+        usernameAndPasswordPanel.add(userpasswordTextField);
+        BoxLayout userstuffLayout = new BoxLayout(usernameAndPasswordPanel, BoxLayout.Y_AXIS);
+        usernameAndPasswordPanel.setLayout(userstuffLayout);
 
-        // username textfield
-        JTextField userNameTextField = new JTextField("", 20);
-        gbConstraints.gridx = 0;
-        gbConstraints.gridy = 2;
-        panel.add(userNameTextField, gbConstraints);
-
-        // create password label
-        JLabel userPasswordLabel = new JLabel("Please create a password");
-        gbConstraints.gridx = 0;
-        gbConstraints.gridy = 3;
-        panel.add(userPasswordLabel, gbConstraints);
-
-        // password textfield
-        JTextField userpasswordTextField = new JTextField("", 20);
-        gbConstraints.gridx = 0;
-        gbConstraints.gridy = 4;
-        panel.add(userpasswordTextField, gbConstraints);
-
-        // create account button
+        // fill buttonsPanel
         JButton createAccountButton = new JButton("Create");
-        gbConstraints.gridx = 0;
-        gbConstraints.gridy = 5;
-        panel.add(createAccountButton, gbConstraints);
-
-        // cancel button
+        buttonsPanel.add(createAccountButton);
         JButton cancelButton = new JButton("Cancel");
-        gbConstraints.gridx = 1;
-        gbConstraints.gridy = 5;
-        panel.add(cancelButton, gbConstraints);
+        buttonsPanel.add(cancelButton);
 
+        // fill mainPanel
+        mainPanel.add(welcomeTextPanel);
+        mainPanel.add(usernameAndPasswordPanel);
+        mainPanel.add(buttonsPanel);
+
+        // publish frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Create an Account");
-        frame.getContentPane().add(panel);
+        frame.getContentPane().add(mainPanel);
         frame.pack();
         frame.setVisible(true);
     } // end of NewAccount()
