@@ -1,4 +1,4 @@
-package codeu.chat.client.simplegui.conversationframe;
+package codeu.chat.client.simplegui;
 
 /**
  * @author  Troy Jones

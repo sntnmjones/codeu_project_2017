@@ -1,4 +1,4 @@
-package codeu.chat.client.simplegui.landing_frame;
+package codeu.chat.client.simplegui;
 
 /**
  * @author  Suveena
