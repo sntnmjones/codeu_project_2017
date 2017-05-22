@@ -1,5 +1,12 @@
 package codeu.chat.client.simplegui.conversationframe;
 
+/**
+ * @author  Troy Jones
+ * @date    5/21/17
+ * @brief   Contains all GUI necessary to execute the frame to 
+ *          enable chat.
+ */
+
 import java.awt.Button;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
