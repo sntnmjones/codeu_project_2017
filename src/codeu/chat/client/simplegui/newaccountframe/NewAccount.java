@@ -30,8 +30,10 @@ public class NewAccount extends JFrame {
         JLabel instructionLabel = 
             new JLabel("Please select a username and password.");
         welcomeTextPanel.add(welcomeLabel);
-        welcomeTextPanel.add(instructionLabel); 
-        welcomeTextPanel.setLocation(0,0);
+        welcomeTextPanel.add(instructionLabel);
+        BoxLayout welcomeLayout = 
+            new BoxLayout(welcomeTextPanel, BoxLayout.Y_AXIS);
+        welcomeTextPanel.setLayout(welcomeLayout);
 
         // fill usernameAndPasswordPanel
         JLabel userNameLabel = new JLabel("Choose a user name");

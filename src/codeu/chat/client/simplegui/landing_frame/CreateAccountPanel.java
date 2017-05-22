@@ -4,7 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by Suveena on 5/18/17.
+ * @author  Suveena
+ * @date    5/18/17
+ * @brief   This class contains a button for the user to create an account.
+ *          This panel contains from top to bottom; a message, a button.
  */
 
 @SuppressWarnings("serial")
@@ -17,7 +20,6 @@ public class CreateAccountPanel extends JPanel{
 
     private void initialize() {
 
-        // This panel contains from top to bottom; a message, a button.
 
         // Set layout within panel
         JPanel InnerLayout = new JPanel();
@@ -30,13 +32,6 @@ public class CreateAccountPanel extends JPanel{
         InnerLayout.add(createAccountButton);
 
         this.add(InnerLayout);
-
-        /*signInButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               // TODO
-            }
-        });*/
 
     }
 }
