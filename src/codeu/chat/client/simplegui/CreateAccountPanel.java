@@ -1,23 +1,30 @@
 package codeu.chat.client.simplegui;
 
 import javax.swing.*;
+
+import codeu.chat.client.simplegui.NewAccount;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
- * Created by Suveena on 5/18/17.
+ * @author  Suveena
+ * @date    5/18/17
+ * @brief   This class contains a button for the user to create an account.
+ *          This panel contains from top to bottom; a message, a button.
  */
 
 @SuppressWarnings("serial")
-public class CreateAccountPanel extends JPanel{
+public class CreateAccountPanel extends JPanel {
 
-    public CreateAccountPanel() {
+    CreateAccountPanel() {
         super(new GridBagLayout());
         initialize();
     }
 
     private void initialize() {
 
-        // This panel contains from top to bottom; a message, a button.
 
         // Set layout within panel
         JPanel InnerLayout = new JPanel();
@@ -25,18 +32,16 @@ public class CreateAccountPanel extends JPanel{
 
         JLabel userQuestionLabel = new JLabel("Create an Account");
         JButton createAccountButton = new JButton("Get Started!");
-
+        createAccountButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                NewAccount newAccount = new NewAccount();
+                newAccount.setVisible(true);
+            }
+        });
         InnerLayout.add(userQuestionLabel);
         InnerLayout.add(createAccountButton);
 
         this.add(InnerLayout);
-
-        /*signInButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               // TODO
-            }
-        });*/
 
     }
 }

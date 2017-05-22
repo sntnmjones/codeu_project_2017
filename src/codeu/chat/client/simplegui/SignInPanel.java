@@ -1,19 +1,14 @@
 package codeu.chat.client.simplegui;
 
 /**
- * Created by Suveena on 5/18/17.
+ * @author  Suveena
+ * @date    5/18/17
+ * @brief   This panel contains from top to bottom; 
+ *          a user message, Username field, Password field, and button
  */
 
 import javax.swing.*;
 import java.awt.*;
-
-/*import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
-import codeu.chat.client.ClientContext;
-import codeu.chat.common.User;*/
 
 @SuppressWarnings("serial")
 public final class SignInPanel extends JPanel {
@@ -24,8 +19,6 @@ public final class SignInPanel extends JPanel {
     }
 
     private void initialize() {
-
-        // This panel contains from top to bottom; a user message, Username field, Password field, and button
 
         // Set layout within panel
         JPanel InnerLayout = new JPanel();
@@ -46,13 +39,6 @@ public final class SignInPanel extends JPanel {
         InnerLayout.add(signInButton);
 
         this.add(InnerLayout);
-
-        /*signInButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               // TODO
-            }
-        });*/
 
     }
 }
