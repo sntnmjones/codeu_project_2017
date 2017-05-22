@@ -7,9 +7,14 @@ package codeu.chat.client.simplegui.conversationframe;
  *          enable chat.
  */
 
+import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -21,39 +26,66 @@ import javax.swing.JTextField;
 
 public class Conversation extends JFrame {
 
+    boolean notClickedYet = true;
+
     // constructor
     public Conversation() {
 
-        // fill welcomeTextPanel
-        JPanel welcomeTextPanel = new JPanel();
+        JFrame frame = new JFrame();
+
+        // fill mainPanel
+        Container mainPanel = frame.getContentPane();
+        mainPanel.setLayout(new FlowLayout(0));
+
+        // choose a conversation label
         JLabel welcomeLabel = new JLabel("Please choose a conversation");
-        welcomeTextPanel.add(welcomeLabel);
+        mainPanel.add(welcomeLabel, BorderLayout.CENTER);
 
-
-        // fill textareaPanel
-        JPanel textareaPanel = new JPanel();
-
-        BoxLayout textareaLayout = 
-            new BoxLayout(textareaPanel, BoxLayout.Y_AXIS);
-        textareaPanel.setLayout(textareaLayout);
-
-        JTextArea conversationListArea = new JTextArea(5,10);
+        // conversation list text area (post active conversations list here)
+        JPanel conversationListSubPanel = new JPanel();
+        JTextArea conversationListArea = new JTextArea(5, 400);
         conversationListArea.setLineWrap(true);
         conversationListArea.setWrapStyleWord(true);
         conversationListArea.setEditable(false);
-        textareaPanel.add(conversationListArea);
+        conversationListSubPanel.add(conversationListArea);
+        mainPanel.add(conversationListSubPanel, BorderLayout.CENTER);
 
-        JTextArea currentConversationArea = new JTextArea(5,10);
+        // current conversation area label
+        JLabel currentConvoLabel = new JLabel("Active conversation with: ");
+        mainPanel.add(currentConvoLabel);
+
+        // current conversation text area (post current conversation here)
+        JPanel currentConvoSubPanel = new JPanel();
+        JTextArea currentConversationArea = new JTextArea(5, 400);
         currentConversationArea.setLineWrap(true);
         currentConversationArea.setWrapStyleWord(true);
         currentConversationArea.setEditable(false);
-        textareaPanel.add(currentConversationArea);
+        currentConvoSubPanel.add(currentConversationArea);
+        mainPanel.add(currentConvoSubPanel);
 
-        JTextArea userInputTextArea = new JTextArea(5,10);  
+        // pseudo padding
+        JLabel paddingLabel = new JLabel(" ");
+        mainPanel.add(paddingLabel);
+
+        // text area for user input
+        JPanel userInputSubPanel = new JPanel();
+        JTextArea userInputTextArea = new JTextArea("Your message here!", 5, 400);
         userInputTextArea.setLineWrap(true);
         userInputTextArea.setWrapStyleWord(true);
-        textareaPanel.add(userInputTextArea);
+        userInputTextArea.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (notClickedYet) {
+                    userInputTextArea.setText("");
+                    notClickedYet = false;
+                }
+            }
+        });
+        userInputSubPanel.add(userInputTextArea);
+        mainPanel.add(userInputSubPanel);
 
+        // psuedo padding
+        mainPanel.add(paddingLabel);
 
         // fill buttonsPanel
         JPanel buttonsPanel = new JPanel();
@@ -61,23 +93,14 @@ public class Conversation extends JFrame {
         buttonsPanel.add(submitButton);
         JButton logoutButton = new JButton("Logout");
         buttonsPanel.add(logoutButton);
-
-        // fill mainPanel
-        JPanel mainPanel = new JPanel();
-        BoxLayout mainLayout = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
-        mainPanel.setLayout(mainLayout);
-
-        mainPanel.add(welcomeTextPanel);
-        mainPanel.add(textareaPanel);
         mainPanel.add(buttonsPanel);
 
         // publish frame
-        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("ChatU Conversation Area");
-        frame.getContentPane().add(mainPanel);
-        frame.pack();
+        frame.setSize(500, 500);
+        frame.getContentPane();
         frame.setVisible(true);
-    } // end of NewAccount()
+    } // end of Conversation()
 
-} // end of class NewAccount
+} // end of class Conversation
