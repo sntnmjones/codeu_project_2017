@@ -23,29 +23,32 @@ public class NewAccount extends JFrame {
     // constructor
     public NewAccount () {
 
+        // create mainPanel
+        JPanel mainPanel = new JPanel();
+        BoxLayout mainPanelLayout = new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
+        mainPanel.setLayout(mainPanelLayout);
+
         // fill welcomeTextPanel
         JPanel welcomeTextPanel = new JPanel();
         JLabel welcomeLabel = new JLabel("Welcome to ChatU!");
-        JLabel instructionLabel = 
-            new JLabel("Please select a username and password.");
         welcomeTextPanel.add(welcomeLabel);
-        welcomeTextPanel.add(instructionLabel);
-        BoxLayout welcomeLayout = 
-            new BoxLayout(welcomeTextPanel, BoxLayout.Y_AXIS);
-        welcomeTextPanel.setLayout(welcomeLayout);
+        mainPanel.add(welcomeTextPanel);
 
-        // fill usernameAndPasswordPanel
-        JPanel usernameAndPasswordPanel = new JPanel();
-        JLabel userNameLabel = new JLabel("Choose a user name");
-        usernameAndPasswordPanel.add(userNameLabel);
+        // username label and textfield
+        JPanel usernamePanel = new JPanel();
+        JLabel usernameLabel = new JLabel("Choose a user name");
+        usernamePanel.add(usernameLabel);
         JTextField userNameTextField = new JTextField(10);
-        usernameAndPasswordPanel.add(userNameTextField);
+        usernamePanel.add(userNameTextField);
+        mainPanel.add(usernamePanel);
+
+        // password label and textfield
+        JPanel userPasswordPanel = new JPanel();
         JLabel userPasswordLabel = new JLabel("Choose a password");
-        usernameAndPasswordPanel.add(userPasswordLabel);
+        userPasswordPanel.add(userPasswordLabel);
         JTextField userpasswordTextField = new JTextField(10);
-        usernameAndPasswordPanel.add(userpasswordTextField);
-        BoxLayout userstuffLayout = new BoxLayout(usernameAndPasswordPanel, BoxLayout.Y_AXIS);
-        usernameAndPasswordPanel.setLayout(userstuffLayout);
+        userPasswordPanel.add(userpasswordTextField);
+        mainPanel.add(userPasswordPanel);
 
         // fill buttonsPanel
         JPanel buttonsPanel = new JPanel();
@@ -53,21 +56,14 @@ public class NewAccount extends JFrame {
         buttonsPanel.add(createAccountButton);
         JButton cancelButton = new JButton("Cancel");
         buttonsPanel.add(cancelButton);
-
-        // fill mainPanel
-        JPanel mainPanel = new JPanel();
-        BoxLayout mainLayout = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
-        mainPanel.setLayout(mainLayout);
-        mainPanel.add(welcomeTextPanel);
-        mainPanel.add(usernameAndPasswordPanel);
         mainPanel.add(buttonsPanel);
 
         // publish frame
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Create an Account");
-        frame.getContentPane().add(mainPanel);
-        frame.pack();
+        frame.setSize(500, 200);
+        frame.add(mainPanel);
         frame.setVisible(true);
     } // end of NewAccount()
 
