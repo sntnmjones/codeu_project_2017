@@ -23,16 +23,8 @@ public class NewAccount extends JFrame {
     // constructor
     public NewAccount () {
 
-        // groundwork
-        JFrame frame = new JFrame();
-        JPanel mainPanel = new JPanel();
-        JPanel welcomeTextPanel = new JPanel();
-        JPanel usernameAndPasswordPanel = new JPanel();
-        JPanel buttonsPanel = new JPanel();
-        BoxLayout mainLayout = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
-        mainPanel.setLayout(mainLayout);
-
         // fill welcomeTextPanel
+        JPanel welcomeTextPanel = new JPanel();
         JLabel welcomeLabel = new JLabel("Welcome to ChatU!");
         JLabel instructionLabel = 
             new JLabel("Please select a username and password.");
@@ -43,6 +35,7 @@ public class NewAccount extends JFrame {
         welcomeTextPanel.setLayout(welcomeLayout);
 
         // fill usernameAndPasswordPanel
+        JPanel usernameAndPasswordPanel = new JPanel();
         JLabel userNameLabel = new JLabel("Choose a user name");
         usernameAndPasswordPanel.add(userNameLabel);
         JTextField userNameTextField = new JTextField(10);
@@ -55,17 +48,22 @@ public class NewAccount extends JFrame {
         usernameAndPasswordPanel.setLayout(userstuffLayout);
 
         // fill buttonsPanel
+        JPanel buttonsPanel = new JPanel();
         JButton createAccountButton = new JButton("Create");
         buttonsPanel.add(createAccountButton);
         JButton cancelButton = new JButton("Cancel");
         buttonsPanel.add(cancelButton);
 
         // fill mainPanel
+        JPanel mainPanel = new JPanel();
+        BoxLayout mainLayout = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
+        mainPanel.setLayout(mainLayout);
         mainPanel.add(welcomeTextPanel);
         mainPanel.add(usernameAndPasswordPanel);
         mainPanel.add(buttonsPanel);
 
         // publish frame
+        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Create an Account");
         frame.getContentPane().add(mainPanel);
