@@ -18,6 +18,11 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+// import codeu.chat.client.simplegui.landingframe.ConversationPanel;
+// import codeu.chat.client.simplegui.landingframe.CreateAccountPanel;
+// import codeu.chat.client.simplegui.landingframe.MessagePanel;
+// import codeu.chat.client.simplegui.landingframe.SignInPanel;
+// import codeu.chat.client.simplegui.landingframe.UserPanel;
 import codeu.chat.client.ClientContext;
 import codeu.chat.client.Controller;
 import codeu.chat.client.View;

@@ -1,7 +1,12 @@
-package codeu.chat.client.simplegui;
+package codeu.chat.client.simplegui.landing_frame;
 
 import javax.swing.*;
+
+import codeu.chat.client.simplegui.newaccountframe.NewAccount;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * @author  Suveena
@@ -11,9 +16,9 @@ import java.awt.*;
  */
 
 @SuppressWarnings("serial")
-public class CreateAccountPanel extends JPanel{
+public class CreateAccountPanel extends JPanel {
 
-    public CreateAccountPanel() {
+    CreateAccountPanel() {
         super(new GridBagLayout());
         initialize();
     }
@@ -27,7 +32,11 @@ public class CreateAccountPanel extends JPanel{
 
         JLabel userQuestionLabel = new JLabel("Create an Account");
         JButton createAccountButton = new JButton("Get Started!");
+        // createAccountButton.addActionListener(new ActionListener(){
+        //     public void actionPerformed(ActionEvent ae){
 
+        //     }
+        // });
         InnerLayout.add(userQuestionLabel);
         InnerLayout.add(createAccountButton);
 
