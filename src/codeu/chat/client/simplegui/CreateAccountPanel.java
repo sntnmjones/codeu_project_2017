@@ -25,8 +25,8 @@ public class CreateAccountPanel extends JPanel {
     private void initialize() {
 
         // Set layout within panel
-        JPanel InnerLayout = new JPanel();
-        InnerLayout.setLayout(new BoxLayout(InnerLayout, BoxLayout.Y_AXIS));
+        JPanel innerLayout = new JPanel();
+        innerLayout.setLayout(new BoxLayout(innerLayout, BoxLayout.Y_AXIS));
 
         JLabel userQuestionLabel = new JLabel("Create an Account");
         JButton createAccountButton = new JButton("Get Started!");
@@ -40,10 +40,10 @@ public class CreateAccountPanel extends JPanel {
             }
         });
 
-        InnerLayout.add(userQuestionLabel);
-        InnerLayout.add(createAccountButton);
+        innerLayout.add(userQuestionLabel);
+        innerLayout.add(createAccountButton);
 
-        this.add(InnerLayout);
+        this.add(innerLayout);
 
     }
 }

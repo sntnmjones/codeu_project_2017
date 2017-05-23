@@ -58,6 +58,11 @@ public final class ChatSimpleGui {
     return BorderFactory.createCompoundBorder(outside, inside);
   }
 
+    // Closes the main frame, returns nothing
+    protected void closeFrame() {
+        mainFrame.dispose();
+    }
+    
   // Initialize the GUI
   private void initialize() {
 
@@ -93,7 +98,7 @@ public final class ChatSimpleGui {
     // Dummy panel for formatting
     final JPanel dummyPanel = new JPanel();
     dummyPanel.setBorder(paneBorder());
-    final GridBagConstraints DummyViewC = new GridBagConstraints();
+    final GridBagConstraints dummyViewC = new GridBagConstraints();
 
     // Placement of main panels.
 
@@ -120,17 +125,17 @@ public final class ChatSimpleGui {
     newAccountViewC.weightx = 0.7;
     newAccountViewC.weighty = 0.3;
 
-    DummyViewC.gridx = 0;
-    DummyViewC.gridy = 2;
-    DummyViewC.gridwidth = 2;
-    DummyViewC.gridheight = 1;
-    DummyViewC.fill = GridBagConstraints.BOTH;
-    DummyViewC.weighty = 0.7;
+    dummyViewC.gridx = 0;
+    dummyViewC.gridy = 2;
+    dummyViewC.gridwidth = 2;
+    dummyViewC.gridheight = 1;
+    dummyViewC.fill = GridBagConstraints.BOTH;
+    dummyViewC.weighty = 0.7;
 
     mainViewPanel.add(labelPanel, labelViewC);
     mainViewPanel.add(userSignIn, usersViewC);
     mainViewPanel.add(newAccountPanel, newAccountViewC);
-    mainViewPanel.add(dummyPanel, DummyViewC);
+    mainViewPanel.add(dummyPanel, dummyViewC);
 
     mainFrame.add(mainViewPanel);
     mainFrame.pack();

@@ -27,13 +27,14 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class Conversation extends JFrame {
 
+    boolean isFirstClick = true;
+    
     // constructor
     public Conversation() {
 
         // Used to see if user has clicked inside the editable
         //  textarea. If true, the default text will clear. If false, the 
         //  text inside stays.
-        boolean isFirstClick = true;
 
         JFrame frame = new JFrame();
 
