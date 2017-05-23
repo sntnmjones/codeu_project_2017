@@ -14,7 +14,6 @@ import java.awt.event.ActionListener;
  * @brief   This class contains a button for the user to create an account.
  *          This panel contains from top to bottom; a message, a button.
  */
-
 @SuppressWarnings("serial")
 public class CreateAccountPanel extends JPanel {
 
@@ -25,19 +24,22 @@ public class CreateAccountPanel extends JPanel {
 
     private void initialize() {
 
-
         // Set layout within panel
         JPanel InnerLayout = new JPanel();
         InnerLayout.setLayout(new BoxLayout(InnerLayout, BoxLayout.Y_AXIS));
 
         JLabel userQuestionLabel = new JLabel("Create an Account");
         JButton createAccountButton = new JButton("Get Started!");
-        createAccountButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent ae){
+
+        // this action is for when the user clicks "create account",
+        //  it makes the Create Account frame visible
+        createAccountButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
                 NewAccount newAccount = new NewAccount();
                 newAccount.setVisible(true);
             }
         });
+
         InnerLayout.add(userQuestionLabel);
         InnerLayout.add(createAccountButton);
 

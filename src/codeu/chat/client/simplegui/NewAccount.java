@@ -1,12 +1,5 @@
 package codeu.chat.client.simplegui;
 
-/**
- * @author  Troy Jones
- * @date    5/21/17
- * @brief   Contains all GUI necessary to execute the frame to 
- *          create a new account.
- */
-
 import java.awt.Button;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -19,6 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
+/**
+ * @author  Troy Jones
+ * @date    5/21/17
+ * @brief   Contains all GUI necessary to execute the frame to 
+ *          create a new account.
+ */
 public class NewAccount extends JFrame {
 
     // constructor

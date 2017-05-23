@@ -1,16 +1,15 @@
 package codeu.chat.client.simplegui;
 
+import javax.swing.*;
+import java.awt.*;
+
+@SuppressWarnings("serial")
 /**
  * @author  Suveena
  * @date    5/18/17
  * @brief   This panel contains from top to bottom; 
  *          a user message, Username field, Password field, and button
  */
-
-import javax.swing.*;
-import java.awt.*;
-
-@SuppressWarnings("serial")
 public final class SignInPanel extends JPanel {
 
     public SignInPanel() {

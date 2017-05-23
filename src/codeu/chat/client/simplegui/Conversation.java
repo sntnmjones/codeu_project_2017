@@ -1,11 +1,5 @@
 package codeu.chat.client.simplegui;
 
-/**
- * @author  Troy Jones
- * @date    5/21/17
- * @brief   Contains all GUI necessary to execute the frame to 
- *          enable chat.
- */
 
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -24,18 +18,28 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+/**
+ * @author  Troy Jones
+ * @date    5/21/17
+ * @brief   Contains all GUI necessary to execute the frame to 
+ *          enable chat.
+ */
 @SuppressWarnings("serial")
-
 public class Conversation extends JFrame {
 
-    boolean notClickedYet = true;
 
     // constructor
     public Conversation() {
 
+        // Used to see if user has clicked inside the editable
+        //  textarea. If true, the default text will clear. If false, the 
+        //  text inside stays.
+        boolean isFirstClick = true;
+
         JFrame frame = new JFrame();
 
-        // fill mainPanel
+        // Main container that components will go inside. Will then be appended
+        //  to frame.
         Container mainPanel = frame.getContentPane();
         mainPanel.setLayout(new FlowLayout(0));
 
@@ -77,9 +81,9 @@ public class Conversation extends JFrame {
         userInputTextArea.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (notClickedYet) {
+                if (isFirstClick) {
                     userInputTextArea.setText("");
-                    notClickedYet = false;
+                    isFirstClick = false;
                 }
             }
         });
