@@ -1,8 +1,8 @@
-May 23, 2017 2:28:34 PM codeu.chat.ServerMain main
+May 23, 2017 3:02:31 PM codeu.chat.ServerMain main
 INFO: ============================= START OF LOG =============================
-May 23, 2017 2:28:34 PM codeu.chat.ServerMain main
+May 23, 2017 3:02:31 PM codeu.chat.ServerMain main
 INFO: Starting server...
-May 23, 2017 2:28:34 PM codeu.chat.ServerMain runServer
+May 23, 2017 3:02:31 PM codeu.chat.ServerMain runServer
 INFO: Server object created.
-May 23, 2017 2:28:34 PM codeu.chat.ServerMain runServer
+May 23, 2017 3:02:31 PM codeu.chat.ServerMain runServer
 INFO: Starting hub...

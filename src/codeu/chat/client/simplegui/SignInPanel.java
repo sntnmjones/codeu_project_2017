@@ -53,8 +53,9 @@ public final class SignInPanel extends JPanel {
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // Database checks
-               // If (username and password match exactly)
+                // Check that both fields are filled with valid characters
+                // Database checks
+                // If (username and password match exactly)
                 mainFrame.closeFrame();
             }
         });
