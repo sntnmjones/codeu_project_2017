@@ -7,9 +7,9 @@ package codeu.chat.client.simplegui;
 import javax.swing.*;
 import java.awt.*;
 
-/*import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.event.ListSelectionEvent;
+/*import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import codeu.chat.client.ClientContext;
@@ -18,8 +18,11 @@ import codeu.chat.common.User;*/
 @SuppressWarnings("serial")
 public final class SignInPanel extends JPanel {
 
-    public SignInPanel() {
+    public ChatSimpleGui mainFrame;
+
+    public SignInPanel(ChatSimpleGui mainFrame) {
         super(new GridBagLayout());
+        this.mainFrame = mainFrame;
         initialize();
     }
 
@@ -47,12 +50,14 @@ public final class SignInPanel extends JPanel {
 
         this.add(InnerLayout);
 
-        /*signInButton.addActionListener(new ActionListener() {
+        signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // TODO
+               // Database checks
+               // If (username and password match exactly)
+                mainFrame.closeFrame();
             }
-        });*/
+        });
 
     }
 }

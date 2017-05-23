@@ -58,6 +58,11 @@ public final class ChatSimpleGui {
     return BorderFactory.createCompoundBorder(outside, inside);
   }
 
+  // Closes the main frame, returns nothing
+  protected void closeFrame() {
+    mainFrame.dispose();
+  }
+
   // Initialize the GUI
   private void initialize() {
 
@@ -81,7 +86,7 @@ public final class ChatSimpleGui {
     labelPanel.add(new JLabel("Please choose from an option below:"));
     final GridBagConstraints labelViewC = new GridBagConstraints();
 
-    final JPanel userSignIn = new SignInPanel();
+    final JPanel userSignIn = new SignInPanel(this);
     userSignIn.setBorder(paneBorder());
     final GridBagConstraints usersViewC = new GridBagConstraints();
 
