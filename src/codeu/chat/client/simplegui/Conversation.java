@@ -27,7 +27,6 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class Conversation extends JFrame {
 
-
     // constructor
     public Conversation() {
 

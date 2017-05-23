@@ -26,7 +26,7 @@ public class NewAccount extends JFrame {
         // create mainPanel
         JPanel mainPanel = new JPanel();
         BoxLayout mainPanelLayout = 
-            new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
+                new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
         mainPanel.setLayout(mainPanelLayout);
 
         // fill welcomeTextPanel

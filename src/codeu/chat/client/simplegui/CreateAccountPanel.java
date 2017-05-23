@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class CreateAccountPanel extends JPanel {
 
-    CreateAccountPanel() {
+    public CreateAccountPanel() {
         super(new GridBagLayout());
         initialize();
     }
