@@ -37,6 +37,11 @@ public final class ChatSimpleGui {
     clientContext = new ClientContext(controller, view);
   }
 
+    // Closes the main frame, returns nothing
+    protected void closeFrame() {
+        mainFrame.dispose();
+    }
+
   // Run the GUI client
   public void run() {
 
@@ -69,7 +74,6 @@ public final class ChatSimpleGui {
 
     // Main View - outermost graphics panel.
     final JPanel mainViewPanel = new JPanel(new GridBagLayout());
-    //mainViewPanel.setBorder(paneBorder());
 
     // Build main panels - Sign In, Create Account.
 

@@ -22,8 +22,8 @@ public class CreateAccountPanel extends JPanel {
         initialize();
     }
 
-    public void setFrame(JFrame frame) {
-        this.frame = frame;
+    public void setFrame(JFrame satelliteFrame) {
+        this.frame = satelliteFrame;
     }
 
     private void initialize() {
@@ -39,9 +39,8 @@ public class CreateAccountPanel extends JPanel {
         //  it makes the Create Account frame visible
         createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                NewAccount newAccount = new NewAccount();
-                newAccount.setVisible(true);
-                frame.dispose();
+                new NewAccount(frame);
+                frame.setVisible(false);
             }
         });
 

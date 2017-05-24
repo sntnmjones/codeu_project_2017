@@ -3,6 +3,8 @@ package codeu.chat.client.simplegui;
 import java.awt.Button;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -21,7 +23,8 @@ import javax.swing.JTextField;
 public class NewAccount extends JFrame {
 
     // constructor
-    public NewAccount () {
+    public NewAccount (JFrame mainFrame) {
+        JFrame newAccountFrame = new JFrame();
 
         // create mainPanel
         JPanel mainPanel = new JPanel();
@@ -54,20 +57,31 @@ public class NewAccount extends JFrame {
         // fill buttonsPanel
         JPanel buttonsPanel = new JPanel();
         JButton createAccountButton = new JButton("Create");
+        createAccountButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                // query server
+                // get success or fail
+                // if success, success message
+                // else, catch error, message accordingly
+            }
+        });
         buttonsPanel.add(createAccountButton);
         JButton cancelButton = new JButton("Cancel");
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                mainFrame.setVisible(true);
+                newAccountFrame.dispose();
+            }
+        });
         buttonsPanel.add(cancelButton);
         mainPanel.add(buttonsPanel);
 
         // publish frame
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Create an Account");
-        frame.setSize(500, 200);
-        frame.add(mainPanel);
-        frame.setVisible(true);
+        newAccountFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        newAccountFrame.setTitle("Create an Account");
+        newAccountFrame.setSize(500, 200);
+        newAccountFrame.add(mainPanel);
+        newAccountFrame.setVisible(true);
     } // end of NewAccount()
-
-
 
 }   // end of class NewAccount
