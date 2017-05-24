@@ -5,13 +5,17 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import codeu.chat.UserMap;
 
 @SuppressWarnings("serial")
 /**
@@ -22,10 +26,12 @@ import javax.swing.JTextField;
  */
 public class NewAccount extends JFrame {
 
-    // constructor
+    UserMap userMap;
+    HashMap<String, String> usernameAndPassword;
+
     public NewAccount (JFrame mainFrame) {
         JFrame newAccountFrame = new JFrame();
-
+        userMap = new UserMap();
         // create mainPanel
         JPanel mainPanel = new JPanel();
         BoxLayout mainPanelLayout = 
@@ -50,7 +56,7 @@ public class NewAccount extends JFrame {
         JPanel userPasswordPanel = new JPanel();
         JLabel userPasswordLabel = new JLabel("Choose a password");
         userPasswordPanel.add(userPasswordLabel);
-        JTextField userpasswordTextField = new JTextField(10);
+        JPasswordField userpasswordTextField = new JPasswordField(10);
         userPasswordPanel.add(userpasswordTextField);
         mainPanel.add(userPasswordPanel);
 
@@ -59,12 +65,17 @@ public class NewAccount extends JFrame {
         JButton createAccountButton = new JButton("Create");
         createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                // query server
-                // get success or fail
-                // if success, success message
-                // else, catch error, message accordingly
+
+                String userName = new String(userNameTextField.getText());
+                usernameAndPassword = userMap.getMap();
+                if(usernameAndPassword.containsKey(userName)) {
+                    // message 'user already exists'
+                } else {
+                    // get JPasswordField. Push username and password to map
+                }
             }
         });
+        
         buttonsPanel.add(createAccountButton);
         JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(new ActionListener() {

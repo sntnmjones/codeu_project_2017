@@ -25,6 +25,7 @@ import codeu.chat.util.connections.ClientConnectionSource;
 import codeu.chat.util.connections.ConnectionSource;
 
 final class SimpleGuiClientMain {
+    UserMap userMap = new UserMap();    // for new user verification
 
   private static final Logger.Log LOG = Logger.newLog(SimpleGuiClientMain.class);
 
@@ -69,5 +70,6 @@ final class SimpleGuiClientMain {
     chatSimpleGui.run();
 
     LOG.info("chat client is running.");
+
   }
 }
