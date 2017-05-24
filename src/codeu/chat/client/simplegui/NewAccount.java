@@ -11,6 +11,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -27,7 +28,7 @@ import codeu.chat.UserMap;
 public class NewAccount extends JFrame {
 
     UserMap userMap;
-    HashMap<String, String> usernameAndPassword;
+    HashMap<String, char[]> usernameAndPassword;
 
     public NewAccount (JFrame mainFrame) {
         JFrame newAccountFrame = new JFrame();
@@ -46,7 +47,7 @@ public class NewAccount extends JFrame {
 
         // username label and textfield
         JPanel usernamePanel = new JPanel();
-        JLabel usernameLabel = new JLabel("Choose a user name");
+        JLabel usernameLabel = new JLabel("Choose a user name up to 10 characters");
         usernamePanel.add(usernameLabel);
         JTextField userNameTextField = new JTextField(10);
         usernamePanel.add(userNameTextField);
@@ -54,7 +55,7 @@ public class NewAccount extends JFrame {
 
         // password label and textfield
         JPanel userPasswordPanel = new JPanel();
-        JLabel userPasswordLabel = new JLabel("Choose a password");
+        JLabel userPasswordLabel = new JLabel("Choose a password up to 10 characters");
         userPasswordPanel.add(userPasswordLabel);
         JPasswordField userpasswordTextField = new JPasswordField(10);
         userPasswordPanel.add(userpasswordTextField);
@@ -68,14 +69,30 @@ public class NewAccount extends JFrame {
 
                 String userName = new String(userNameTextField.getText());
                 usernameAndPassword = userMap.getMap();
+
                 if(usernameAndPassword.containsKey(userName)) {
-                    // message 'user already exists'
+                    JOptionPane.showMessageDialog(newAccountFrame, "User already exists.");
                 } else {
-                    // get JPasswordField. Push username and password to map
+                    if(userName.length() > 10) {
+                        JOptionPane.showMessageDialog(newAccountFrame,
+                                "User name is larger than 10 characters.");
+                    } else {
+                        char[] password = userpasswordTextField.getPassword();
+                        if(password.length > 10) {
+                            JOptionPane.showMessageDialog(newAccountFrame,
+                                    "Password is larger than 10 characters.");
+                        } else {
+                            usernameAndPassword.put(userName, password);
+                            // start chat
+                            JOptionPane.showMessageDialog(newAccountFrame, "Please sign in.");
+                            newAccountFrame.dispose();
+                            mainFrame.setVisible(true);
+                        }
+                    }
                 }
             }
         });
-        
+
         buttonsPanel.add(createAccountButton);
         JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(new ActionListener() {

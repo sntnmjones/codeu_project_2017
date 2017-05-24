@@ -16,13 +16,13 @@ If they do not, add them to the map.*/
 
 public class UserMap {
 
-    HashMap<String, String> map;
+    HashMap<String, char[]> map;
 
     public UserMap() {
-        this.map = new HashMap<String, String>();
+        this.map = new HashMap<String, char[]>();
     }
 
-    public HashMap<String, String> getMap() {
+    public HashMap<String, char[]> getMap() {
         return this.map;
     }
 
