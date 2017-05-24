@@ -4,6 +4,8 @@ package codeu.chat.client.simplegui;
  * Created by Suveena on 5/18/17.
  */
 
+import codeu.chat.common.Conversation;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -57,9 +59,9 @@ public final class SignInPanel extends JPanel {
                 // Database checks
                 // If (username and password match exactly)
                 mainFrame.closeFrame();
+                //Conve
             }
         });
 
     }
 }
-
