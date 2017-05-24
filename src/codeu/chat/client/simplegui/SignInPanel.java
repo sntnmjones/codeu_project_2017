@@ -59,7 +59,7 @@ public final class SignInPanel extends JPanel {
                 // Database checks
                 // If (username and password match exactly)
                 mainFrame.closeFrame();
-                //Conve
+                codeu.chat.client.simplegui.Conversation newConversation = new codeu.chat.client.simplegui.Conversation();
             }
         });
 
