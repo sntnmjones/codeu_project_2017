@@ -57,11 +57,6 @@ public final class ChatSimpleGui {
     Border inside = BorderFactory.createEmptyBorder(8, 8, 8, 8);
     return BorderFactory.createCompoundBorder(outside, inside);
   }
-
-    // Closes the main frame, returns nothing
-    protected void closeFrame() {
-        mainFrame.dispose();
-    }
     
   // Initialize the GUI
   private void initialize() {
@@ -91,8 +86,9 @@ public final class ChatSimpleGui {
     final GridBagConstraints usersViewC = new GridBagConstraints();
 
     // ConversationsPanel gets access to MessagesPanel
-    final JPanel newAccountPanel = new CreateAccountPanel();
+    final CreateAccountPanel newAccountPanel = new CreateAccountPanel();
     newAccountPanel.setBorder(paneBorder());
+    newAccountPanel.setFrame(mainFrame);
     final GridBagConstraints newAccountViewC = new GridBagConstraints();
 
     // Dummy panel for formatting
