@@ -68,7 +68,7 @@ public class NewAccount extends JFrame {
             public void actionPerformed(ActionEvent ae) {
 
                 String userName = new String(userNameTextField.getText());
-                usernameAndPassword = userMap.getMap();
+                usernameAndPassword = codeu.chat.UserMap.map;
 
                 if(usernameAndPassword.containsKey(userName)) {
                     JOptionPane.showMessageDialog(newAccountFrame, "User already exists.");

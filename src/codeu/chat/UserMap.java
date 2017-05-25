@@ -16,14 +16,13 @@ If they do not, add them to the map.*/
 
 public class UserMap {
 
-    HashMap<String, char[]> map;
+    public static HashMap<String, char[]> map;
 
     public UserMap() {
-        this.map = new HashMap<String, char[]>();
-    }
-
-    public HashMap<String, char[]> getMap() {
-        return this.map;
+        String admin = "admin";
+        char[] password = {'a','d','m','i','n'};
+        codeu.chat.UserMap.map = new HashMap<String, char[]>();
+        map.put(admin, password);
     }
 
 }

@@ -14,6 +14,8 @@
 
 package codeu.chat.client.simplegui;
 
+import codeu.chat.UserMap;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -25,6 +27,8 @@ import codeu.chat.util.Logger;
 
 // Chat - top-level client application - Java Simple GUI (using Java Swing)
 public final class ChatSimpleGui {
+
+    UserMap userMap = new UserMap();
 
   private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
 
@@ -87,6 +91,7 @@ public final class ChatSimpleGui {
 
     final JPanel userSignIn = new SignInPanel();
     userSignIn.setBorder(paneBorder());
+    codeu.chat.client.simplegui.SignInPanel.setFrame(mainFrame);
     final GridBagConstraints usersViewC = new GridBagConstraints();
 
     // ConversationsPanel gets access to MessagesPanel
