@@ -7,13 +7,12 @@ import java.util.Iterator;
 import codeu.chat.client.simplegui.NewAccount;
 
 /**
- * Created by Suveena on 5/24/17.
+ * @author  Suveena
+ * @date    5/24/17
+ * @brief   Basic structure that holds all the users. Create this map upon starting GUI. Each time 
+ *              we add a new user, check to make sure that they don't already exist. If they do
+ *              not, add them to the map.
  */
-
-/* Basic structure that holds all the users. Create this map upon starting GUI.
-Each time we add a new user, check to make sure that they don't already exist.
-If they do not, add them to the map.*/
-
 public class UserMap {
 
     public static HashMap<String, char[]> map;
