@@ -14,8 +14,6 @@
 
 package codeu.chat.client.simplegui;
 
-import codeu.chat.UserMap;
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -28,8 +26,6 @@ import codeu.chat.util.Logger;
 // Chat - top-level client application - Java Simple GUI (using Java Swing)
 public final class ChatSimpleGui {
 
-  UserMap userMap = new UserMap();
-
   private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
 
   private JFrame mainFrame;
@@ -41,14 +37,11 @@ public final class ChatSimpleGui {
     clientContext = new ClientContext(controller, view);
   }
 
-  // Closes the main frame, returns nothing
-  protected void closeFrame() {
-    mainFrame.dispose();
-  }
-
   // Run the GUI client
   public void run() {
+
     try {
+
       initialize();
       mainFrame.setVisible(true);
 
@@ -81,6 +74,7 @@ public final class ChatSimpleGui {
 
     // Main View - outermost graphics panel.
     final JPanel mainViewPanel = new JPanel(new GridBagLayout());
+    //mainViewPanel.setBorder(paneBorder());
 
     // Build main panels - Sign In, Create Account.
 
@@ -94,19 +88,17 @@ public final class ChatSimpleGui {
 
     final JPanel userSignIn = new SignInPanel(this);
     userSignIn.setBorder(paneBorder());
-    codeu.chat.client.simplegui.SignInPanel.setFrame(mainFrame);
     final GridBagConstraints usersViewC = new GridBagConstraints();
 
     // ConversationsPanel gets access to MessagesPanel
-    final CreateAccountPanel newAccountPanel = new CreateAccountPanel();
+    final JPanel newAccountPanel = new CreateAccountPanel();
     newAccountPanel.setBorder(paneBorder());
-    newAccountPanel.setFrame(mainFrame);
     final GridBagConstraints newAccountViewC = new GridBagConstraints();
 
     // Dummy panel for formatting
     final JPanel dummyPanel = new JPanel();
     dummyPanel.setBorder(paneBorder());
-    final GridBagConstraints dummyViewC = new GridBagConstraints();
+    final GridBagConstraints DummyViewC = new GridBagConstraints();
 
     // Placement of main panels.
 
@@ -133,17 +125,17 @@ public final class ChatSimpleGui {
     newAccountViewC.weightx = 0.7;
     newAccountViewC.weighty = 0.3;
 
-    dummyViewC.gridx = 0;
-    dummyViewC.gridy = 2;
-    dummyViewC.gridwidth = 2;
-    dummyViewC.gridheight = 1;
-    dummyViewC.fill = GridBagConstraints.BOTH;
-    dummyViewC.weighty = 0.7;
+    DummyViewC.gridx = 0;
+    DummyViewC.gridy = 2;
+    DummyViewC.gridwidth = 2;
+    DummyViewC.gridheight = 1;
+    DummyViewC.fill = GridBagConstraints.BOTH;
+    DummyViewC.weighty = 0.7;
 
     mainViewPanel.add(labelPanel, labelViewC);
     mainViewPanel.add(userSignIn, usersViewC);
     mainViewPanel.add(newAccountPanel, newAccountViewC);
-    mainViewPanel.add(dummyPanel, dummyViewC);
+    mainViewPanel.add(dummyPanel, DummyViewC);
 
     mainFrame.add(mainViewPanel);
     mainFrame.pack();

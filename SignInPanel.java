@@ -1,25 +1,21 @@
 package codeu.chat.client.simplegui;
 
+/**
+ * Created by Suveena on 5/18/17.
+ */
+
 import javax.swing.*;
-
-import codeu.chat.UserMap;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.HashMap;
-
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+/*import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import codeu.chat.client.ClientContext;
+import codeu.chat.common.User;*/
 
 @SuppressWarnings("serial")
-/**
- * @author  Suveena
- * @date    5/18/17
- * @brief   This panel contains from top to bottom; 
- *          a user message, Username field, Password field, and button
- */
 public final class SignInPanel extends JPanel {
 
     public ChatSimpleGui mainFrame;
@@ -30,11 +26,9 @@ public final class SignInPanel extends JPanel {
         initialize();
     }
 
-    public static void setFrame(JFrame satelliteFrame) {
-        codeu.chat.client.simplegui.SignInPanel.frame = satelliteFrame;
-    }
-
     private void initialize() {
+
+        // This panel contains from top to bottom; a user message, Username field, Password field, and button
 
         // Set layout within panel
         JPanel InnerLayout = new JPanel();
@@ -44,27 +38,9 @@ public final class SignInPanel extends JPanel {
         JLabel userLabel = new JLabel("Username");
         JTextField usernameField = new JTextField();
         JLabel passwordLabel = new JLabel("Password");
-        JPasswordField passwordField = new JPasswordField();
+        JTextField passwordField = new JTextField();
         JButton signInButton = new JButton("Sign In");
-        signInButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                
-                HashMap<String, char[]> map = codeu.chat.UserMap.map;
 
-                String userName = usernameField.getText();
-                char[] password = passwordField.getPassword();
-
-                if(map.containsKey(userName) && password == map.get(userName)) {
-                    // start conversation
-                } else {
-                    if(!map.containsKey(userName)) {
-                        JOptionPane.showMessageDialog(frame, "User name is not found.");
-                    } else if(password != map.get(userName)) {
-                        JOptionPane.showMessageDialog(frame, "Password is not correct.");
-                    }
-                }
-            }
-        });
         InnerLayout.add(userQuestionLabel);
         InnerLayout.add(userLabel);
         InnerLayout.add(usernameField);
@@ -83,6 +59,6 @@ public final class SignInPanel extends JPanel {
                 mainFrame.closeFrame();
             }
         });
+
     }
 }
-
