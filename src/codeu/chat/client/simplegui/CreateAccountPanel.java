@@ -16,10 +16,14 @@ import java.awt.event.ActionListener;
  */
 @SuppressWarnings("serial")
 public class CreateAccountPanel extends JPanel {
-
+    JFrame frame = null;
     public CreateAccountPanel() {
         super(new GridBagLayout());
         initialize();
+    }
+
+    public void setFrame(JFrame satelliteFrame) {
+        this.frame = satelliteFrame;
     }
 
     private void initialize() {
@@ -35,8 +39,8 @@ public class CreateAccountPanel extends JPanel {
         //  it makes the Create Account frame visible
         createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                NewAccount newAccount = new NewAccount();
-                newAccount.setVisible(true);
+                new NewAccount(frame);
+                frame.setVisible(false);
             }
         });
 

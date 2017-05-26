@@ -26,6 +26,7 @@ import codeu.chat.util.connections.ConnectionSource;
 
 final class SimpleGuiClientMain {
 
+
   private static final Logger.Log LOG = Logger.newLog(SimpleGuiClientMain.class);
 
   public static void main(String [] args) {
@@ -69,5 +70,6 @@ final class SimpleGuiClientMain {
     chatSimpleGui.run();
 
     LOG.info("chat client is running.");
+
   }
 }
