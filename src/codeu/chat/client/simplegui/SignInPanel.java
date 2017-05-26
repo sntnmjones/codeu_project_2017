@@ -26,7 +26,7 @@ public final class SignInPanel extends JPanel {
     }
 
     public static void setFrame(JFrame satelliteFrame) {
-        codeu.chat.client.simplegui.SignInPanel.frame = satelliteFrame;
+        frame = satelliteFrame;
     }
 
     private void initialize() {
@@ -47,15 +47,13 @@ public final class SignInPanel extends JPanel {
                 HashMap<String, char[]> map = codeu.chat.UserMap.map;
 
                 String userName = usernameField.getText();
-                char[] password = passwordField.getPassword();
 
-                if(map.containsKey(userName) && password == map.get(userName)) {
+                if(map.containsKey(userName)) {
                     // start conversation
+                    
                 } else {
                     if(!map.containsKey(userName)) {
                         JOptionPane.showMessageDialog(frame, "User name is not found.");
-                    } else if(password != map.get(userName)) {
-                        JOptionPane.showMessageDialog(frame, "Password is not correct.");
                     }
                 }
             }
@@ -63,8 +61,9 @@ public final class SignInPanel extends JPanel {
         InnerLayout.add(userQuestionLabel);
         InnerLayout.add(userLabel);
         InnerLayout.add(usernameField);
-        InnerLayout.add(passwordLabel);
-        InnerLayout.add(passwordField);
+        // TODO: enable password authentication
+        //InnerLayout.add(passwordLabel);
+        //InnerLayout.add(passwordField);
         InnerLayout.add(signInButton);
 
         this.add(InnerLayout);

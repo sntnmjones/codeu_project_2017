@@ -59,7 +59,8 @@ public class NewAccount extends JFrame {
         userPasswordPanel.add(userPasswordLabel);
         JPasswordField userpasswordTextField = new JPasswordField(10);
         userPasswordPanel.add(userpasswordTextField);
-        mainPanel.add(userPasswordPanel);
+        // TODO: enable password authentication
+        //mainPanel.add(userPasswordPanel); // commented out until needed
 
         // fill buttonsPanel
         JPanel buttonsPanel = new JPanel();
@@ -77,17 +78,12 @@ public class NewAccount extends JFrame {
                         JOptionPane.showMessageDialog(newAccountFrame,
                                 "User name is larger than 10 characters.");
                     } else {
-                        char[] password = userpasswordTextField.getPassword();
-                        if(password.length > 10) {
-                            JOptionPane.showMessageDialog(newAccountFrame,
-                                    "Password is larger than 10 characters.");
-                        } else {
-                            usernameAndPassword.put(userName, password);
-                            // start chat
-                            JOptionPane.showMessageDialog(newAccountFrame, "Please sign in.");
-                            newAccountFrame.dispose();
-                            mainFrame.setVisible(true);
-                        }
+                        char[] tempPassword = {'a'};
+                        usernameAndPassword.put(userName, tempPassword);
+                        // start chat
+                        JOptionPane.showMessageDialog(newAccountFrame, "Please sign in.");
+                        newAccountFrame.dispose();
+                        mainFrame.setVisible(true);
                     }
                 }
             }
