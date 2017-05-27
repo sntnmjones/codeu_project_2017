@@ -13,12 +13,12 @@ import java.util.HashMap;
 /**
  * @author  Suveena
  * @date    5/18/17
- * @brief   This panel contains from top to bottom; 
- *          a user message, Username field, Password field, and button
+ * @brief   This panel contains from top to bottom: 
+ *          a user message, Username field, Password field, and button.
  */
 public final class SignInPanel extends JPanel {
 
-    public static JFrame frame = null;
+    public static JFrame frame;
 
     public SignInPanel() {
         super(new GridBagLayout());
@@ -31,26 +31,24 @@ public final class SignInPanel extends JPanel {
 
     private void initialize() {
 
-        // Set layout within panel
-        JPanel InnerLayout = new JPanel();
-        InnerLayout.setLayout(new BoxLayout(InnerLayout, BoxLayout.Y_AXIS));
+        // Set layout within panel.
+        JPanel innerLayout = new JPanel();
+        innerLayout.setLayout(new BoxLayout(innerLayout, BoxLayout.Y_AXIS));
 
         JLabel userQuestionLabel = new JLabel("Already a user?");
         JLabel userLabel = new JLabel("Username");
         JTextField usernameField = new JTextField();
+        // Password label currently not in use.
         JLabel passwordLabel = new JLabel("Password");
         JPasswordField passwordField = new JPasswordField();
         JButton signInButton = new JButton("Sign In");
         signInButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                
                 HashMap<String, char[]> map = codeu.chat.UserMap.map;
-
                 String userName = usernameField.getText();
-
                 if(map.containsKey(userName)) {
-                    // start conversation
-                    
+                    new Conversation();
+                    frame.setVisible(false);
                 } else {
                     if(!map.containsKey(userName)) {
                         JOptionPane.showMessageDialog(frame, "User name is not found.");
@@ -58,15 +56,15 @@ public final class SignInPanel extends JPanel {
                 }
             }
         });
-        InnerLayout.add(userQuestionLabel);
-        InnerLayout.add(userLabel);
-        InnerLayout.add(usernameField);
+        innerLayout.add(userQuestionLabel);
+        innerLayout.add(userLabel);
+        innerLayout.add(usernameField);
         // TODO: enable password authentication
-        //InnerLayout.add(passwordLabel);
-        //InnerLayout.add(passwordField);
-        InnerLayout.add(signInButton);
+        //innerLayout.add(passwordLabel);
+        //innerLayout.add(passwordField);
+        innerLayout.add(signInButton);
 
-        this.add(InnerLayout);
+        this.add(innerLayout);
 
     }
 }

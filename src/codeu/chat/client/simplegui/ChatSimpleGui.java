@@ -32,13 +32,21 @@ public final class ChatSimpleGui {
 
     private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
 
-    private JFrame mainFrame;
+    private static JFrame mainFrame;
 
     private final ClientContext clientContext;
 
     // Constructor - sets up the Chat Application
     public ChatSimpleGui(Controller controller, View view) {
         clientContext = new ClientContext(controller, view);
+    }
+
+    static public void hideFrame() {
+        mainFrame.setVisible(false);
+    }
+
+    static public void showFrame() {
+        mainFrame.setVisible(true);
     }
 
     // Closes the main frame, returns nothing
