@@ -18,7 +18,7 @@ import java.util.HashMap;
  */
 public final class SignInPanel extends JPanel {
 
-    public static JFrame frame;
+    public static JFrame frame = codeu.chat.client.simplegui.ChatSimpleGui.mainFrame;
 
     public SignInPanel() {
         super(new GridBagLayout());
@@ -65,6 +65,7 @@ public final class SignInPanel extends JPanel {
         innerLayout.add(signInButton);
 
         this.add(innerLayout);
+        frame.getRootPane().setDefaultButton(signInButton);
 
     }
 }

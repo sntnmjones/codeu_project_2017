@@ -106,6 +106,7 @@ public class NewAccount extends JFrame {
         newAccountFrame.setSize(500, 200);
         newAccountFrame.add(mainPanel);
         newAccountFrame.setVisible(true);
+        buttonsPanel.getRootPane().setDefaultButton(createAccountButton);
     } // end of NewAccount()
 
 }   // end of class NewAccount

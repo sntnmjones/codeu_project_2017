@@ -32,7 +32,7 @@ public final class ChatSimpleGui {
 
     private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
 
-    private static JFrame mainFrame;
+    public static JFrame mainFrame;
 
     private final ClientContext clientContext;
 

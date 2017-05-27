@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
  */
 @SuppressWarnings("serial")
 public class CreateAccountPanel extends JPanel {
-    JFrame frame = null;
+    JFrame frame = codeu.chat.client.simplegui.ChatSimpleGui.mainFrame;
     public CreateAccountPanel() {
         super(new GridBagLayout());
         initialize();

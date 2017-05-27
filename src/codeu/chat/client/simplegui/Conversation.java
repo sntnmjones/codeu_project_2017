@@ -109,6 +109,7 @@ public class Conversation extends JFrame {
             }
         });
         mainPanel.add(buttonsPanel);
+        buttonsPanel.getRootPane().setDefaultButton(submitButton);
 
         // publish frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
