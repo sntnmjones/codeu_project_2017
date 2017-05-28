@@ -25,36 +25,34 @@ import codeu.chat.client.Controller;
 import codeu.chat.client.View;
 import codeu.chat.util.Logger;
 
-// Chat - top-level client application - Java Simple GUI (using Java Swing)
+/**
+ * Chat - top-level client application - Java Simple GUI (using Java Swing)
+ */
 public final class ChatSimpleGui {
-
-    UserMap userMap = new UserMap();    // creates new worthless map
-
-    private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
-
-    public static JFrame mainFrame;
-
+    ///////////////////////
+    // PRIVATE VARIABLES //
+    ///////////////////////
+    private static JFrame mainFrame;
     private final ClientContext clientContext;
+    private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
+    private UserMap userMap = new UserMap();    // Map for username and password storage.
 
-    // Constructor - sets up the Chat Application
+    ////////////////////
+    // PUBLIC METHODS //
+    ////////////////////
+    /**
+     * Constructor that instantiates clientContext.
+     * 
+     * @param controller    The Controller portion of the MVC architecture.
+     * @param view          The View portion of the MVC architecture. 
+     */
     public ChatSimpleGui(Controller controller, View view) {
         clientContext = new ClientContext(controller, view);
     }
 
-    static public void hideFrame() {
-        mainFrame.setVisible(false);
-    }
-
-    static public void showFrame() {
-        mainFrame.setVisible(true);
-    }
-
-    // Closes the main frame, returns nothing
-    protected void closeFrame() {
-        mainFrame.dispose();
-    }
-
-    // Run the GUI client
+    /**
+    * Executes initialization of landing frame. 
+    */
     public void run() {
 
         try {
@@ -69,13 +67,12 @@ public final class ChatSimpleGui {
         }
     }
 
-    private Border paneBorder() {
-        Border outside = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
-        Border inside = BorderFactory.createEmptyBorder(8, 8, 8, 8);
-        return BorderFactory.createCompoundBorder(outside, inside);
-    }
-
-    // Initialize the GUI
+    /////////////////////
+    // PRIVATE METHODS //
+    /////////////////////
+    /**
+     * Creates JFrame and JPanels. Passes ClientContext to each panel.
+     */
     private void initialize() {
 
         // Outermost frame.
@@ -97,15 +94,14 @@ public final class ChatSimpleGui {
         labelPanel.add(new JLabel("Please choose from an option below:"));
         final GridBagConstraints labelViewC = new GridBagConstraints();
 
-        final JPanel userSignIn = new SignInPanel();
+        // Creates new Jpanel for user sign in pane
+        final JPanel userSignIn = new SignInPanel(clientContext);
         userSignIn.setBorder(paneBorder());
-        codeu.chat.client.simplegui.SignInPanel.setFrame(mainFrame);
         final GridBagConstraints usersViewC = new GridBagConstraints();
 
         // ConversationsPanel gets access to MessagesPanel
-        final CreateAccountPanel newAccountPanel = new CreateAccountPanel();
+        final CreateAccountPanel newAccountPanel = new CreateAccountPanel(clientContext);
         newAccountPanel.setBorder(paneBorder());
-        newAccountPanel.setFrame(mainFrame);
         final GridBagConstraints newAccountViewC = new GridBagConstraints();
 
         // Dummy panel for formatting
@@ -153,4 +149,39 @@ public final class ChatSimpleGui {
         mainFrame.add(mainViewPanel);
         mainFrame.pack();
     }
+
+    /**
+     * Creates borders for panel separation on landing frame.
+     * 
+     * @return Returns a created instance of Border.
+     */
+    private Border paneBorder() {
+        Border outside = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
+        Border inside = BorderFactory.createEmptyBorder(8, 8, 8, 8);
+        return BorderFactory.createCompoundBorder(outside, inside);
+    }
+
+    ///////////////////////
+    // PROTECTED METHODS //
+    ///////////////////////
+    /**
+     * Closes the landing frame.
+     */
+    protected void closeFrame() {
+        mainFrame.dispose();
+    }
+
+    /////////////////////
+    // STATIC METHODS  //
+    /////////////////////
+
+    /**
+     * Gives access to mainFrame.
+     * 
+     * @return Returns access to mainFrame.
+     */
+    static JFrame getMainFrame() {
+        return mainFrame;
+    }
+
 }

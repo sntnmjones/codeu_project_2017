@@ -17,6 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import codeu.chat.UserMap;
+import codeu.chat.client.ClientContext;
 
 @SuppressWarnings("serial")
 /**
@@ -27,10 +28,12 @@ import codeu.chat.UserMap;
  */
 public class NewAccount extends JFrame {
 
+    ClientContext clientContext;
     UserMap userMap;
     HashMap<String, char[]> usernameAndPassword;
 
-    public NewAccount (JFrame mainFrame) {
+    public NewAccount (JFrame mainFrame, ClientContext clientContext) {
+        this.clientContext = clientContext;
         JFrame newAccountFrame = new JFrame();
         userMap = new UserMap();
         // create mainPanel
@@ -79,6 +82,7 @@ public class NewAccount extends JFrame {
                                 "User name is larger than 10 characters.");
                     } else {
                         char[] tempPassword = {'a'};
+                        clientContext.user.addUser(userName);
                         usernameAndPassword.put(userName, tempPassword);
                         // start chat
                         JOptionPane.showMessageDialog(newAccountFrame, "Please sign in.");

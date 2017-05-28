@@ -3,6 +3,7 @@ package codeu.chat.client.simplegui;
 import javax.swing.*;
 
 import codeu.chat.UserMap;
+import codeu.chat.client.ClientContext;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,24 +12,38 @@ import java.util.HashMap;
 
 @SuppressWarnings("serial")
 /**
- * @author  Suveena
- * @date    5/18/17
- * @brief   This panel contains from top to bottom: 
- *          a user message, Username field, Password field, and button.
+ * This panel contains from top to bottom: a user message, Username field, Password field, 
+ *         and button.
  */
 public final class SignInPanel extends JPanel {
 
-    public static JFrame frame = codeu.chat.client.simplegui.ChatSimpleGui.mainFrame;
+    /////////////////////
+    // PRIVATE METHODS //
+    /////////////////////
+    private JFrame frame = ChatSimpleGui.getMainFrame();
+    private ClientContext clientContext;
 
-    public SignInPanel() {
+    ////////////////////
+    // PUBLIC METHODS //
+    ////////////////////
+    /**
+     * Constructor that sets up and displays the panel to sign in to start conversating.
+     * 
+     * @param clientContext The View and Controller portion of the MVC architecture.
+     */
+    public SignInPanel(ClientContext clientContext) {
         super(new GridBagLayout());
+        this.clientContext = clientContext;
         initialize();
     }
 
-    public static void setFrame(JFrame satelliteFrame) {
-        frame = satelliteFrame;
-    }
-
+    /////////////////////
+    // PRIVATE METHODS //
+    /////////////////////
+    /**
+     * Creates a JPanel that enables the user to enter in a username and if valid, transfer the 
+     *         user to the conversation frame.
+     */
     private void initialize() {
 
         // Set layout within panel.
@@ -39,15 +54,16 @@ public final class SignInPanel extends JPanel {
         JLabel userLabel = new JLabel("Username");
         JTextField usernameField = new JTextField();
         // Password label currently not in use.
-        JLabel passwordLabel = new JLabel("Password");
-        JPasswordField passwordField = new JPasswordField();
+        // JLabel passwordLabel = new JLabel("Password");
+        // JPasswordField passwordField = new JPasswordField();
         JButton signInButton = new JButton("Sign In");
         signInButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 HashMap<String, char[]> map = codeu.chat.UserMap.map;
                 String userName = usernameField.getText();
+                clientContext.user.signInUser(userName);
                 if(map.containsKey(userName)) {
-                    new Conversation();
+                    new Conversation(clientContext);
                     frame.setVisible(false);
                 } else {
                     if(!map.containsKey(userName)) {
