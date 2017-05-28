@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8c22e39b-3d94-46ba-91e5-b5be67a9292c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/chat_simple_gui_client_log.log" afterPath="$PROJECT_DIR$/bin/chat_simple_gui_client_log.log" />
-    </list>
+    <list default="true" id="8c22e39b-3d94-46ba-91e5-b5be67a9292c" name="Default" comment="" />
     <ignored path="codeu_project_2017.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
