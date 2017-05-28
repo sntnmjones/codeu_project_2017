@@ -5,13 +5,18 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import codeu.chat.UserMap;
 
 @SuppressWarnings("serial")
 /**
@@ -22,10 +27,12 @@ import javax.swing.JTextField;
  */
 public class NewAccount extends JFrame {
 
-    // constructor
+    UserMap userMap;
+    HashMap<String, char[]> usernameAndPassword;
+
     public NewAccount (JFrame mainFrame) {
         JFrame newAccountFrame = new JFrame();
-
+        userMap = new UserMap();
         // create mainPanel
         JPanel mainPanel = new JPanel();
         BoxLayout mainPanelLayout = 
@@ -40,7 +47,7 @@ public class NewAccount extends JFrame {
 
         // username label and textfield
         JPanel usernamePanel = new JPanel();
-        JLabel usernameLabel = new JLabel("Choose a user name");
+        JLabel usernameLabel = new JLabel("Choose a user name up to 10 characters");
         usernamePanel.add(usernameLabel);
         JTextField userNameTextField = new JTextField(10);
         usernamePanel.add(userNameTextField);
@@ -48,23 +55,40 @@ public class NewAccount extends JFrame {
 
         // password label and textfield
         JPanel userPasswordPanel = new JPanel();
-        JLabel userPasswordLabel = new JLabel("Choose a password");
+        JLabel userPasswordLabel = new JLabel("Choose a password up to 10 characters");
         userPasswordPanel.add(userPasswordLabel);
-        JTextField userpasswordTextField = new JTextField(10);
+        JPasswordField userpasswordTextField = new JPasswordField(10);
         userPasswordPanel.add(userpasswordTextField);
-        mainPanel.add(userPasswordPanel);
+        // TODO: enable password authentication
+        //mainPanel.add(userPasswordPanel); // commented out until needed
 
         // fill buttonsPanel
         JPanel buttonsPanel = new JPanel();
         JButton createAccountButton = new JButton("Create");
         createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                // query server
-                // get success or fail
-                // if success, success message
-                // else, catch error, message accordingly
+
+                String userName = new String(userNameTextField.getText());
+                usernameAndPassword = codeu.chat.UserMap.map;
+
+                if(usernameAndPassword.containsKey(userName)) {
+                    JOptionPane.showMessageDialog(newAccountFrame, "User already exists.");
+                } else {
+                    if(userName.length() > 10) {
+                        JOptionPane.showMessageDialog(newAccountFrame,
+                                "User name is larger than 10 characters.");
+                    } else {
+                        char[] tempPassword = {'a'};
+                        usernameAndPassword.put(userName, tempPassword);
+                        // start chat
+                        JOptionPane.showMessageDialog(newAccountFrame, "Please sign in.");
+                        newAccountFrame.dispose();
+                        mainFrame.setVisible(true);
+                    }
+                }
             }
         });
+
         buttonsPanel.add(createAccountButton);
         JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(new ActionListener() {
@@ -82,6 +106,7 @@ public class NewAccount extends JFrame {
         newAccountFrame.setSize(500, 200);
         newAccountFrame.add(mainPanel);
         newAccountFrame.setVisible(true);
+        buttonsPanel.getRootPane().setDefaultButton(createAccountButton);
     } // end of NewAccount()
 
 }   // end of class NewAccount

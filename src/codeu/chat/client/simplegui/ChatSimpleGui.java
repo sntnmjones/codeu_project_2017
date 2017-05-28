@@ -14,6 +14,8 @@
 
 package codeu.chat.client.simplegui;
 
+import codeu.chat.UserMap;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -26,118 +28,129 @@ import codeu.chat.util.Logger;
 // Chat - top-level client application - Java Simple GUI (using Java Swing)
 public final class ChatSimpleGui {
 
-  private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
+    UserMap userMap = new UserMap();    // creates new worthless map
 
-  private JFrame mainFrame;
+    private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
 
-  private final ClientContext clientContext;
+    public static JFrame mainFrame;
 
-  // Constructor - sets up the Chat Application
-  public ChatSimpleGui(Controller controller, View view) {
-    clientContext = new ClientContext(controller, view);
-  }
+    private final ClientContext clientContext;
 
-  // Run the GUI client
-  public void run() {
-
-    try {
-
-      initialize();
-      mainFrame.setVisible(true);
-
-    } catch (Exception ex) {
-      System.out.println("ERROR: Exception in ChatSimpleGui.run. Check log for details.");
-      LOG.error(ex, "Exception in ChatSimpleGui.run");
-      System.exit(1);
+    // Constructor - sets up the Chat Application
+    public ChatSimpleGui(Controller controller, View view) {
+        clientContext = new ClientContext(controller, view);
     }
-  }
 
-  private Border paneBorder() {
-    Border outside = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
-    Border inside = BorderFactory.createEmptyBorder(8, 8, 8, 8);
-    return BorderFactory.createCompoundBorder(outside, inside);
-  }
+    static public void hideFrame() {
+        mainFrame.setVisible(false);
+    }
 
-  // Closes the main frame, returns nothing
-  protected void closeFrame() {
-    mainFrame.dispose();
-  }
+    static public void showFrame() {
+        mainFrame.setVisible(true);
+    }
 
-  // Initialize the GUI
-  private void initialize() {
+    // Closes the main frame, returns nothing
+    protected void closeFrame() {
+        mainFrame.dispose();
+    }
 
-    // Outermost frame.
-    // NOTE: may have to tweak size, or place in scrollable panel.
-    mainFrame = new JFrame("ChatU");
-    mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    mainFrame.setSize(790, 450);
+    // Run the GUI client
+    public void run() {
 
-    // Main View - outermost graphics panel.
-    final JPanel mainViewPanel = new JPanel(new GridBagLayout());
-    //mainViewPanel.setBorder(paneBorder());
+        try {
 
-    // Build main panels - Sign In, Create Account.
+            initialize();
+            mainFrame.setVisible(true);
 
-    // Panel with just label -- Cleaner to make a new class?
-    final JPanel labelPanel = new JPanel();
-    labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
-    labelPanel.setBorder(paneBorder());
-    labelPanel.add(new JLabel("Welcome to ChatU!"));
-    labelPanel.add(new JLabel("Please choose from an option below:"));
-    final GridBagConstraints labelViewC = new GridBagConstraints();
+        } catch (Exception ex) {
+            System.out.println("ERROR: Exception in ChatSimpleGui.run. Check log for details.");
+            LOG.error(ex, "Exception in ChatSimpleGui.run");
+            System.exit(1);
+        }
+    }
 
-    final JPanel userSignIn = new SignInPanel(this);
-    userSignIn.setBorder(paneBorder());
-    final GridBagConstraints usersViewC = new GridBagConstraints();
+    private Border paneBorder() {
+        Border outside = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
+        Border inside = BorderFactory.createEmptyBorder(8, 8, 8, 8);
+        return BorderFactory.createCompoundBorder(outside, inside);
+    }
 
-    // ConversationsPanel gets access to MessagesPanel
-    final JPanel newAccountPanel = new CreateAccountPanel();
-    newAccountPanel.setBorder(paneBorder());
-    final GridBagConstraints newAccountViewC = new GridBagConstraints();
+    // Initialize the GUI
+    private void initialize() {
 
-    // Dummy panel for formatting
-    final JPanel dummyPanel = new JPanel();
-    dummyPanel.setBorder(paneBorder());
-    final GridBagConstraints DummyViewC = new GridBagConstraints();
+        // Outermost frame.
+        // NOTE: may have to tweak size, or place in scrollable panel.
+        mainFrame = new JFrame("ChatU");
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setSize(790, 450);
 
-    // Placement of main panels.
+        // Main View - outermost graphics panel.
+        final JPanel mainViewPanel = new JPanel(new GridBagLayout());
 
-    labelViewC.gridx = 0;
-    labelViewC.gridy = 0;
-    labelViewC.gridwidth = 2;
-    labelViewC.gridheight = 1;
-    labelViewC.fill = GridBagConstraints.BOTH;
-    labelViewC.weighty = 0.7;
+        // Build main panels - Sign In, Create Account.
 
-    usersViewC.gridx = 0;
-    usersViewC.gridy = 1;
-    usersViewC.gridwidth = 1;
-    usersViewC.gridheight = 1;
-    usersViewC.fill = GridBagConstraints.BOTH;
-    usersViewC.weightx = 0.3;
-    usersViewC.weighty = 0.3;
+        // Panel with just label -- Cleaner to make a new class?
+        final JPanel labelPanel = new JPanel();
+        labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
+        labelPanel.setBorder(paneBorder());
+        labelPanel.add(new JLabel("Welcome to ChatU!"));
+        labelPanel.add(new JLabel("Please choose from an option below:"));
+        final GridBagConstraints labelViewC = new GridBagConstraints();
 
-    newAccountViewC.gridx = 1;
-    newAccountViewC.gridy = 1;
-    newAccountViewC.gridwidth = 1;
-    newAccountViewC.gridheight = 1;
-    newAccountViewC.fill = GridBagConstraints.BOTH;
-    newAccountViewC.weightx = 0.7;
-    newAccountViewC.weighty = 0.3;
+        final JPanel userSignIn = new SignInPanel();
+        userSignIn.setBorder(paneBorder());
+        codeu.chat.client.simplegui.SignInPanel.setFrame(mainFrame);
+        final GridBagConstraints usersViewC = new GridBagConstraints();
 
-    DummyViewC.gridx = 0;
-    DummyViewC.gridy = 2;
-    DummyViewC.gridwidth = 2;
-    DummyViewC.gridheight = 1;
-    DummyViewC.fill = GridBagConstraints.BOTH;
-    DummyViewC.weighty = 0.7;
+        // ConversationsPanel gets access to MessagesPanel
+        final CreateAccountPanel newAccountPanel = new CreateAccountPanel();
+        newAccountPanel.setBorder(paneBorder());
+        newAccountPanel.setFrame(mainFrame);
+        final GridBagConstraints newAccountViewC = new GridBagConstraints();
 
-    mainViewPanel.add(labelPanel, labelViewC);
-    mainViewPanel.add(userSignIn, usersViewC);
-    mainViewPanel.add(newAccountPanel, newAccountViewC);
-    mainViewPanel.add(dummyPanel, DummyViewC);
+        // Dummy panel for formatting
+        final JPanel dummyPanel = new JPanel();
+        dummyPanel.setBorder(paneBorder());
+        final GridBagConstraints dummyViewC = new GridBagConstraints();
 
-    mainFrame.add(mainViewPanel);
-    mainFrame.pack();
-  }
+        // Placement of main panels.
+
+        labelViewC.gridx = 0;
+        labelViewC.gridy = 0;
+        labelViewC.gridwidth = 2;
+        labelViewC.gridheight = 1;
+        labelViewC.fill = GridBagConstraints.BOTH;
+        labelViewC.weighty = 0.7;
+
+        usersViewC.gridx = 0;
+        usersViewC.gridy = 1;
+        usersViewC.gridwidth = 1;
+        usersViewC.gridheight = 1;
+        usersViewC.fill = GridBagConstraints.BOTH;
+        usersViewC.weightx = 0.3;
+        usersViewC.weighty = 0.3;
+
+        newAccountViewC.gridx = 1;
+        newAccountViewC.gridy = 1;
+        newAccountViewC.gridwidth = 1;
+        newAccountViewC.gridheight = 1;
+        newAccountViewC.fill = GridBagConstraints.BOTH;
+        newAccountViewC.weightx = 0.7;
+        newAccountViewC.weighty = 0.3;
+
+        dummyViewC.gridx = 0;
+        dummyViewC.gridy = 2;
+        dummyViewC.gridwidth = 2;
+        dummyViewC.gridheight = 1;
+        dummyViewC.fill = GridBagConstraints.BOTH;
+        dummyViewC.weighty = 0.7;
+
+        mainViewPanel.add(labelPanel, labelViewC);
+        mainViewPanel.add(userSignIn, usersViewC);
+        mainViewPanel.add(newAccountPanel, newAccountViewC);
+        mainViewPanel.add(dummyPanel, dummyViewC);
+
+        mainFrame.add(mainViewPanel);
+        mainFrame.pack();
+    }
 }

@@ -7,6 +7,8 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -28,8 +30,7 @@ import javax.swing.JTextField;
 public class Conversation extends JFrame {
 
     boolean isFirstClick = true;
-    
-    // constructor
+
     public Conversation() {
 
         // Used to see if user has clicked inside the editable
@@ -97,9 +98,18 @@ public class Conversation extends JFrame {
         JPanel buttonsPanel = new JPanel();
         JButton submitButton = new JButton("Submit");
         buttonsPanel.add(submitButton);
+
+        // Logout button: logs out of conversation, returns user back to landing frame.
         JButton logoutButton = new JButton("Logout");
         buttonsPanel.add(logoutButton);
+        logoutButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                codeu.chat.client.simplegui.ChatSimpleGui.showFrame();
+                frame.dispose();
+            }
+        });
         mainPanel.add(buttonsPanel);
+        buttonsPanel.getRootPane().setDefaultButton(submitButton);
 
         // publish frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,7 +1,185 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8c22e39b-3d94-46ba-91e5-b5be67a9292c" name="Default" comment="" />
+    <list default="true" id="8c22e39b-3d94-46ba-91e5-b5be67a9292c" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/chat_server_log.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/chat_server_log.log.lck" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/chat_simple_gui_client_log.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeU/chat/client/simplegui/CreateAccountPanel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeU/chat/client/simplegui/SignInPanel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/ClientMain.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/RelayMain$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/RelayMain$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/RelayMain.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/ServerMain$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/ServerMain.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/SimpleGuiClientMain.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/TestRunner.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/UserMap.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/ClientContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/ClientConversation.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/ClientMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/ClientUser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/Controller.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/View.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/commandline/Chat 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/commandline/Chat.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/commandline/ListNavigator 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/commandline/ListNavigator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/ChatSimpleGui 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/ChatSimpleGui.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/Conversation$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/Conversation$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/Conversation.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/ConversationPanel$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/ConversationPanel$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/ConversationPanel$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/ConversationPanel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/CreateAccountPanel$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/MessagePanel$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/MessagePanel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/NewAccount$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/NewAccount$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/NewAccount.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/SignInPanel$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/UserPanel$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/UserPanel$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/UserPanel$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/UserPanel$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/UserPanel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/BasicController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/BasicView.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Conversation$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Conversation.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/ConversationSummary$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/ConversationSummary.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Hub$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Hub$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Hub$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Hub$Handler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Hub$Processor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Hub.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/LinearUuidGenerator$BasicUuid.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/LinearUuidGenerator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/ListViewable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/LogicalView.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Message$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Message.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/NetworkCode.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/RandomUuidGenerator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/RawController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Relay$Bundle$Component.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Relay$Bundle.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Relay.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Secret.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/SecretTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/SinglesView.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Time$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Time.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/User$1 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/User$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/User.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Uuid$Generator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Uuid.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/UuidTest$TestUuid.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/UuidTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Uuids$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Uuids$2$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Uuids$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Uuids$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Uuids$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/Uuids.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/common/UuidsTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/relay/Server$Bundle.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/relay/Server$Component 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/relay/Server$Component.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/relay/Server.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/relay/ServerFrontEnd$1$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/relay/ServerFrontEnd$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/relay/ServerFrontEnd$2$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/relay/ServerFrontEnd$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/relay/ServerFrontEnd.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/relay/ServerTest$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/relay/ServerTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/BasicControllerTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Controller 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Controller.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Model$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Model$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Model.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/NoOpRelay$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/NoOpRelay.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RandomUuidGenerator$BasicUuid.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RandomUuidGenerator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RawControllerTest$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RawControllerTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RemoteRelay 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RemoteRelay$1 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RemoteRelay$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RemoteRelay$2 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RemoteRelay$2$1 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RemoteRelay$2$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RemoteRelay$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RemoteRelay$Component 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RemoteRelay$Component.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/RemoteRelay.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Server 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Server$1 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Server$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Server$2 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Server$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Server$3 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Server$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/Server.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/View 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/server/View.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Logger$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Logger$Log.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Logger.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Method.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/RemoteAddress.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Serializer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Serializers$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Serializers$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Serializers$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Serializers$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Serializers$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Serializers$6.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Serializers$7.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Serializers.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Time$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Time.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/TimeTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Timeline 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Timeline$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Timeline$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Timeline$Event 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Timeline$Event.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Timeline.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Uuid$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Uuid$Generator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/Uuid.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/UuidTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/connections/ClientConnectionSource 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/connections/ClientConnectionSource$1 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/connections/ClientConnectionSource$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/connections/ClientConnectionSource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/connections/Connection.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/connections/ConnectionSource 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/connections/ConnectionSource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/connections/ServerConnectionSource 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/connections/ServerConnectionSource$1 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/connections/ServerConnectionSource$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/connections/ServerConnectionSource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/store/LinkIterable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/store/LinkIterator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/store/Store 2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/store/Store.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/store/StoreAccessor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/store/StoreLink.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/store/StoreTest$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/codeu/chat/util/store/StoreTest.class" afterPath="" />
+    </list>
     <ignored path="codeu_project_2017.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />

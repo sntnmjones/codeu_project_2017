@@ -1,67 +1,72 @@
 package codeu.chat.client.simplegui;
 
-/**
- * Created by Suveena on 5/18/17.
- */
-
-import codeu.chat.common.Conversation;
-
 import javax.swing.*;
-import java.awt.*;
 
+import codeu.chat.UserMap;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-/*import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
-import codeu.chat.client.ClientContext;
-import codeu.chat.common.User;*/
+import java.util.HashMap;
 
 @SuppressWarnings("serial")
+/**
+ * @author  Suveena
+ * @date    5/18/17
+ * @brief   This panel contains from top to bottom: 
+ *          a user message, Username field, Password field, and button.
+ */
 public final class SignInPanel extends JPanel {
 
-    public ChatSimpleGui mainFrame;
+    public static JFrame frame = codeu.chat.client.simplegui.ChatSimpleGui.mainFrame;
 
-    public SignInPanel(ChatSimpleGui mainFrame) {
+    public SignInPanel() {
         super(new GridBagLayout());
-        this.mainFrame = mainFrame;
         initialize();
+    }
+
+    public static void setFrame(JFrame satelliteFrame) {
+        frame = satelliteFrame;
     }
 
     private void initialize() {
 
-        // This panel contains from top to bottom; a user message, Username field, Password field, and button
-
-        // Set layout within panel
-        JPanel InnerLayout = new JPanel();
-        InnerLayout.setLayout(new BoxLayout(InnerLayout, BoxLayout.Y_AXIS));
+        // Set layout within panel.
+        JPanel innerLayout = new JPanel();
+        innerLayout.setLayout(new BoxLayout(innerLayout, BoxLayout.Y_AXIS));
 
         JLabel userQuestionLabel = new JLabel("Already a user?");
         JLabel userLabel = new JLabel("Username");
         JTextField usernameField = new JTextField();
+        // Password label currently not in use.
         JLabel passwordLabel = new JLabel("Password");
-        JTextField passwordField = new JTextField();
+        JPasswordField passwordField = new JPasswordField();
         JButton signInButton = new JButton("Sign In");
-
-        InnerLayout.add(userQuestionLabel);
-        InnerLayout.add(userLabel);
-        InnerLayout.add(usernameField);
-        InnerLayout.add(passwordLabel);
-        InnerLayout.add(passwordField);
-        InnerLayout.add(signInButton);
-
-        this.add(InnerLayout);
-
         signInButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Check that both fields are filled with valid characters
-                // Database checks
-                // If (username and password match exactly)
-                mainFrame.closeFrame();
-                codeu.chat.client.simplegui.Conversation newConversation = new codeu.chat.client.simplegui.Conversation();
+            public void actionPerformed(ActionEvent ae) {
+                HashMap<String, char[]> map = codeu.chat.UserMap.map;
+                String userName = usernameField.getText();
+                if(map.containsKey(userName)) {
+                    new Conversation();
+                    frame.setVisible(false);
+                } else {
+                    if(!map.containsKey(userName)) {
+                        JOptionPane.showMessageDialog(frame, "User name is not found.");
+                    }
+                }
             }
         });
+        innerLayout.add(userQuestionLabel);
+        innerLayout.add(userLabel);
+        innerLayout.add(usernameField);
+        // TODO: enable password authentication
+        //innerLayout.add(passwordLabel);
+        //innerLayout.add(passwordField);
+        innerLayout.add(signInButton);
+
+        this.add(innerLayout);
+        frame.getRootPane().setDefaultButton(signInButton);
 
     }
 }
+
