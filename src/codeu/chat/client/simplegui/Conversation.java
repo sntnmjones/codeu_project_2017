@@ -58,7 +58,7 @@ public class Conversation extends JFrame {
         mainPanel.add(conversationListSubPanel, BorderLayout.CENTER);
 
         // current conversation area label
-        JLabel currentConvoLabel = new JLabel("Active conversation with: ");
+        JLabel currentConvoLabel = new JLabel("Conversation: ");
         mainPanel.add(currentConvoLabel);
 
         // current conversation text area (post current conversation here)
