@@ -28,8 +28,8 @@ import codeu.chat.client.ClientContext;
  */
 public class NewAccount extends JFrame {
 
-    UserMap userMap;
-    HashMap<String, char[]> usernameAndPassword;
+    //UserMap userMap;
+    //HashMap<String, char[]> usernameAndPassword;
     ClientContext context;
 
     public NewAccount (JFrame mainFrame, ClientContext context) {
