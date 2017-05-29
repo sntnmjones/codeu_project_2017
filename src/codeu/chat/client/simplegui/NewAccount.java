@@ -77,7 +77,7 @@ public class NewAccount extends JFrame {
                 //usernameAndPassword = codeu.chat.UserMap.map;
 
                 // Checks
-                /*if(usernameAndPassword.containsKey(userName)) {
+                if(!(context.user.showUserInfo(userName).equals("Null user"))) {
                     JOptionPane.showMessageDialog(newAccountFrame, "User already exists.");
                 } else {
                     if(userName.length() > 10) {
@@ -85,13 +85,12 @@ public class NewAccount extends JFrame {
                                 "User name is larger than 10 characters.");
                     } else {
                         char[] tempPassword = {'a'};
-                        usernameAndPassword.put(userName, tempPassword);
                         // start chat
                         JOptionPane.showMessageDialog(newAccountFrame, "Please sign in.");
                         newAccountFrame.dispose();
                         mainFrame.setVisible(true);
                     }
-                }*/
+                }
             }
         });
 
