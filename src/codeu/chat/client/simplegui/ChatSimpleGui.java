@@ -97,21 +97,13 @@ public final class ChatSimpleGui {
         labelPanel.add(new JLabel("Please choose from an option below:"));
         final GridBagConstraints labelViewC = new GridBagConstraints();
 
-<<<<<<< HEAD
         final JPanel userSignIn = new SignInPanel(clientContext);
-=======
-        final JPanel userSignIn = new SignInPanel();
->>>>>>> 84e2c5c37721c3be4d5a0071162afa655ca0ca6b
         userSignIn.setBorder(paneBorder());
         codeu.chat.client.simplegui.SignInPanel.setFrame(mainFrame);
         final GridBagConstraints usersViewC = new GridBagConstraints();
 
         // ConversationsPanel gets access to MessagesPanel
-<<<<<<< HEAD
         final CreateAccountPanel newAccountPanel = new CreateAccountPanel(clientContext);
-=======
-        final CreateAccountPanel newAccountPanel = new CreateAccountPanel();
->>>>>>> 84e2c5c37721c3be4d5a0071162afa655ca0ca6b
         newAccountPanel.setBorder(paneBorder());
         newAccountPanel.setFrame(mainFrame);
         final GridBagConstraints newAccountViewC = new GridBagConstraints();

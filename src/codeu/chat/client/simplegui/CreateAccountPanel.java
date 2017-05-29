@@ -2,10 +2,7 @@ package codeu.chat.client.simplegui;
 
 import javax.swing.*;
 
-<<<<<<< HEAD
 import codeu.chat.client.ClientContext;
-=======
->>>>>>> 84e2c5c37721c3be4d5a0071162afa655ca0ca6b
 import codeu.chat.client.simplegui.NewAccount;
 
 import java.awt.*;
@@ -21,13 +18,9 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class CreateAccountPanel extends JPanel {
     JFrame frame = codeu.chat.client.simplegui.ChatSimpleGui.mainFrame;
-<<<<<<< HEAD
     ClientContext context;
 
     public CreateAccountPanel(ClientContext context) {
-=======
-    public CreateAccountPanel() {
->>>>>>> 84e2c5c37721c3be4d5a0071162afa655ca0ca6b
         super(new GridBagLayout());
         initialize();
         this.context = context;
@@ -50,11 +43,7 @@ public class CreateAccountPanel extends JPanel {
         //  it makes the Create Account frame visible
         createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-<<<<<<< HEAD
                 new NewAccount(frame, context);
-=======
-                new NewAccount(frame);
->>>>>>> 84e2c5c37721c3be4d5a0071162afa655ca0ca6b
                 frame.setVisible(false);
             }
         });
