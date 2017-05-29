@@ -59,7 +59,7 @@ public final class SignInPanel extends JPanel {
         JButton signInButton = new JButton("Sign In");
         signInButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                HashMap<String, char[]> map = codeu.chat.UserMap.map;
+                HashMap<String, char[]> map = UserMap.getMap();
                 String userName = usernameField.getText();
                 clientContext.user.signInUser(userName);
                 if(map.containsKey(userName)) {

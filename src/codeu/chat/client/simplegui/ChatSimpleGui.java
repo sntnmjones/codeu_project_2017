@@ -33,7 +33,7 @@ public final class ChatSimpleGui {
     // PRIVATE VARIABLES //
     ///////////////////////
     private static JFrame mainFrame;
-    private final ClientContext clientContext;
+    private ClientContext clientContext;
     private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
     private UserMap userMap = new UserMap();    // Map for username and password storage.
 
@@ -51,8 +51,8 @@ public final class ChatSimpleGui {
     }
 
     /**
-    * Executes initialization of landing frame. 
-    */
+     * Executes initialization of landing frame. 
+     */
     public void run() {
 
         try {
@@ -82,32 +82,32 @@ public final class ChatSimpleGui {
         mainFrame.setSize(790, 450);
 
         // Main View - outermost graphics panel.
-        final JPanel mainViewPanel = new JPanel(new GridBagLayout());
+        JPanel mainViewPanel = new JPanel(new GridBagLayout());
 
         // Build main panels - Sign In, Create Account.
 
         // Panel with just label -- Cleaner to make a new class?
-        final JPanel labelPanel = new JPanel();
+        JPanel labelPanel = new JPanel();
         labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
         labelPanel.setBorder(paneBorder());
         labelPanel.add(new JLabel("Welcome to ChatU!"));
         labelPanel.add(new JLabel("Please choose from an option below:"));
-        final GridBagConstraints labelViewC = new GridBagConstraints();
+        GridBagConstraints labelViewC = new GridBagConstraints();
 
         // Creates new Jpanel for user sign in pane
-        final JPanel userSignIn = new SignInPanel(clientContext);
+        JPanel userSignIn = new SignInPanel(clientContext);
         userSignIn.setBorder(paneBorder());
-        final GridBagConstraints usersViewC = new GridBagConstraints();
+        GridBagConstraints usersViewC = new GridBagConstraints();
 
         // ConversationsPanel gets access to MessagesPanel
-        final CreateAccountPanel newAccountPanel = new CreateAccountPanel(clientContext);
+        CreateAccountPanel newAccountPanel = new CreateAccountPanel(clientContext);
         newAccountPanel.setBorder(paneBorder());
-        final GridBagConstraints newAccountViewC = new GridBagConstraints();
+        GridBagConstraints newAccountViewC = new GridBagConstraints();
 
         // Dummy panel for formatting
-        final JPanel dummyPanel = new JPanel();
+        JPanel dummyPanel = new JPanel();
         dummyPanel.setBorder(paneBorder());
-        final GridBagConstraints dummyViewC = new GridBagConstraints();
+        GridBagConstraints dummyViewC = new GridBagConstraints();
 
         // Placement of main panels.
 
