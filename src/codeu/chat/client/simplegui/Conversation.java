@@ -17,8 +17,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 /**
  * @author  Troy Jones
@@ -82,6 +84,7 @@ public class Conversation extends JFrame {
         userInputTextArea.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
                 if (isFirstClick) {
                     userInputTextArea.setText("");
                     isFirstClick = false;
@@ -98,18 +101,19 @@ public class Conversation extends JFrame {
         JPanel buttonsPanel = new JPanel();
         JButton submitButton = new JButton("Submit");
         buttonsPanel.add(submitButton);
+        mainPanel.add(buttonsPanel);
+        JRootPane rootPane = SwingUtilities.getRootPane(submitButton);
+        rootPane.setDefaultButton(submitButton);
 
         // Logout button: logs out of conversation, returns user back to landing frame.
         JButton logoutButton = new JButton("Logout");
         buttonsPanel.add(logoutButton);
         logoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                codeu.chat.client.simplegui.ChatSimpleGui.showFrame();
+                ChatSimpleGui.showFrame();
                 frame.dispose();
             }
         });
-        mainPanel.add(buttonsPanel);
-        buttonsPanel.getRootPane().setDefaultButton(submitButton);
 
         // publish frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
