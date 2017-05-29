@@ -27,6 +27,7 @@ public final class ClientContext {
   public final ClientMessage message;
   // Added:
   public final Controller accessController;
+  public final View accessView;
 
   public ClientContext(Controller controller, View view) {
     user = new ClientUser(controller, view);
@@ -34,5 +35,6 @@ public final class ClientContext {
     message = new ClientMessage(controller, view, user, conversation);
     // Added:
     accessController = controller;
+    accessView = view;
   }
 }

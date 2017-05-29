@@ -50,7 +50,9 @@ public final class SignInPanel extends JPanel {
                 //HashMap<String, char[]> map = codeu.chat.UserMap.map;
                 String userName = usernameField.getText();
                 if(!(context.user.showUserInfo(userName).equals("Null user"))){
-                    new Conversation();
+                    //new Conversation();
+                    codeu.chat.client.simplegui.originalgui.ChatSimpleGui convoFrame = new codeu.chat.client.simplegui.originalgui.ChatSimpleGui(context.accessController, context.accessView);
+                    convoFrame.run();
                     frame.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(frame, "User name is not found.");
