@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c22e39b-3d94-46ba-91e5-b5be67a9292c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/ClientUser.class" afterPath="$PROJECT_DIR$/bin/codeu/chat/client/ClientUser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/NewAccount$1.class" afterPath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/NewAccount$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/NewAccount$2.class" afterPath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/NewAccount$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/NewAccount.class" afterPath="$PROJECT_DIR$/bin/codeu/chat/client/simplegui/NewAccount.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/codeu/chat/client/ClientUser.java" afterPath="$PROJECT_DIR$/src/codeu/chat/client/ClientUser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/codeu/chat/client/simplegui/NewAccount.java" afterPath="$PROJECT_DIR$/src/codeu/chat/client/simplegui/NewAccount.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/chat_server_log.log" afterPath="$PROJECT_DIR$/bin/chat_server_log.log" />
     </list>
     <ignored path="codeu_project_2017.iws" />
     <ignored path=".idea/workspace.xml" />
