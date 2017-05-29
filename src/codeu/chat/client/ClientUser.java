@@ -116,7 +116,9 @@ public final class ClientUser {
   // Looking up by name -- New method
   public Uuid lookupByName(String name) {
     for (User value : usersById.values()) {
+      //System.out.print("value.name: " + value.name);
       if(value.name.equals(name)) {
+        //System.out.println(", name: " + name);
         return value.id;
       }
     }

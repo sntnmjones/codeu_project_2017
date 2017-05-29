@@ -71,20 +71,19 @@ public class NewAccount extends JFrame {
             public void actionPerformed(ActionEvent ae) {
 
                 String userName = new String(userNameTextField.getText());
-                context.accessController.newUser(userName);
-                context.user.addUser(userName);
                 //usernameAndPassword = codeu.chat.UserMap.map;
 
                 // Checks
-                if(!(context.user.showUserInfo(userName).equals("Null user"))) {
-
-                    JOptionPane.showMessageDialog(newAccountFrame, "User already exists.");
+                if (context.user.lookupByName(userName) != null) {
+                        JOptionPane.showMessageDialog(newAccountFrame, "User already exists.");
                 } else {
                     if(userName.length() > 10) {
                         JOptionPane.showMessageDialog(newAccountFrame,
                                 "User name is larger than 10 characters.");
                     } else {
                         char[] tempPassword = {'a'};
+                        context.accessController.newUser(userName);
+                        context.user.addUser(userName);
                         // start chat
                         JOptionPane.showMessageDialog(newAccountFrame, "Please sign in.");
                         newAccountFrame.dispose();
