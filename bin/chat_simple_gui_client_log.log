@@ -1,10 +1,14 @@
-May 28, 2017 4:50:11 PM codeu.chat.SimpleGuiClientMain main
+May 28, 2017 6:54:12 PM codeu.chat.SimpleGuiClientMain main
 INFO: ============================= START OF LOG =============================
-May 28, 2017 4:50:11 PM codeu.chat.SimpleGuiClientMain main
+May 28, 2017 6:54:12 PM codeu.chat.SimpleGuiClientMain main
 INFO: Starting chat client...
-May 28, 2017 4:50:11 PM codeu.chat.SimpleGuiClientMain main
+May 28, 2017 6:54:12 PM codeu.chat.SimpleGuiClientMain main
 INFO: Creating client...
-May 28, 2017 4:50:11 PM codeu.chat.SimpleGuiClientMain runClient
+May 28, 2017 6:54:12 PM codeu.chat.SimpleGuiClientMain runClient
 INFO: Created client
-May 28, 2017 4:50:14 PM codeu.chat.SimpleGuiClientMain runClient
+May 28, 2017 6:54:15 PM codeu.chat.SimpleGuiClientMain runClient
 INFO: chat client is running.
+May 28, 2017 6:54:18 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 28, 2017 6:54:18 PM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.

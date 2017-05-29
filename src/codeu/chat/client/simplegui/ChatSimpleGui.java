@@ -103,7 +103,7 @@ public final class ChatSimpleGui {
         final GridBagConstraints usersViewC = new GridBagConstraints();
 
         // ConversationsPanel gets access to MessagesPanel
-        final CreateAccountPanel newAccountPanel = new CreateAccountPanel();
+        final CreateAccountPanel newAccountPanel = new CreateAccountPanel(clientContext);
         newAccountPanel.setBorder(paneBorder());
         newAccountPanel.setFrame(mainFrame);
         final GridBagConstraints newAccountViewC = new GridBagConstraints();

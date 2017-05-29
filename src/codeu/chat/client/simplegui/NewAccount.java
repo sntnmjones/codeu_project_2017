@@ -17,6 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import codeu.chat.UserMap;
+import codeu.chat.client.ClientContext;
 
 @SuppressWarnings("serial")
 /**
@@ -29,10 +30,13 @@ public class NewAccount extends JFrame {
 
     UserMap userMap;
     HashMap<String, char[]> usernameAndPassword;
+    ClientContext context;
 
-    public NewAccount (JFrame mainFrame) {
+    public NewAccount (JFrame mainFrame, ClientContext context) {
         JFrame newAccountFrame = new JFrame();
-        userMap = new UserMap();
+        this.context = context;
+
+        //userMap = new UserMap();
         // create mainPanel
         JPanel mainPanel = new JPanel();
         BoxLayout mainPanelLayout = 
@@ -69,9 +73,11 @@ public class NewAccount extends JFrame {
             public void actionPerformed(ActionEvent ae) {
 
                 String userName = new String(userNameTextField.getText());
-                usernameAndPassword = codeu.chat.UserMap.map;
+                context.accessController.newUser(userName);
+                //usernameAndPassword = codeu.chat.UserMap.map;
 
-                if(usernameAndPassword.containsKey(userName)) {
+                // Checks
+                /*if(usernameAndPassword.containsKey(userName)) {
                     JOptionPane.showMessageDialog(newAccountFrame, "User already exists.");
                 } else {
                     if(userName.length() > 10) {
@@ -85,7 +91,7 @@ public class NewAccount extends JFrame {
                         newAccountFrame.dispose();
                         mainFrame.setVisible(true);
                     }
-                }
+                }*/
             }
         });
 
