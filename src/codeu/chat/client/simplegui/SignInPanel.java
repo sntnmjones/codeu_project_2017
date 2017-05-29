@@ -3,6 +3,7 @@ package codeu.chat.client.simplegui;
 import javax.swing.*;
 
 import codeu.chat.UserMap;
+import codeu.chat.client.ClientContext;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,63 +12,76 @@ import java.util.HashMap;
 
 @SuppressWarnings("serial")
 /**
- * @author  Suveena
- * @date    5/18/17
- * @brief   This panel contains from top to bottom; 
- *          a user message, Username field, Password field, and button
+ * This panel contains from top to bottom: a user message, Username field, Password field, 
+ *         and button.
  */
 public final class SignInPanel extends JPanel {
 
-    public static JFrame frame = null;
+    /////////////////////
+    // PRIVATE METHODS //
+    /////////////////////
+    private JFrame frame = ChatSimpleGui.getMainFrame();
+    private ClientContext clientContext;
 
-    public SignInPanel() {
+    ////////////////////
+    // PUBLIC METHODS //
+    ////////////////////
+    /**
+     * Constructor that sets up and displays the panel to sign in to start conversating.
+     * 
+     * @param clientContext The View and Controller portion of the MVC architecture.
+     */
+    public SignInPanel(ClientContext clientContext) {
         super(new GridBagLayout());
+        this.clientContext = clientContext;
         initialize();
     }
 
-    public static void setFrame(JFrame satelliteFrame) {
-        codeu.chat.client.simplegui.SignInPanel.frame = satelliteFrame;
-    }
-
+    /////////////////////
+    // PRIVATE METHODS //
+    /////////////////////
+    /**
+     * Creates a JPanel that enables the user to enter in a username and if valid, transfer the 
+     *         user to the conversation frame.
+     */
     private void initialize() {
 
-        // Set layout within panel
-        JPanel InnerLayout = new JPanel();
-        InnerLayout.setLayout(new BoxLayout(InnerLayout, BoxLayout.Y_AXIS));
+        // Set layout within panel.
+        JPanel innerLayout = new JPanel();
+        innerLayout.setLayout(new BoxLayout(innerLayout, BoxLayout.Y_AXIS));
 
         JLabel userQuestionLabel = new JLabel("Already a user?");
         JLabel userLabel = new JLabel("Username");
         JTextField usernameField = new JTextField();
-        JLabel passwordLabel = new JLabel("Password");
-        JPasswordField passwordField = new JPasswordField();
+        // Password label currently not in use.
+        // JLabel passwordLabel = new JLabel("Password");
+        // JPasswordField passwordField = new JPasswordField();
         JButton signInButton = new JButton("Sign In");
         signInButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                
-                HashMap<String, char[]> map = codeu.chat.UserMap.map;
-
+                HashMap<String, char[]> map = UserMap.getMap();
                 String userName = usernameField.getText();
-                char[] password = passwordField.getPassword();
-
-                if(map.containsKey(userName) && password == map.get(userName)) {
-                    // start conversation
+                clientContext.user.signInUser(userName);
+                if(map.containsKey(userName)) {
+                    new Conversation(clientContext);
+                    frame.setVisible(false);
                 } else {
                     if(!map.containsKey(userName)) {
                         JOptionPane.showMessageDialog(frame, "User name is not found.");
-                    } else if(password != map.get(userName)) {
-                        JOptionPane.showMessageDialog(frame, "Password is not correct.");
                     }
                 }
             }
         });
-        InnerLayout.add(userQuestionLabel);
-        InnerLayout.add(userLabel);
-        InnerLayout.add(usernameField);
-        InnerLayout.add(passwordLabel);
-        InnerLayout.add(passwordField);
-        InnerLayout.add(signInButton);
+        innerLayout.add(userQuestionLabel);
+        innerLayout.add(userLabel);
+        innerLayout.add(usernameField);
+        // TODO: enable password authentication
+        //innerLayout.add(passwordLabel);
+        //innerLayout.add(passwordField);
+        innerLayout.add(signInButton);
 
-        this.add(InnerLayout);
+        this.add(innerLayout);
+        frame.getRootPane().setDefaultButton(signInButton);
 
     }
 }

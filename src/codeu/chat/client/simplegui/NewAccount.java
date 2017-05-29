@@ -17,22 +17,31 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import codeu.chat.UserMap;
+import codeu.chat.client.ClientContext;
 
 @SuppressWarnings("serial")
 /**
- * @author  Troy Jones
- * @date    5/21/17
- * @brief   Contains all GUI necessary to execute the frame to 
- *          create a new account.
+ * Contains all GUI necessary to execute the frame to create a new account.
  */
 public class NewAccount extends JFrame {
+    ///////////////////////
+    // PRIVATE VARIABLES //
+    ///////////////////////
+    private ClientContext clientContext;
+    private HashMap<String, char[]> usernameAndPassword = UserMap.getMap();
 
-    UserMap userMap;
-    HashMap<String, char[]> usernameAndPassword;
-
-    public NewAccount (JFrame mainFrame) {
+    ////////////////////
+    // PUBLIC METHODS //
+    ////////////////////
+    /**
+     * Creates a new JFrame, populates it with a JPanel that includes: a textarea where the user 
+     *         will enter username, a button to submit, and a button to cancel.
+     * 
+     * @param clientContext The View and Controller portion of the MVC architecture.
+     */
+    public NewAccount (JFrame mainFrame, ClientContext clientContext) {
+        this.clientContext = clientContext;
         JFrame newAccountFrame = new JFrame();
-        userMap = new UserMap();
         // create mainPanel
         JPanel mainPanel = new JPanel();
         BoxLayout mainPanelLayout = 
@@ -53,22 +62,25 @@ public class NewAccount extends JFrame {
         usernamePanel.add(userNameTextField);
         mainPanel.add(usernamePanel);
 
+        // TODO: 
         // password label and textfield
-        JPanel userPasswordPanel = new JPanel();
-        JLabel userPasswordLabel = new JLabel("Choose a password up to 10 characters");
-        userPasswordPanel.add(userPasswordLabel);
-        JPasswordField userpasswordTextField = new JPasswordField(10);
-        userPasswordPanel.add(userpasswordTextField);
-        mainPanel.add(userPasswordPanel);
+        // JPanel userPasswordPanel = new JPanel();
+        // JLabel userPasswordLabel = new JLabel("Choose a password up to 10 characters");
+        // userPasswordPanel.add(userPasswordLabel);
+        // JPasswordField userpasswordTextField = new JPasswordField(10);
+        // userPasswordPanel.add(userpasswordTextField);
+        // TODO: enable password authentication
+        //mainPanel.add(userPasswordPanel); // commented out until needed
 
         // fill buttonsPanel
         JPanel buttonsPanel = new JPanel();
         JButton createAccountButton = new JButton("Create");
+        // Checks to see if username entered exists, if it does not and is less than 10 characters
+        //         long, it will put it in hashMap and server.
         createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
 
                 String userName = new String(userNameTextField.getText());
-                usernameAndPassword = codeu.chat.UserMap.map;
 
                 if(usernameAndPassword.containsKey(userName)) {
                     JOptionPane.showMessageDialog(newAccountFrame, "User already exists.");
@@ -77,17 +89,13 @@ public class NewAccount extends JFrame {
                         JOptionPane.showMessageDialog(newAccountFrame,
                                 "User name is larger than 10 characters.");
                     } else {
-                        char[] password = userpasswordTextField.getPassword();
-                        if(password.length > 10) {
-                            JOptionPane.showMessageDialog(newAccountFrame,
-                                    "Password is larger than 10 characters.");
-                        } else {
-                            usernameAndPassword.put(userName, password);
-                            // start chat
-                            JOptionPane.showMessageDialog(newAccountFrame, "Please sign in.");
-                            newAccountFrame.dispose();
-                            mainFrame.setVisible(true);
-                        }
+                        char[] tempPassword = {'a'};
+                        clientContext.user.addUser(userName);
+                        usernameAndPassword.put(userName, tempPassword);
+                        // start chat
+                        JOptionPane.showMessageDialog(newAccountFrame, "Please sign in.");
+                        newAccountFrame.dispose();
+                        mainFrame.setVisible(true);
                     }
                 }
             }
@@ -110,6 +118,7 @@ public class NewAccount extends JFrame {
         newAccountFrame.setSize(500, 200);
         newAccountFrame.add(mainPanel);
         newAccountFrame.setVisible(true);
-    } // end of NewAccount()
+        buttonsPanel.getRootPane().setDefaultButton(createAccountButton);
+    }
 
-}   // end of class NewAccount
+}   
