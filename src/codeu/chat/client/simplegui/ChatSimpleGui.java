@@ -97,7 +97,7 @@ public final class ChatSimpleGui {
         labelPanel.add(new JLabel("Please choose from an option below:"));
         final GridBagConstraints labelViewC = new GridBagConstraints();
 
-        final JPanel userSignIn = new SignInPanel();
+        final JPanel userSignIn = new SignInPanel(clientContext);
         userSignIn.setBorder(paneBorder());
         codeu.chat.client.simplegui.SignInPanel.setFrame(mainFrame);
         final GridBagConstraints usersViewC = new GridBagConstraints();

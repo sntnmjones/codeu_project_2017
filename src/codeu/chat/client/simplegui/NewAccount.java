@@ -1,8 +1,6 @@
 package codeu.chat.client.simplegui;
 
-import java.awt.Button;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -74,10 +72,12 @@ public class NewAccount extends JFrame {
 
                 String userName = new String(userNameTextField.getText());
                 context.accessController.newUser(userName);
+                context.user.addUser(userName);
                 //usernameAndPassword = codeu.chat.UserMap.map;
 
                 // Checks
                 if(!(context.user.showUserInfo(userName).equals("Null user"))) {
+
                     JOptionPane.showMessageDialog(newAccountFrame, "User already exists.");
                 } else {
                     if(userName.length() > 10) {
@@ -91,6 +91,8 @@ public class NewAccount extends JFrame {
                         mainFrame.setVisible(true);
                     }
                 }
+                //System.out.println(context.user.showUserInfo(userName));
+
             }
         });
 

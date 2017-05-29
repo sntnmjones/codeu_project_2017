@@ -113,6 +113,16 @@ public final class ClientUser {
     return (usersById.containsKey(id)) ? usersById.get(id) : null;
   }
 
+  // Looking up by name -- New method
+  public Uuid lookupByName(String name) {
+    for (User value : usersById.values()) {
+      if(value.name.equals(name)) {
+        return value.id;
+      }
+    }
+    return null;
+  }
+
   public String getName(Uuid id) {
     final User user = lookup(id);
     if (user == null) {

@@ -3,6 +3,7 @@ package codeu.chat.client.simplegui;
 import javax.swing.*;
 
 import codeu.chat.UserMap;
+import codeu.chat.client.ClientContext;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,9 +20,11 @@ import java.util.HashMap;
 public final class SignInPanel extends JPanel {
 
     public static JFrame frame = codeu.chat.client.simplegui.ChatSimpleGui.mainFrame;
+    ClientContext context;
 
-    public SignInPanel() {
+    public SignInPanel(ClientContext clientContext) {
         super(new GridBagLayout());
+        this.context = clientContext;
         initialize();
     }
 
@@ -44,15 +47,13 @@ public final class SignInPanel extends JPanel {
         JButton signInButton = new JButton("Sign In");
         signInButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                HashMap<String, char[]> map = codeu.chat.UserMap.map;
+                //HashMap<String, char[]> map = codeu.chat.UserMap.map;
                 String userName = usernameField.getText();
-                if(map.containsKey(userName)) {
+                if(!(context.user.showUserInfo(userName).equals("Null user"))){
                     new Conversation();
                     frame.setVisible(false);
                 } else {
-                    if(!map.containsKey(userName)) {
-                        JOptionPane.showMessageDialog(frame, "User name is not found.");
-                    }
+                    JOptionPane.showMessageDialog(frame, "User name is not found.");
                 }
             }
         });
