@@ -141,6 +141,14 @@ public final class UserPanel extends JPanel {
     this.add(buttonPanel, buttonPanelC);
     this.add(currentPanel, currentPanelC);
 
+    // Added
+    //if (userList.getSelectedIndex() != -1) {
+    //final String data = userList.getSelectedValue();
+      clientContext.user.signInUser(username);
+      userSignedInLabel.setText("Hello " + username);
+    //}
+
+
     userUpdateButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -148,7 +156,7 @@ public final class UserPanel extends JPanel {
       }
     });
 
-    userSignInButton.addActionListener(new ActionListener() {
+    /*userSignInButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         if (userList.getSelectedIndex() != -1) {
@@ -157,7 +165,7 @@ public final class UserPanel extends JPanel {
           userSignedInLabel.setText("Hello " + data);
         }
       }
-    });
+    });*/
 
     userAddButton.addActionListener(new ActionListener() {
       @Override
