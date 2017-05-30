@@ -55,14 +55,17 @@ public final class SignInPanel extends JPanel {
         signInButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 String userName = usernameField.getText();
-                if(!context.user.showUserInfo(userName).equals("Null user")) {
-                    //new Conversation();
+                if(context.user.lookup(context.user.lookupByName(userName)) != null) {
+
                     context.user.signInUser(userName);
-                    OriginalChatSimpleGui convoFrame = new OriginalChatSimpleGui(context.accessController, context.accessView, userName);
+                    OriginalChatSimpleGui convoFrame = new OriginalChatSimpleGui(context.accessController, context.accessView, userName, frame);
                     convoFrame.run();
                     frame.setVisible(false);
+
                 } else {
+
                     JOptionPane.showMessageDialog(frame, "User name is not found.");
+                
                 }
             }
         });

@@ -36,20 +36,6 @@ public final class OriginalChatSimpleGui {
   /**
    * Constructor - sets up the Chat Application.
    * 
-   * @param controller  Reference to Controller class.
-   * @param view        Reference to View class.
-   * @param username    Reference to current user name.
-   */
-  public OriginalChatSimpleGui(Controller controller, View view, String username) {
-    
-    clientContext = new ClientContext(controller, view);
-    this.username = username;
-
-  }
-
-  /**
-   * Constructor - sets up the Chat Application.
-   * 
    * @param controller    Reference to Controller class.
    * @param view          Reference to View class.
    * @param username      Reference to current user name.
