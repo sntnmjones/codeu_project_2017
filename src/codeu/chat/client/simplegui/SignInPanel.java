@@ -51,8 +51,8 @@ public final class SignInPanel extends JPanel {
                 String userName = usernameField.getText();
                 if(!(context.user.showUserInfo(userName).equals("Null user"))){
                     //new Conversation();
-                    codeu.chat.client.simplegui.originalgui.ChatSimpleGui convoFrame = new codeu.chat.client.simplegui.originalgui.ChatSimpleGui(context.accessController, context.accessView, userName);
                     context.user.signInUser(userName);
+                    codeu.chat.client.simplegui.originalgui.ChatSimpleGui convoFrame = new codeu.chat.client.simplegui.originalgui.ChatSimpleGui(context.accessController, context.accessView, userName);
                     convoFrame.run();
                     frame.setVisible(false);
                 } else {

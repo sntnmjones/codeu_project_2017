@@ -75,6 +75,7 @@ public final class ClientUser {
         current = newCurrent;
       }
     }
+    System.out.println(name + " is signed in");
     return (prev != current);
   }
 

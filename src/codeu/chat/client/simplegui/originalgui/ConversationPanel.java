@@ -120,6 +120,7 @@ public final class ConversationPanel extends JPanel {
     addButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        clientContext.user.showCurrent();
         if (clientContext.user.hasCurrent()) {
           final String s = (String) JOptionPane.showInputDialog(
               ConversationPanel.this, "Enter title:", "Add Conversation", JOptionPane.PLAIN_MESSAGE,
