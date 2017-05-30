@@ -31,12 +31,19 @@ public final class OriginalUserPanel extends JPanel {
 
   private final ClientContext clientContext;
   public String username;
+  private JFrame mainFrame;
+  private JFrame landingFrame;
 
-  public OriginalUserPanel(ClientContext clientContext, String userName) {
+  public OriginalUserPanel(ClientContext clientContext, String userName, JFrame mainFrame,
+      JFrame landingFrame) {
+
     super(new GridBagLayout());
     this.clientContext = clientContext;
     this.username = userName;
+    this.mainFrame = mainFrame;
+    this.landingFrame = landingFrame;
     initialize();
+
   }
 
   private void initialize() {
@@ -99,12 +106,10 @@ public final class OriginalUserPanel extends JPanel {
     final GridBagConstraints buttonPanelC = new GridBagConstraints();
 
     final JButton userUpdateButton = new JButton("Update");
-    final JButton userSignInButton = new JButton("Sign In");
-    final JButton userAddButton = new JButton("Add");
+    final JButton userLogoutButton = new JButton("Logout");
 
     buttonPanel.add(userUpdateButton);
-    //buttonPanel.add(userSignInButton);
-    //buttonPanel.add(userAddButton);
+    buttonPanel.add(userLogoutButton);
 
     // Placement of title, list panel, buttons, and current user panel.
     titlePanelC.gridx = 0;
@@ -153,29 +158,14 @@ public final class OriginalUserPanel extends JPanel {
       }
     });
 
-    /*userSignInButton.addActionListener(new ActionListener() {
-      @Override
+    userLogoutButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if (userList.getSelectedIndex() != -1) {
-          final String data = userList.getSelectedValue();
-          clientContext.user.signInUser(data);
-          userSignedInLabel.setText("Hello " + data);
-        }
-      }
-    });*/
+        // TODO: enable logout, return to mainFrame
 
-    /*userAddButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        final String s = (String) JOptionPane.showInputDialog(
-                UserPanel.this, "Enter user name:", "Add User", JOptionPane.PLAIN_MESSAGE,
-                null, null, "");
-        if (s != null && s.length() > 0) {
-          clientContext.user.addUser(s);
-          UserPanel.this.getAllUsers(listModel);
-        }
+        landingFrame.setVisible(true);
+        mainFrame.dispose();
       }
-    });*/
+    });
 
     userList.addListSelectionListener(new ListSelectionListener() {
       @Override

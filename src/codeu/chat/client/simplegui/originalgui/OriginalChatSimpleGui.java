@@ -29,6 +29,7 @@ public final class OriginalChatSimpleGui {
 
   private final static Logger.Log LOG = Logger.newLog(OriginalChatSimpleGui.class);
   private JFrame mainFrame;
+  private JFrame landingFrame;
   private final ClientContext clientContext;
   public String username;
 
@@ -40,9 +41,30 @@ public final class OriginalChatSimpleGui {
    * @param username    Reference to current user name.
    */
   public OriginalChatSimpleGui(Controller controller, View view, String username) {
+    
     clientContext = new ClientContext(controller, view);
     this.username = username;
+
   }
+
+  /**
+   * Constructor - sets up the Chat Application.
+   * 
+   * @param controller    Reference to Controller class.
+   * @param view          Reference to View class.
+   * @param username      Reference to current user name.
+   * @param landingFrame  Reference to landing frame.
+   */
+  public OriginalChatSimpleGui(Controller controller, View view, String username,
+      JFrame landingFrame) {
+
+    clientContext = new ClientContext(controller, view);
+    this.landingFrame = landingFrame;
+    this.username = username;
+
+  }
+
+  
 
   /**
    * Runs the GUI client.
@@ -88,7 +110,8 @@ public final class OriginalChatSimpleGui {
     mainViewPanel.setBorder(paneBorder());
 
     // Build main panels - Users, Conversations, Messages.
-    final JPanel usersViewPanel = new OriginalUserPanel(clientContext, this.username);
+    final JPanel usersViewPanel = new OriginalUserPanel(clientContext, this.username, mainFrame,
+        landingFrame);
     usersViewPanel.setBorder(paneBorder());
     final GridBagConstraints usersViewC = new GridBagConstraints();
 

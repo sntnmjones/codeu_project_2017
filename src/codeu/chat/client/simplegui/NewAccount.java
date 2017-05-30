@@ -79,7 +79,7 @@ public class NewAccount extends JFrame {
                         // Starts chat.
                         if(!context.user.showUserInfo(userName).equals("Null user")) {
                             context.user.signInUser(userName);
-                            OriginalChatSimpleGui convoFrame = new OriginalChatSimpleGui(context.accessController, context.accessView, userName);
+                            OriginalChatSimpleGui convoFrame = new OriginalChatSimpleGui(context.accessController, context.accessView, userName, mainFrame);
                             convoFrame.run();
                             newAccountFrame.dispose();
                         } else {
