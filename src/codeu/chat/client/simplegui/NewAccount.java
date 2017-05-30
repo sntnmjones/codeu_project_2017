@@ -85,9 +85,18 @@ public class NewAccount extends JFrame {
                         context.accessController.newUser(userName);
                         context.user.addUser(userName);
                         // start chat
-                        JOptionPane.showMessageDialog(newAccountFrame, "Please sign in.");
+                        /*JOptionPane.showMessageDialog(newAccountFrame, "Please sign in.");
                         newAccountFrame.dispose();
-                        mainFrame.setVisible(true);
+                        mainFrame.setVisible(true);*/
+                        if(!(context.user.showUserInfo(userName).equals("Null user"))) {
+                            //new Conversation();
+                            context.user.signInUser(userName);
+                            codeu.chat.client.simplegui.originalgui.ChatSimpleGui convoFrame = new codeu.chat.client.simplegui.originalgui.ChatSimpleGui(context.accessController, context.accessView, userName);
+                            convoFrame.run();
+                            newAccountFrame.dispose();
+                        } else {
+                            // TODO
+                        }
                     }
                 }
                 //System.out.println(context.user.showUserInfo(userName));
