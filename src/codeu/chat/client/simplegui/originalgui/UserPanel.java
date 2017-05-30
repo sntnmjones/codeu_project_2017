@@ -103,8 +103,8 @@ public final class UserPanel extends JPanel {
     final JButton userAddButton = new JButton("Add");
 
     buttonPanel.add(userUpdateButton);
-    buttonPanel.add(userSignInButton);
-    buttonPanel.add(userAddButton);
+    //buttonPanel.add(userSignInButton);
+    //buttonPanel.add(userAddButton);
 
     // Placement of title, list panel, buttons, and current user panel.
     titlePanelC.gridx = 0;
