@@ -103,8 +103,8 @@ public final class UserPanel extends JPanel {
     final JButton userAddButton = new JButton("Add");
 
     buttonPanel.add(userUpdateButton);
-    buttonPanel.add(userSignInButton);
-    buttonPanel.add(userAddButton);
+    //buttonPanel.add(userSignInButton);
+    //buttonPanel.add(userAddButton);
 
     // Placement of title, list panel, buttons, and current user panel.
     titlePanelC.gridx = 0;
@@ -141,12 +141,9 @@ public final class UserPanel extends JPanel {
     this.add(buttonPanel, buttonPanelC);
     this.add(currentPanel, currentPanelC);
 
-    // Added
-    //if (userList.getSelectedIndex() != -1) {
-    //final String data = userList.getSelectedValue();
-      clientContext.user.signInUser(username);
-      userSignedInLabel.setText("Hello " + username);
-    //}
+    // Auto-logs in user
+    clientContext.user.signInUser(username);
+    userSignedInLabel.setText("Hello " + username);
 
 
     userUpdateButton.addActionListener(new ActionListener() {
@@ -167,7 +164,7 @@ public final class UserPanel extends JPanel {
       }
     });*/
 
-    userAddButton.addActionListener(new ActionListener() {
+    /*userAddButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         final String s = (String) JOptionPane.showInputDialog(
@@ -178,7 +175,7 @@ public final class UserPanel extends JPanel {
           UserPanel.this.getAllUsers(listModel);
         }
       }
-    });
+    });*/
 
     userList.addListSelectionListener(new ListSelectionListener() {
       @Override
