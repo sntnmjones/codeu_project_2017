@@ -74,16 +74,17 @@ public final class OriginalChatSimpleGui {
     mainViewPanel.setBorder(paneBorder());
 
     // Build main panels - Users, Conversations, Messages.
-    final JPanel usersViewPanel = new UserPanel(clientContext, this.username);
+    final JPanel usersViewPanel = new OriginalUserPanel(clientContext, this.username);
     usersViewPanel.setBorder(paneBorder());
     final GridBagConstraints usersViewC = new GridBagConstraints();
 
-    final MessagePanel messagesViewPanel = new MessagePanel(clientContext);
+    final OriginalMessagePanel messagesViewPanel = new OriginalMessagePanel(clientContext);
     messagesViewPanel.setBorder(paneBorder());
     final GridBagConstraints messagesViewC = new GridBagConstraints();
 
     // ConversationsPanel gets access to MessagesPanel
-    final JPanel conversationsViewPanel = new ConversationPanel(clientContext, messagesViewPanel);
+    final JPanel conversationsViewPanel = new OriginalConversationPanel
+        (clientContext, messagesViewPanel);
     conversationsViewPanel.setBorder(paneBorder());
     final GridBagConstraints conversationViewC = new GridBagConstraints();
 

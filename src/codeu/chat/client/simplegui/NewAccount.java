@@ -75,7 +75,6 @@ public class NewAccount extends JFrame {
                         JOptionPane.showMessageDialog(newAccountFrame,
                                 "User name is larger than 10 characters.");
                     } else {
-                        context.accessController.newUser(userName);
                         context.user.addUser(userName);
                         // Starts chat.
                         if(!context.user.showUserInfo(userName).equals("Null user")) {

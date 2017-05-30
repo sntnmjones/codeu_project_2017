@@ -30,9 +30,10 @@ import codeu.chat.common.ConversationSummary;
 public final class OriginalConversationPanel extends JPanel {
 
   private final ClientContext clientContext;
-  private final MessagePanel messagePanel;
+  private final OriginalMessagePanel messagePanel;
 
-  public OriginalConversationPanel(ClientContext clientContext, MessagePanel messagePanel) {
+  public OriginalConversationPanel(ClientContext clientContext, 
+      OriginalMessagePanel messagePanel) {
     super(new GridBagLayout());
     this.clientContext = clientContext;
     this.messagePanel = messagePanel;
