@@ -42,21 +42,26 @@ public final class OriginalMessagePanel extends JPanel {
     initialize();
   }
 
-  // External agent calls this to trigger an update of this panel's contents.
+  /**
+   * External agent calls this to trigger an update of this panel's contents.
+   * 
+   * @param owningConversation  Instance to ConversationSummary class.
+   */
   public void update(ConversationSummary owningConversation) {
 
-    final User u = (owningConversation == null) ?
-        null :
-        clientContext.user.lookup(owningConversation.owner);
+    final User u = (owningConversation == null) 
+        ? null 
+        : clientContext.user.lookup(owningConversation.owner);
 
-    messageOwnerLabel.setText("Owner: " +
-        ((u==null) ?
-            ((owningConversation==null) ? "" : owningConversation.owner) :
-            u.name));
+    messageOwnerLabel.setText("Owner: " + ((u==null) 
+        ? ((owningConversation==null) 
+        ? "" 
+        : owningConversation.owner) 
+        : u.name));
 
     messageConversationLabel.setText("Conversation: " + owningConversation.title);
-
     getAllMessages(owningConversation);
+
   }
 
   private void initialize() {

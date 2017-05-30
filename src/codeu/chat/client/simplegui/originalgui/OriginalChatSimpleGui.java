@@ -22,24 +22,31 @@ import codeu.chat.client.Controller;
 import codeu.chat.client.View;
 import codeu.chat.util.Logger;
 
-// Chat - top-level client application - Java Simple GUI (using Java Swing)
+/**
+ * Chat - top-level client application - Java Simple GUI (using Java Swing).
+ */
 public final class OriginalChatSimpleGui {
 
   private final static Logger.Log LOG = Logger.newLog(OriginalChatSimpleGui.class);
-
   private JFrame mainFrame;
-
   private final ClientContext clientContext;
-
   public String username;
 
-  // Constructor - sets up the Chat Application
+  /**
+   * Constructor - sets up the Chat Application.
+   * 
+   * @param controller  Reference to Controller class.
+   * @param view        Reference to View class.
+   * @param username    Reference to current user name.
+   */
   public OriginalChatSimpleGui(Controller controller, View view, String username) {
     clientContext = new ClientContext(controller, view);
     this.username = username;
   }
 
-  // Run the GUI client
+  /**
+   * Runs the GUI client.
+   */
   public void run() {
 
     try {
@@ -54,13 +61,20 @@ public final class OriginalChatSimpleGui {
     }
   }
 
+  /**
+   * Creates borders for user interface.
+   * 
+   * @return Border - Returns Border object.
+   */
   private Border paneBorder() {
     Border outside = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
     Border inside = BorderFactory.createEmptyBorder(8, 8, 8, 8);
     return BorderFactory.createCompoundBorder(outside, inside);
   }
 
-  // Initialize the GUI
+  /**
+   * Initializes the GUI.
+   */
   private void initialize() {
 
     // Outermost frame.
