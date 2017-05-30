@@ -160,8 +160,8 @@ public final class OriginalUserPanel extends JPanel {
 
     userLogoutButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        // TODO: enable logout, return to mainFrame
-
+        // TODO: enable logout
+        clientContext.user.signOutUser();
         landingFrame.setVisible(true);
         mainFrame.dispose();
       }

@@ -70,10 +70,12 @@ public final class ClientUser {
 
     final User prev = current;
     if (name != null) {
+
       final User newCurrent = usersByName.first(name);
       if (newCurrent != null) {
         current = newCurrent;
       }
+      
     }
     System.out.println(name + " is signed in");
     return (prev != current);
