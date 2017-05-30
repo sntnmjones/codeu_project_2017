@@ -27,12 +27,12 @@ import codeu.chat.common.User;
 // NOTE: JPanel is serializable, but there is no need to serialize UserPanel
 // without the @SuppressWarnings, the compiler will complain of no override for serialVersionUID
 @SuppressWarnings("serial")
-public final class UserPanel extends JPanel {
+public final class OriginalUserPanel extends JPanel {
 
   private final ClientContext clientContext;
   public String username;
 
-  public UserPanel(ClientContext clientContext, String userName) {
+  public OriginalUserPanel(ClientContext clientContext, String userName) {
     super(new GridBagLayout());
     this.clientContext = clientContext;
     this.username = userName;
@@ -149,7 +149,7 @@ public final class UserPanel extends JPanel {
     userUpdateButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        UserPanel.this.getAllUsers(listModel);
+        OriginalUserPanel.this.getAllUsers(listModel);
       }
     });
 

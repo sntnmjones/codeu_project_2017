@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package codeu.chat.client.simplegui;
+package codeu.chat.client.simplegui.originalgui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,12 +27,12 @@ import codeu.chat.common.ConversationSummary;
 // NOTE: JPanel is serializable, but there is no need to serialize ConversationPanel
 // without the @SuppressWarnings, the compiler will complain of no override for serialVersionUID
 @SuppressWarnings("serial")
-public final class ConversationPanel extends JPanel {
+public final class OriginalConversationPanel extends JPanel {
 
   private final ClientContext clientContext;
   private final MessagePanel messagePanel;
 
-  public ConversationPanel(ClientContext clientContext, MessagePanel messagePanel) {
+  public OriginalConversationPanel(ClientContext clientContext, MessagePanel messagePanel) {
     super(new GridBagLayout());
     this.clientContext = clientContext;
     this.messagePanel = messagePanel;
@@ -112,7 +112,7 @@ public final class ConversationPanel extends JPanel {
     updateButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        ConversationPanel.this.getAllConversations(listModel);
+        OriginalConversationPanel.this.getAllConversations(listModel);
       }
     });
 
@@ -120,16 +120,16 @@ public final class ConversationPanel extends JPanel {
     addButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        clientContext.user.showCurrent();
         if (clientContext.user.hasCurrent()) {
-          final String s = (String) JOptionPane.showInputDialog(
-              ConversationPanel.this, "Enter title:", "Add Conversation", JOptionPane.PLAIN_MESSAGE,
-              null, null, "");
+          final String s = (String) JOptionPane.showInputDialog(OriginalConversationPanel.this,
+              "Enter title:", "Add Conversation", JOptionPane.PLAIN_MESSAGE, null, null, "");
           if (s != null && s.length() > 0) {
             clientContext.conversation.startConversation(s, clientContext.user.getCurrent().id);
-            ConversationPanel.this.getAllConversations(listModel);
+            OriginalConversationPanel.this.getAllConversations(listModel);
           }
         } else {
-          JOptionPane.showMessageDialog(ConversationPanel.this, "You are not signed in.");
+          JOptionPane.showMessageDialog(OriginalConversationPanel.this, "You are not signed in.");
         }
       }
     });
@@ -141,7 +141,7 @@ public final class ConversationPanel extends JPanel {
         if (objectList.getSelectedIndex() != -1) {
           final int index = objectList.getSelectedIndex();
           final String data = objectList.getSelectedValue();
-          final ConversationSummary cs = ConversationPanel.this.lookupByTitle(data, index);
+          final ConversationSummary cs = OriginalConversationPanel.this.lookupByTitle(data, index);
 
           clientContext.conversation.setCurrent(cs);
 

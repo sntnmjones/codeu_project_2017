@@ -24,9 +24,9 @@ import codeu.chat.client.View;
 import codeu.chat.util.Logger;
 
 // Chat - top-level client application - Java Simple GUI (using Java Swing)
-public final class ChatSimpleGui {
+public final class OriginalChatSimpleGui {
 
-  private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
+  private final static Logger.Log LOG = Logger.newLog(OriginalChatSimpleGui.class);
 
   private JFrame mainFrame;
 
@@ -35,7 +35,7 @@ public final class ChatSimpleGui {
   public String username;
 
   // Constructor - sets up the Chat Application
-  public ChatSimpleGui(Controller controller, View view, String username) {
+  public OriginalChatSimpleGui(Controller controller, View view, String username) {
     clientContext = new ClientContext(controller, view);
     this.username = username;
   }
@@ -49,8 +49,8 @@ public final class ChatSimpleGui {
       mainFrame.setVisible(true);
 
     } catch (Exception ex) {
-      System.out.println("ERROR: Exception in ChatSimpleGui.run. Check log for details.");
-      LOG.error(ex, "Exception in ChatSimpleGui.run");
+      System.out.println("ERROR: Exception in OriginalChatSimpleGui.run. Check log for details.");
+      LOG.error(ex, "Exception in OriginalChatSimpleGui.run");
       System.exit(1);
     }
   }
