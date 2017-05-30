@@ -32,9 +32,12 @@ public final class ChatSimpleGui {
 
   private final ClientContext clientContext;
 
+  public String username;
+
   // Constructor - sets up the Chat Application
-  public ChatSimpleGui(Controller controller, View view) {
+  public ChatSimpleGui(Controller controller, View view, String username) {
     clientContext = new ClientContext(controller, view);
+    this.username = username;
   }
 
   // Run the GUI client
@@ -72,7 +75,7 @@ public final class ChatSimpleGui {
     mainViewPanel.setBorder(paneBorder());
 
     // Build main panels - Users, Conversations, Messages.
-    final JPanel usersViewPanel = new UserPanel(clientContext);
+    final JPanel usersViewPanel = new UserPanel(clientContext, this.username);
     usersViewPanel.setBorder(paneBorder());
     final GridBagConstraints usersViewC = new GridBagConstraints();
 

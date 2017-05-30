@@ -30,10 +30,12 @@ import codeu.chat.common.User;
 public final class UserPanel extends JPanel {
 
   private final ClientContext clientContext;
+  public String username;
 
-  public UserPanel(ClientContext clientContext) {
+  public UserPanel(ClientContext clientContext, String username) {
     super(new GridBagLayout());
     this.clientContext = clientContext;
+    this.username = username;
     initialize();
   }
 
@@ -139,6 +141,8 @@ public final class UserPanel extends JPanel {
     this.add(buttonPanel, buttonPanelC);
     this.add(currentPanel, currentPanelC);
 
+    userSignedInLabel.setText("Hello " + this.username);
+
     userUpdateButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -146,7 +150,7 @@ public final class UserPanel extends JPanel {
       }
     });
 
-    userSignInButton.addActionListener(new ActionListener() {
+    /*userSignInButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         if (userList.getSelectedIndex() != -1) {
@@ -154,10 +158,11 @@ public final class UserPanel extends JPanel {
           clientContext.user.signInUser(data);
           userSignedInLabel.setText("Hello " + data);
         }
+        // System.out.println("Last selected index: " + userList.getSelectedIndex());
       }
-    });
+    });*/
 
-    userAddButton.addActionListener(new ActionListener() {
+    /*userAddButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         final String s = (String) JOptionPane.showInputDialog(
@@ -168,7 +173,7 @@ public final class UserPanel extends JPanel {
           UserPanel.this.getAllUsers(listModel);
         }
       }
-    });
+    });*/
 
     userList.addListSelectionListener(new ListSelectionListener() {
       @Override
