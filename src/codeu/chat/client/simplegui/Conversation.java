@@ -1,5 +1,6 @@
 package codeu.chat.client.simplegui;
 
+import codeu.chat.client.ClientContext;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -30,8 +31,10 @@ import javax.swing.JTextField;
 public class Conversation extends JFrame {
 
     boolean isFirstClick = true;
+    ClientContext context;
 
-    public Conversation() {
+    public Conversation(ClientContext clientContext) {
+        this.context = clientContext;
 
         // Used to see if user has clicked inside the editable
         //  textarea. If true, the default text will clear. If false, the 
@@ -44,13 +47,38 @@ public class Conversation extends JFrame {
         Container mainPanel = frame.getContentPane();
         mainPanel.setLayout(new FlowLayout(0));
 
+        //add Conversation
+        JPanel newConversationSubPanel = new JPanel();
+        newConversationSubPanel.setLayout(new FlowLayout(0));
+
+        JLabel newConversationLabel = new JLabel("Create new conversation:");
+        JTextArea coversationName = new JTextArea(1, 20);
+        JButton addNewConversationButton = new JButton("Add New");
+
+        newConversationSubPanel.add(newConversationLabel);
+        newConversationSubPanel.add(coversationName);
+        newConversationSubPanel.add(addNewConversationButton);
+
+        mainPanel.add(newConversationSubPanel);
+
+        addNewConversationButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                if(coversationName.getText()=="")
+                    //do something;
+
+                codeu.chat.client.simplegui.ChatSimpleGui.showFrame();
+                frame.dispose();
+            }
+        });
+
+
         // choose a conversation label
         JLabel welcomeLabel = new JLabel("Please choose a conversation");
         mainPanel.add(welcomeLabel, BorderLayout.CENTER);
 
         // conversation list text area (post active conversations list here)
         JPanel conversationListSubPanel = new JPanel();
-        JTextArea conversationListArea = new JTextArea(5, 400);
+        JTextArea conversationListArea = new JTextArea("No conversations yet.", 5, 400);
         conversationListArea.setLineWrap(true);
         conversationListArea.setWrapStyleWord(true);
         conversationListArea.setEditable(false);
