@@ -27,7 +27,7 @@ import codeu.chat.common.User;
 // NOTE: JPanel is serializable, but there is no need to serialize MessagePanel
 // without the @SuppressWarnings, the compiler will complain of no override for serialVersionUID
 @SuppressWarnings("serial")
-public final class MessagePanel extends JPanel {
+public final class OriginalMessagePanel extends JPanel {
 
   // These objects are modified by the Conversation Panel.
   private final JLabel messageOwnerLabel = new JLabel("Owner:", JLabel.RIGHT);
@@ -36,27 +36,32 @@ public final class MessagePanel extends JPanel {
 
   private final ClientContext clientContext;
 
-  public MessagePanel(ClientContext clientContext) {
+  public OriginalMessagePanel(ClientContext clientContext) {
     super(new GridBagLayout());
     this.clientContext = clientContext;
     initialize();
   }
 
-  // External agent calls this to trigger an update of this panel's contents.
+  /**
+   * External agent calls this to trigger an update of this panel's contents.
+   * 
+   * @param owningConversation  Instance to ConversationSummary class.
+   */
   public void update(ConversationSummary owningConversation) {
 
-    final User u = (owningConversation == null) ?
-        null :
-        clientContext.user.lookup(owningConversation.owner);
+    final User u = (owningConversation == null) 
+        ? null 
+        : clientContext.user.lookup(owningConversation.owner);
 
-    messageOwnerLabel.setText("Owner: " +
-        ((u==null) ?
-            ((owningConversation==null) ? "" : owningConversation.owner) :
-            u.name));
+    messageOwnerLabel.setText("Owner: " + ((u==null) 
+        ? ((owningConversation==null) 
+        ? "" 
+        : owningConversation.owner) 
+        : u.name));
 
     messageConversationLabel.setText("Conversation: " + owningConversation.title);
-
     getAllMessages(owningConversation);
+
   }
 
   private void initialize() {
@@ -150,19 +155,19 @@ public final class MessagePanel extends JPanel {
       @Override
       public void actionPerformed(ActionEvent e) {
         if (!clientContext.user.hasCurrent()) {
-          JOptionPane.showMessageDialog(MessagePanel.this, "You are not signed in.");
+          JOptionPane.showMessageDialog(OriginalMessagePanel.this, "You are not signed in.");
         } else if (!clientContext.conversation.hasCurrent()) {
-          JOptionPane.showMessageDialog(MessagePanel.this, "You must select a conversation.");
+          JOptionPane.showMessageDialog(OriginalMessagePanel.this, 
+                "You must select a conversation.");
         } else {
-          final String messageText = (String) JOptionPane.showInputDialog(
-              MessagePanel.this, "Enter message:", "Add Message", JOptionPane.PLAIN_MESSAGE,
-              null, null, "");
+            final String messageText = (String) JOptionPane.showInputDialog
+                (OriginalMessagePanel.this, "Enter message:", "Add Message",
+                JOptionPane.PLAIN_MESSAGE,null, null, "");
           if (messageText != null && messageText.length() > 0) {
             clientContext.message.addMessage(
                 clientContext.user.getCurrent().id,
-                clientContext.conversation.getCurrentId(),
-                messageText);
-            MessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());
+                clientContext.conversation.getCurrentId(),messageText);
+            OriginalMessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());
           }
         }
       }

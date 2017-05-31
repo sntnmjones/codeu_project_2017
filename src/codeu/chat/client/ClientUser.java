@@ -70,10 +70,12 @@ public final class ClientUser {
 
     final User prev = current;
     if (name != null) {
+
       final User newCurrent = usersByName.first(name);
       if (newCurrent != null) {
         current = newCurrent;
       }
+      
     }
     System.out.println(name + " is signed in");
     return (prev != current);
@@ -151,8 +153,9 @@ public final class ClientUser {
   }
 
   public static String getUserInfoString(User user) {
-    return (user == null) ? "Null user" :
-        String.format(" User: %s\n   Id: %s\n   created: %s\n", user.name, user.id, user.creation);
+    return (user == null) 
+    ? "Null user" 
+    : String.format(" User: %s\n   Id: %s\n   created: %s\n", user.name, user.id, user.creation);
   }
 
   public String showUserInfo(String uname) {

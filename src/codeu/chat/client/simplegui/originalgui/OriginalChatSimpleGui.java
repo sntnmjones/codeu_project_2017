@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 package codeu.chat.client.simplegui.originalgui;
 
 import java.awt.*;
@@ -23,24 +22,39 @@ import codeu.chat.client.Controller;
 import codeu.chat.client.View;
 import codeu.chat.util.Logger;
 
-// Chat - top-level client application - Java Simple GUI (using Java Swing)
-public final class ChatSimpleGui {
+/**
+ * Chat - top-level client application - Java Simple GUI (using Java Swing).
+ */
+public final class OriginalChatSimpleGui {
 
-  private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
-
+  private final static Logger.Log LOG = Logger.newLog(OriginalChatSimpleGui.class);
   private JFrame mainFrame;
-
+  private JFrame landingFrame;
   private final ClientContext clientContext;
-
   public String username;
 
-  // Constructor - sets up the Chat Application
-  public ChatSimpleGui(Controller controller, View view, String username) {
+  /**
+   * Constructor - sets up the Chat Application.
+   * 
+   * @param controller    Reference to Controller class.
+   * @param view          Reference to View class.
+   * @param username      Reference to current user name.
+   * @param landingFrame  Reference to landing frame.
+   */
+  public OriginalChatSimpleGui(Controller controller, View view, String username,
+      JFrame landingFrame) {
+
     clientContext = new ClientContext(controller, view);
+    this.landingFrame = landingFrame;
     this.username = username;
+
   }
 
-  // Run the GUI client
+  
+
+  /**
+   * Runs the GUI client.
+   */
   public void run() {
 
     try {
@@ -49,19 +63,26 @@ public final class ChatSimpleGui {
       mainFrame.setVisible(true);
 
     } catch (Exception ex) {
-      System.out.println("ERROR: Exception in ChatSimpleGui.run. Check log for details.");
-      LOG.error(ex, "Exception in ChatSimpleGui.run");
+      System.out.println("ERROR: Exception in OriginalChatSimpleGui.run. Check log for details.");
+      LOG.error(ex, "Exception in OriginalChatSimpleGui.run");
       System.exit(1);
     }
   }
 
+  /**
+   * Creates borders for user interface.
+   * 
+   * @return Border - Returns Border object.
+   */
   private Border paneBorder() {
     Border outside = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
     Border inside = BorderFactory.createEmptyBorder(8, 8, 8, 8);
     return BorderFactory.createCompoundBorder(outside, inside);
   }
 
-  // Initialize the GUI
+  /**
+   * Initializes the GUI.
+   */
   private void initialize() {
 
     // Outermost frame.
@@ -75,16 +96,18 @@ public final class ChatSimpleGui {
     mainViewPanel.setBorder(paneBorder());
 
     // Build main panels - Users, Conversations, Messages.
-    final JPanel usersViewPanel = new UserPanel(clientContext, this.username);
+    final JPanel usersViewPanel = new OriginalUserPanel(clientContext, this.username, mainFrame,
+        landingFrame);
     usersViewPanel.setBorder(paneBorder());
     final GridBagConstraints usersViewC = new GridBagConstraints();
 
-    final MessagePanel messagesViewPanel = new MessagePanel(clientContext);
+    final OriginalMessagePanel messagesViewPanel = new OriginalMessagePanel(clientContext);
     messagesViewPanel.setBorder(paneBorder());
     final GridBagConstraints messagesViewC = new GridBagConstraints();
 
     // ConversationsPanel gets access to MessagesPanel
-    final JPanel conversationsViewPanel = new ConversationPanel(clientContext, messagesViewPanel);
+    final JPanel conversationsViewPanel = new OriginalConversationPanel
+        (clientContext, messagesViewPanel);
     conversationsViewPanel.setBorder(paneBorder());
     final GridBagConstraints conversationViewC = new GridBagConstraints();
 

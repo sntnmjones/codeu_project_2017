@@ -14,40 +14,39 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import codeu.chat.UserMap;
+import codeu.chat.client.simplegui.originalgui.OriginalChatSimpleGui;
 import codeu.chat.client.ClientContext;
 
 @SuppressWarnings("serial")
 /**
- * @author  Troy Jones
- * @date    5/21/17
- * @brief   Contains all GUI necessary to execute the frame to
- *          create a new account.
+ * Contains all GUI necessary to execute the frame to create a new account.
  */
 public class NewAccount extends JFrame {
 
-    //UserMap userMap;
-    //HashMap<String, char[]> usernameAndPassword;
     ClientContext context;
 
+    /**
+     * Constructor - Contains all GUI necessary to execute the frame to create a new account.
+     * 
+     * @param mainFrame Passes in reference to the initial frame landed on upon application launch.
+     * @param context   Passes in reference to instance of ClientContext class.
+     */
     public NewAccount (JFrame mainFrame, ClientContext context) {
         JFrame newAccountFrame = new JFrame();
         this.context = context;
 
-        //userMap = new UserMap();
-        // create mainPanel
+        // Creates mainPanel.
         JPanel mainPanel = new JPanel();
-        BoxLayout mainPanelLayout =
-                new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
+        BoxLayout mainPanelLayout = new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
         mainPanel.setLayout(mainPanelLayout);
 
-        // fill welcomeTextPanel
+        // Fills welcomeTextPanel.
         JPanel welcomeTextPanel = new JPanel();
         JLabel welcomeLabel = new JLabel("Welcome to ChatU!");
         welcomeTextPanel.add(welcomeLabel);
         mainPanel.add(welcomeTextPanel);
 
-        // username label and textfield
+        // Assembles username label and textfield.
         JPanel usernamePanel = new JPanel();
         JLabel usernameLabel = new JLabel("Choose a user name up to 10 characters");
         usernamePanel.add(usernameLabel);
@@ -55,25 +54,20 @@ public class NewAccount extends JFrame {
         usernamePanel.add(userNameTextField);
         mainPanel.add(usernamePanel);
 
-        // password label and textfield
+        // Assembles password label and textfield.
         JPanel userPasswordPanel = new JPanel();
         JLabel userPasswordLabel = new JLabel("Choose a password up to 10 characters");
         userPasswordPanel.add(userPasswordLabel);
         JPasswordField userpasswordTextField = new JPasswordField(10);
         userPasswordPanel.add(userpasswordTextField);
-        // TODO: enable password authentication
-        //mainPanel.add(userPasswordPanel); // commented out until needed
 
-        // fill buttonsPanel
         JPanel buttonsPanel = new JPanel();
         JButton createAccountButton = new JButton("Create");
+
+        // Prompts user for username, if valid, will create new user on server.
         createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-
                 String userName = new String(userNameTextField.getText());
-                //usernameAndPassword = codeu.chat.UserMap.map;
-
-                // Checks
                 if (context.user.lookupByName(userName) != null) {
                     JOptionPane.showMessageDialog(newAccountFrame, "User already exists.");
                 } else {
@@ -81,17 +75,11 @@ public class NewAccount extends JFrame {
                         JOptionPane.showMessageDialog(newAccountFrame,
                                 "User name is larger than 10 characters.");
                     } else {
-                        char[] tempPassword = {'a'};
-                        context.accessController.newUser(userName);
                         context.user.addUser(userName);
-                        // start chat
-                        /*JOptionPane.showMessageDialog(newAccountFrame, "Please sign in.");
-                        newAccountFrame.dispose();
-                        mainFrame.setVisible(true);*/
-                        if(!(context.user.showUserInfo(userName).equals("Null user"))) {
-                            //new Conversation();
+                        // Starts chat.
+                        if(!context.user.showUserInfo(userName).equals("Null user")) {
                             context.user.signInUser(userName);
-                            codeu.chat.client.simplegui.originalgui.ChatSimpleGui convoFrame = new codeu.chat.client.simplegui.originalgui.ChatSimpleGui(context.accessController, context.accessView, userName);
+                            OriginalChatSimpleGui convoFrame = new OriginalChatSimpleGui(context.accessController, context.accessView, userName, mainFrame);
                             convoFrame.run();
                             newAccountFrame.dispose();
                         } else {
@@ -99,12 +87,11 @@ public class NewAccount extends JFrame {
                         }
                     }
                 }
-                //System.out.println(context.user.showUserInfo(userName));
-
             }
         });
-
         buttonsPanel.add(createAccountButton);
+
+        // Allows user to cancel user creation and redirects to mainFrame(landing frame).
         JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
@@ -114,8 +101,6 @@ public class NewAccount extends JFrame {
         });
         buttonsPanel.add(cancelButton);
         mainPanel.add(buttonsPanel);
-
-        // publish frame
         newAccountFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         newAccountFrame.setTitle("Create an Account");
         newAccountFrame.setSize(500, 200);
@@ -124,4 +109,4 @@ public class NewAccount extends JFrame {
         buttonsPanel.getRootPane().setDefaultButton(createAccountButton);
     } // end of NewAccount()
 
-}   // end of class NewAccount
+}

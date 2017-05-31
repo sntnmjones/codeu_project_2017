@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package codeu.chat.client.simplegui;
+package codeu.chat.client.simplegui.originalgui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,18 +27,33 @@ import codeu.chat.common.ConversationSummary;
 // NOTE: JPanel is serializable, but there is no need to serialize ConversationPanel
 // without the @SuppressWarnings, the compiler will complain of no override for serialVersionUID
 @SuppressWarnings("serial")
-public final class ConversationPanel extends JPanel {
+/**
+ * Panel for user interface that deals with conversation.
+ */
+public final class OriginalConversationPanel extends JPanel {
 
   private final ClientContext clientContext;
-  private final MessagePanel messagePanel;
+  private final OriginalMessagePanel messagePanel;
 
-  public ConversationPanel(ClientContext clientContext, MessagePanel messagePanel) {
+  /**
+   * Constructor - Creates JPanel that includes textarea, borders, and button.
+   * 
+   * @param clientContext - Reference to ClientContext which gives access to MVC methods.
+   * @param messagePanel    Reference to message panel for use in UI.
+   */
+  public OriginalConversationPanel(ClientContext clientContext, 
+      OriginalMessagePanel messagePanel) {
+
     super(new GridBagLayout());
     this.clientContext = clientContext;
     this.messagePanel = messagePanel;
     initialize();
+
   }
 
+  /**
+   * Creates JPanel that includes textarea, borders, and button. 
+   */
   private void initialize() {
 
     // This panel contains from top to bottom: a title bar,
@@ -112,7 +127,7 @@ public final class ConversationPanel extends JPanel {
     updateButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        ConversationPanel.this.getAllConversations(listModel);
+        OriginalConversationPanel.this.getAllConversations(listModel);
       }
     });
 
@@ -120,16 +135,20 @@ public final class ConversationPanel extends JPanel {
     addButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        clientContext.user.showCurrent();
         if (clientContext.user.hasCurrent()) {
-          final String s = (String) JOptionPane.showInputDialog(
-              ConversationPanel.this, "Enter title:", "Add Conversation", JOptionPane.PLAIN_MESSAGE,
-              null, null, "");
+
+          final String s = (String) JOptionPane.showInputDialog(OriginalConversationPanel.this,
+              "Enter title:", "Add Conversation", JOptionPane.PLAIN_MESSAGE, null, null, "");
           if (s != null && s.length() > 0) {
             clientContext.conversation.startConversation(s, clientContext.user.getCurrent().id);
-            ConversationPanel.this.getAllConversations(listModel);
+            OriginalConversationPanel.this.getAllConversations(listModel);
           }
+
         } else {
-          JOptionPane.showMessageDialog(ConversationPanel.this, "You are not signed in.");
+
+          JOptionPane.showMessageDialog(OriginalConversationPanel.this, "You are not signed in.");
+        
         }
       }
     });
@@ -139,21 +158,27 @@ public final class ConversationPanel extends JPanel {
       @Override
       public void valueChanged(ListSelectionEvent e) {
         if (objectList.getSelectedIndex() != -1) {
+
           final int index = objectList.getSelectedIndex();
           final String data = objectList.getSelectedValue();
-          final ConversationSummary cs = ConversationPanel.this.lookupByTitle(data, index);
+          final ConversationSummary cs = OriginalConversationPanel.this.lookupByTitle(data, index);
 
           clientContext.conversation.setCurrent(cs);
 
           messagePanel.update(cs);
+
         }
       }
     });
-
     getAllConversations(listModel);
+
   }
 
-  // Populate ListModel - updates display objects.
+  /**
+   * Populates ListModel - updates display objects.
+   * 
+   * @param convDisplayList List of conversations.
+   */
   private void getAllConversations(DefaultListModel<String> convDisplayList) {
 
     clientContext.conversation.updateAllConversations(false);
@@ -164,8 +189,13 @@ public final class ConversationPanel extends JPanel {
     }
   }
 
-  // Locate the Conversation object for a selected title string.
-  // index handles possible duplicate titles.
+  /**
+   * Locates the Conversation object for a selected title string. Index handles possible duplicate 
+   *     titles.
+   * 
+   * @param title Title of conversation.
+   * @param index Index of title.
+   */
   private ConversationSummary lookupByTitle(String title, int index) {
 
     int localIndex = 0;
@@ -177,4 +207,5 @@ public final class ConversationPanel extends JPanel {
     }
     return null;
   }
+  
 }
