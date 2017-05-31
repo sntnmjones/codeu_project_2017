@@ -21,17 +21,37 @@ import codeu.chat.client.ClientContext;
 import codeu.chat.client.Controller;
 import codeu.chat.client.View;
 import codeu.chat.util.Logger;
+import codeu.chat.client.simplegui.originalgui.*;
 
 /**
  * Chat - top-level client application - Java Simple GUI (using Java Swing).
  */
-public final class OriginalChatSimpleGui {
+public final class OriginalChatSimpleGui extends Thread {
 
   private final static Logger.Log LOG = Logger.newLog(OriginalChatSimpleGui.class);
   private JFrame mainFrame;
   private JFrame landingFrame;
   private final ClientContext clientContext;
-  public String username;
+  public String username;/*
+  private Thread thread = new Thread() {
+    @Override
+    public void run() {
+      while (true) {
+
+        try {
+          OriginalMessagePanel.getAllMessages(clientContext.conversation.getCurrent());
+          JOptionPane.showMessageDialog(new JFrame(), "updateMessages");
+          OriginalConversationPanel.getAllConversations(listModel);
+          JOptionPane.showMessageDialog(new JFrame(), "updateAllConversations");
+          Thread.sleep(10000);
+        } catch (Exception e) {
+          //TODO: handle exception
+          JOptionPane.showMessageDialog(new JFrame(), "Threading error");
+        }
+
+      }
+    }
+  };*/
 
   /**
    * Constructor - sets up the Chat Application.
@@ -58,7 +78,7 @@ public final class OriginalChatSimpleGui {
   public void run() {
 
     try {
-
+      // thread.start();
       initialize();
       mainFrame.setVisible(true);
 

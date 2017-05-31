@@ -33,7 +33,6 @@ public final class OriginalMessagePanel extends JPanel {
   private final JLabel messageOwnerLabel = new JLabel("Owner:", JLabel.RIGHT);
   private final JLabel messageConversationLabel = new JLabel("Conversation:", JLabel.LEFT);
   private final DefaultListModel<String> messageListModel = new DefaultListModel<>();
-
   private final ClientContext clientContext;
 
   public OriginalMessagePanel(ClientContext clientContext) {
@@ -175,6 +174,8 @@ public final class OriginalMessagePanel extends JPanel {
 
     // Panel is set up. If there is a current conversation, Populate the conversation list.
     getAllMessages(clientContext.conversation.getCurrent());
+    (new Thread(new UserThread())).start();
+    
   }
 
   // Populate ListModel
@@ -192,4 +193,21 @@ public final class OriginalMessagePanel extends JPanel {
       messageListModel.addElement(displayString);
     }
   }
+
+  private class UserThread implements Runnable {
+    public void run() {
+
+      try {
+        while (true) {
+          OriginalMessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());       
+          Thread.sleep(5001);
+        }
+      } catch (Exception e) {
+        JOptionPane.showMessageDialog(new JFrame(), "Message Panel Auto Update Error.");
+        //TODO: handle exception
+      }
+
+    }
+  }
+
 }

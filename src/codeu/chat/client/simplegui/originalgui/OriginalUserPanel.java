@@ -33,6 +33,7 @@ public final class OriginalUserPanel extends JPanel {
   public String username;
   private JFrame mainFrame;
   private JFrame landingFrame;
+  private final DefaultListModel<String> listModel = new DefaultListModel<>();  
 
   public OriginalUserPanel(ClientContext clientContext, String userName, JFrame mainFrame,
       JFrame landingFrame) {
@@ -82,7 +83,6 @@ public final class OriginalUserPanel extends JPanel {
     final JPanel listShowPanel = new JPanel();
     final GridBagConstraints listPanelC = new GridBagConstraints();
 
-    final DefaultListModel<String> listModel = new DefaultListModel<>();
     final JList<String> userList = new JList<>(listModel);
     userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     userList.setVisibleRowCount(10);
@@ -150,7 +150,6 @@ public final class OriginalUserPanel extends JPanel {
     clientContext.user.signInUser(username);
     userSignedInLabel.setText("Hello " + username);
 
-
     userUpdateButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -178,8 +177,8 @@ public final class OriginalUserPanel extends JPanel {
         }
       }
     });
-
-    getAllUsers(listModel);
+    getAllUsers(listModel);    
+    (new Thread(new UserThread())).start();
   }
 
   // Swing UI: populate ListModel object - updates display objects.
@@ -191,4 +190,21 @@ public final class OriginalUserPanel extends JPanel {
       usersList.addElement(u.name);
     }
   }
+
+  private class UserThread implements Runnable {
+    public void run() {
+
+      try {
+        while (true) {
+          OriginalUserPanel.this.getAllUsers(listModel);
+          Thread.sleep(90000);
+        }
+      } catch (Exception e) {
+        JOptionPane.showMessageDialog(new JFrame(), "User Panel Auto Update Error.");
+        //TODO: handle exception
+      }
+
+    }
+  }
+
 }

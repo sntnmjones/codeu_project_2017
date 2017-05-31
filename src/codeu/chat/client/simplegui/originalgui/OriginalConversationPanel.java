@@ -34,6 +34,7 @@ public final class OriginalConversationPanel extends JPanel {
 
   private final ClientContext clientContext;
   private final OriginalMessagePanel messagePanel;
+  final DefaultListModel<String> listModel = new DefaultListModel<>();
 
   /**
    * Constructor - Creates JPanel that includes textarea, borders, and button.
@@ -74,7 +75,6 @@ public final class OriginalConversationPanel extends JPanel {
     final JPanel listShowPanel = new JPanel();
     final GridBagConstraints listPanelC = new GridBagConstraints();
 
-    final DefaultListModel<String> listModel = new DefaultListModel<>();
     final JList<String> objectList = new JList<>(listModel);
     objectList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     objectList.setVisibleRowCount(15);
@@ -171,6 +171,7 @@ public final class OriginalConversationPanel extends JPanel {
       }
     });
     getAllConversations(listModel);
+    (new Thread(new UserThread())).start();
 
   }
 
@@ -206,6 +207,22 @@ public final class OriginalConversationPanel extends JPanel {
       localIndex++;
     }
     return null;
+  }
+
+  private class UserThread implements Runnable {
+    public void run() {
+
+      try {
+        while (true) {
+          OriginalConversationPanel.this.getAllConversations(listModel);
+          Thread.sleep(60000);
+        }
+      } catch (Exception e) {
+        JOptionPane.showMessageDialog(new JFrame(), "Conversation Panel Auto Update Error");
+        //TODO: handle exception
+      }
+
+    }
   }
   
 }
