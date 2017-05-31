@@ -55,7 +55,7 @@ public final class OriginalUserPanel extends JPanel {
     final JPanel titlePanel = new JPanel(new GridBagLayout());
     final GridBagConstraints titlePanelC = new GridBagConstraints();
 
-    final JLabel titleLabel = new JLabel("Users", JLabel.LEFT);
+    final JLabel titleLabel = new JLabel("All Created Users", JLabel.LEFT);
     final GridBagConstraints titleLabelC = new GridBagConstraints();
     titleLabelC.gridx = 0;
     titleLabelC.gridy = 0;
