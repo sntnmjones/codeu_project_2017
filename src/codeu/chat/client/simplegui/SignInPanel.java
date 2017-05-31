@@ -55,6 +55,7 @@ public final class SignInPanel extends JPanel {
         signInButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 String userName = usernameField.getText();
+                context.user.updateUsers();
                 if(context.user.lookup(context.user.lookupByName(userName)) != null) {
 
                     context.user.signInUser(userName);

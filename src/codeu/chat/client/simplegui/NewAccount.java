@@ -67,6 +67,7 @@ public class NewAccount extends JFrame {
         // Prompts user for username, if valid, will create new user on server.
         createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
+                context.user.updateUsers();
                 String userName = new String(userNameTextField.getText());
                 if (context.user.lookupByName(userName) != null) {
                     JOptionPane.showMessageDialog(newAccountFrame, "User already exists.");
