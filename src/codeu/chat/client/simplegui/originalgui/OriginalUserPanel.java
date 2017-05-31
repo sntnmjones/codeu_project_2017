@@ -162,9 +162,7 @@ public final class OriginalUserPanel extends JPanel {
       public void actionPerformed(ActionEvent e) {
         // TODO: enable logout
         clientContext.user.signOutUser();
-        JOptionPane.showMessageDialog(new JFrame(), "before");
         landingFrame.setVisible(true);
-        JOptionPane.showMessageDialog(new JFrame(), "after");
         mainFrame.dispose();
       }
     });
