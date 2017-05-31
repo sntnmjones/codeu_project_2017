@@ -162,11 +162,11 @@ public final class OriginalMessagePanel extends JPanel {
             final String messageText = (String) JOptionPane.showInputDialog
                 (OriginalMessagePanel.this, "Enter message:", "Add Message",
                 JOptionPane.PLAIN_MESSAGE,null, null, "");
-          if (messageText != null && messageText.length() > 0) {
-            clientContext.message.addMessage(
-                clientContext.user.getCurrent().id,
-                clientContext.conversation.getCurrentId(),messageText);
-            OriginalMessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());
+            if (messageText != null && messageText.length() > 0) {
+              clientContext.message.addMessage(
+                  clientContext.user.getCurrent().id,
+                  clientContext.conversation.getCurrentId(),messageText);
+              OriginalMessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());
           }
         }
       }
@@ -199,7 +199,8 @@ public final class OriginalMessagePanel extends JPanel {
 
       try {
         while (true) {
-          OriginalMessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());       
+          OriginalMessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());
+          repaint();       
           Thread.sleep(5001);
         }
       } catch (Exception e) {

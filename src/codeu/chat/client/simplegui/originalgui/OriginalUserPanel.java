@@ -195,6 +195,7 @@ public final class OriginalUserPanel extends JPanel {
       try {
         while (true) {
           OriginalUserPanel.this.getAllUsers(listModel);
+          repaint();
           Thread.sleep(90000);
         }
       } catch (Exception e) {

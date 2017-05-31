@@ -215,6 +215,7 @@ public final class OriginalConversationPanel extends JPanel {
       try {
         while (true) {
           OriginalConversationPanel.this.getAllConversations(listModel);
+          repaint();
           Thread.sleep(60000);
         }
       } catch (Exception e) {
