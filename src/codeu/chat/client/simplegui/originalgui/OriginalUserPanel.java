@@ -186,7 +186,12 @@ public final class OriginalUserPanel extends JPanel {
     usersList.clear();
 
     for (final User u : clientContext.user.getUsers()) {
-      usersList.addElement(u.name);
+      if (u.isActive) {
+        System.out.println(u.name + " is active");
+        usersList.addElement(u.name);
+      } else {
+        System.out.println(u.name + " is NOT active");
+      }
     }
   }
 }

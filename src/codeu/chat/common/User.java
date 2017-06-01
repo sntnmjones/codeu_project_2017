@@ -51,12 +51,18 @@ public final class User {
   public final Uuid id;
   public final String name;
   public final Time creation;
+  public boolean isActive;
 
   public User(Uuid id, String name, Time creation) {
 
     this.id = id;
     this.name = name;
     this.creation = creation;
+    this.isActive = true;
 
+  }
+
+  public void makeInactive() {
+    this.isActive = false;
   }
 }

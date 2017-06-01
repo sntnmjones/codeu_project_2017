@@ -33,7 +33,6 @@ public final class ClientUser {
   private final View view;
 
   private User current = null;
-
   private final Map<Uuid, User> usersById = new HashMap<>();
 
   // This is the set of users known to the server, sorted by name.
@@ -82,8 +81,10 @@ public final class ClientUser {
   }
 
   public boolean signOutUser() {
+    current.makeInactive();
+    System.out.println(current.name + " is being signed out, isActive = " + current.isActive);
     boolean hadCurrent = hasCurrent();
-    current = null;
+    //current = null;
     return hadCurrent;
   }
 
