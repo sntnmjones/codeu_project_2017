@@ -14,8 +14,6 @@
 
 package codeu.chat.client.simplegui;
 
-import codeu.chat.UserMap;
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -26,6 +24,21 @@ import codeu.chat.client.View;
 import codeu.chat.util.Logger;
 
 /**
+<<<<<<< HEAD
+ * Chat - top-level client application - Java Simple GUI (using Java Swing).
+ */
+public final class ChatSimpleGui {
+
+    private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
+    public JFrame mainFrame;
+    private final ClientContext clientContext;
+
+    /**
+     * Constructor - sets up the Chat Application.
+     * 
+     * @param controller  An instance to the Controller class.
+     * @param view        An instance to the View class.    
+=======
  * Chat - top-level client application - Java Simple GUI (using Java Swing)
  */
 public final class ChatSimpleGui {
@@ -45,35 +58,61 @@ public final class ChatSimpleGui {
      * 
      * @param controller    The Controller portion of the MVC architecture.
      * @param view          The View portion of the MVC architecture. 
+>>>>>>> origin/master
      */
     public ChatSimpleGui(Controller controller, View view) {
         clientContext = new ClientContext(controller, view);
     }
 
+<<<<<<< HEAD
+    public void showFrame() {
+        mainFrame.setVisible(true);
+    }
+
+    /**
+     * Runs the GUI client.
+=======
     /**
      * Executes initialization of landing frame. 
+>>>>>>> origin/master
      */
     public void run() {
-
         try {
-
             initialize();
             mainFrame.setVisible(true);
-
         } catch (Exception ex) {
             System.out.println("ERROR: Exception in ChatSimpleGui.run. Check log for details.");
             LOG.error(ex, "Exception in ChatSimpleGui.run");
             System.exit(1);
         }
     }
+<<<<<<< HEAD
+    
+    /**
+     * Creates borders for panel on frame.
+     * 
+     * @return Border   Returns borders for JFrame.
+     */
+    private Border paneBorder() {
+        Border outside = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
+        Border inside = BorderFactory.createEmptyBorder(8, 8, 8, 8);
+        return BorderFactory.createCompoundBorder(outside, inside);
+    }
+
+    /**
+     * Creates JFrame and loads JPanels into it.
+=======
 
     /////////////////////
     // PRIVATE METHODS //
     /////////////////////
     /**
      * Creates JFrame and JPanels. Passes ClientContext to each panel.
+>>>>>>> origin/master
      */
     private void initialize() {
+        // Main View - outermost graphics panel.
+        final JPanel mainViewPanel = new JPanel(new GridBagLayout());
 
         // Outermost frame.
         // NOTE: may have to tweak size, or place in scrollable panel.
@@ -81,11 +120,13 @@ public final class ChatSimpleGui {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(790, 450);
 
+<<<<<<< HEAD
+=======
         // Main View - outermost graphics panel.
         JPanel mainViewPanel = new JPanel(new GridBagLayout());
 
+>>>>>>> origin/master
         // Build main panels - Sign In, Create Account.
-
         // Panel with just label -- Cleaner to make a new class?
         JPanel labelPanel = new JPanel();
         labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
@@ -94,6 +135,16 @@ public final class ChatSimpleGui {
         labelPanel.add(new JLabel("Please choose from an option below:"));
         GridBagConstraints labelViewC = new GridBagConstraints();
 
+<<<<<<< HEAD
+        // Panel that contains SignInPanel.
+        final JPanel userSignIn = new SignInPanel(clientContext, mainFrame);
+        userSignIn.setBorder(paneBorder());
+        final GridBagConstraints usersViewC = new GridBagConstraints();
+
+        // ConversationsPanel gets access to MessagesPanel
+        final CreateAccountPanel newAccountPanel = 
+                new CreateAccountPanel(clientContext, mainFrame);
+=======
         // Creates new Jpanel for user sign in pane
         JPanel userSignIn = new SignInPanel(clientContext);
         userSignIn.setBorder(paneBorder());
@@ -101,6 +152,7 @@ public final class ChatSimpleGui {
 
         // ConversationsPanel gets access to MessagesPanel
         CreateAccountPanel newAccountPanel = new CreateAccountPanel(clientContext);
+>>>>>>> origin/master
         newAccountPanel.setBorder(paneBorder());
         GridBagConstraints newAccountViewC = new GridBagConstraints();
 
@@ -149,6 +201,9 @@ public final class ChatSimpleGui {
         mainFrame.add(mainViewPanel);
         mainFrame.pack();
     }
+<<<<<<< HEAD
+}
+=======
 
     /**
      * Creates borders for panel separation on landing frame.
@@ -185,3 +240,4 @@ public final class ChatSimpleGui {
     }
 
 }
+>>>>>>> origin/master

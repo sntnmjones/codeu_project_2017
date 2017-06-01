@@ -25,10 +25,16 @@ public final class ClientContext {
   public final ClientUser user;
   public final ClientConversation conversation;
   public final ClientMessage message;
+  // Added:
+  public final Controller accessController;
+  public final View accessView;
 
   public ClientContext(Controller controller, View view) {
     user = new ClientUser(controller, view);
     conversation = new ClientConversation(controller, view, user);
     message = new ClientMessage(controller, view, user, conversation);
+    // Added:
+    accessController = controller;
+    accessView = view;
   }
 }

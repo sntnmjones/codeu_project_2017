@@ -24,11 +24,23 @@ import codeu.chat.util.RemoteAddress;
 import codeu.chat.util.connections.ClientConnectionSource;
 import codeu.chat.util.connections.ConnectionSource;
 
+/**
+ * Launches application
+ */
 final class SimpleGuiClientMain {
-
-
+  ///////////////
+  // VARIABLES //
+  ///////////////
   private static final Logger.Log LOG = Logger.newLog(SimpleGuiClientMain.class);
 
+  /////////////
+  // METHODS //
+  /////////////
+  /**
+   * Lauches Logger, server connection, and starts the MVC architecture.
+   * 
+   * @param args No command line arguments being passed in here.
+   */
   public static void main(String [] args) {
 
     try {
@@ -38,11 +50,9 @@ final class SimpleGuiClientMain {
     }
 
     LOG.info("============================= START OF LOG =============================");
-
     LOG.info("Starting chat client...");
 
     // Start up server connection/interface.
-
     final RemoteAddress address = RemoteAddress.parse(args[0]);
 
     try (
@@ -61,6 +71,12 @@ final class SimpleGuiClientMain {
     }
   }
 
+  /**
+   * Launches the user interface.
+   * 
+   * @param controller  An instance to the Controller class.
+   * @param view        An instance to the View class.
+   */
   private static void runClient(Controller controller, View view) {
 
     final ChatSimpleGui chatSimpleGui = new ChatSimpleGui(controller, view);
