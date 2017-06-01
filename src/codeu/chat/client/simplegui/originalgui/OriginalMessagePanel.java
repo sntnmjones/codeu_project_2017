@@ -18,6 +18,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.util.TimerTask;
+import java.util.Timer;
+import java.lang.*;
 
 import codeu.chat.client.ClientContext;
 import codeu.chat.common.ConversationSummary;
@@ -28,12 +31,15 @@ import codeu.chat.common.User;
 // without the @SuppressWarnings, the compiler will complain of no override for serialVersionUID
 @SuppressWarnings("serial")
 public final class OriginalMessagePanel extends JPanel {
-
+  private int checker = 0;
   // These objects are modified by the Conversation Panel.
   private final JLabel messageOwnerLabel = new JLabel("Owner:", JLabel.RIGHT);
   private final JLabel messageConversationLabel = new JLabel("Conversation:", JLabel.LEFT);
   private final DefaultListModel<String> messageListModel = new DefaultListModel<>();
   private final ClientContext clientContext;
+  private MessageTimerTask mytimertask;
+  private MessagePanelTimer mytimer = new MessagePanelTimer();
+
 
   public OriginalMessagePanel(ClientContext clientContext) {
     super(new GridBagLayout());
@@ -60,7 +66,8 @@ public final class OriginalMessagePanel extends JPanel {
 
     messageConversationLabel.setText("Conversation: " + owningConversation.title);
     getAllMessages(owningConversation);
-
+    mytimertask = new MessageTimerTask();
+    mytimer.initialize(mytimertask);
   }
 
   private void initialize() {
@@ -174,7 +181,7 @@ public final class OriginalMessagePanel extends JPanel {
 
     // Panel is set up. If there is a current conversation, Populate the conversation list.
     getAllMessages(clientContext.conversation.getCurrent());
-    (new Thread(new UserThread())).start();
+    //(new Thread(new UserThread())).start();
     
   }
 
@@ -182,7 +189,7 @@ public final class OriginalMessagePanel extends JPanel {
   // TODO: don't refetch messages if current conversation not changed
   private void getAllMessages(ConversationSummary conversation) {
     messageListModel.clear();
-
+    System.out.println("CLEARED LIST MODEL");
     for (final Message m : clientContext.message.getConversationContents(conversation)) {
       // Display author name if available.  Otherwise display the author UUID.
       final String authorName = clientContext.user.getName(m.author);
@@ -190,9 +197,50 @@ public final class OriginalMessagePanel extends JPanel {
       final String displayString = String.format("%s: [%s]: %s",
           ((authorName == null) ? m.author : authorName), m.creation, m.content);
 
-      messageListModel.addElement(displayString);
+      messageListModel.addElement(displayString+".....refreshed");
     }
   }
+
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  public class MessageTimerTask extends TimerTask {
+    public void run(){
+      //If no conversation, can't update.
+      if (!clientContext.user.hasCurrent()) {
+        System.out.println("NO USER");
+        return;
+      }
+      else if (!clientContext.conversation.hasCurrent()) {
+        System.out.println("NO CONVERSATION");
+        return;
+      }
+
+      OriginalMessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());
+      System.out.println("TIMER TASK EXECUTED");
+      exponentialBackOff();
+    }
+  }
+
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  private void exponentialBackOff() {
+    //cancel present schedule and create another with new delay interval
+    int seconds = mytimer.getDelay()/ 1000;
+    /*if (seconds <= 1) {
+      seconds *= 2;
+    } else {
+      seconds = seconds * seconds;
+    }*/
+    int milliseconds = seconds * 1000;
+
+    if (milliseconds < Integer.MAX_VALUE && milliseconds > 500)
+      mytimer.cancel();
+      mytimertask = new MessageTimerTask();
+      mytimer = new MessagePanelTimer();
+      System.out.println("TIMER HERE ===========================================  "+checker);
+      mytimer.schedule(mytimertask, 500, milliseconds);
+      checker++;
+      mytimer.setDelay(milliseconds);
+  }
+
 
   private class UserThread implements Runnable {
     public void run() {
