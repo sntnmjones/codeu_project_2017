@@ -38,6 +38,12 @@ public final class ClientUser {
   // This is the set of users known to the server, sorted by name.
   private Store<String, User> usersByName = new Store<>(String.CASE_INSENSITIVE_ORDER);
 
+  // This is the set of users logged in
+  public Map<String, User> activeUsersByName = new HashMap<>();
+
+  // This is the set of users that are logged out
+  public Map<String, User> inactiveUsersByName = new HashMap<>();
+
   public ClientUser(Controller controller, View view) {
     this.controller = controller;
     this.view = view;
@@ -76,15 +82,15 @@ public final class ClientUser {
       }
       
     }
-    System.out.println(name + " is signed in");
     return (prev != current);
   }
 
   public boolean signOutUser() {
-    current.makeInactive();
-    System.out.println(current.name + " is being signed out, isActive = " + current.isActive);
+    //current.makeInactive();
+    activeUsersByName.remove(current.name);
+    inactiveUsersByName.put(current.name, current);
     boolean hadCurrent = hasCurrent();
-    //current = null;
+    current = null;
     return hadCurrent;
   }
 
@@ -120,9 +126,7 @@ public final class ClientUser {
   // Looking up by name -- New method
   public Uuid lookupByName(String name) {
     for (User value : usersById.values()) {
-      //System.out.print("value.name: " + value.name);
       if(value.name.equals(name)) {
-        //System.out.println(", name: " + name);
         return value.id;
       }
     }
@@ -146,11 +150,18 @@ public final class ClientUser {
   public void updateUsers() {
     usersById.clear();
     usersByName = new Store<>(String.CASE_INSENSITIVE_ORDER);
-
+    System.out.println("**UPDATE START**");
     for (final User user : view.getUsersExcluding(EMPTY)) {
       usersById.put(user.id, user);
       usersByName.insert(user.name, user);
+      if (!(inactiveUsersByName.containsKey(user.name))) {
+        System.out.println("INcluding: " + user.name);
+        activeUsersByName.put(user.name, user);
+      } else {
+        System.out.println("EXcluding: " + user.name);
+      }
     }
+    System.out.println("**UPDATE END**");
   }
 
   public static String getUserInfoString(User user) {

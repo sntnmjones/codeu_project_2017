@@ -23,6 +23,7 @@ import javax.swing.event.ListSelectionListener;
 
 import codeu.chat.client.ClientContext;
 import codeu.chat.common.User;
+import java.util.Map;
 
 // NOTE: JPanel is serializable, but there is no need to serialize UserPanel
 // without the @SuppressWarnings, the compiler will complain of no override for serialVersionUID
@@ -184,14 +185,11 @@ public final class OriginalUserPanel extends JPanel {
   private void getAllUsers(DefaultListModel<String> usersList) {
     clientContext.user.updateUsers();
     usersList.clear();
-
-    for (final User u : clientContext.user.getUsers()) {
-      if (u.isActive) {
-        System.out.println(u.name + " is active");
-        usersList.addElement(u.name);
-      } else {
-        System.out.println(u.name + " is NOT active");
-      }
+    System.out.println("**UPDATE PANEL START**");
+    for (Map.Entry<String, User> entry : clientContext.user.activeUsersByName.entrySet()) {
+      usersList.addElement(entry.getKey());
+      System.out.println(entry.getKey());
     }
+    System.out.println("**UPDATE PANEL END**");
   }
 }
