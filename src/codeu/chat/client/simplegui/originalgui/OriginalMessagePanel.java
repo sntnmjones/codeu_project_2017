@@ -195,6 +195,51 @@ public final class OriginalMessagePanel extends JPanel {
       }
     });
 
+  // Change colors of message panel
+      redRB.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          if (redRB.isSelected()) {
+            setRed();
+          } else {
+            setGray();
+          }
+        }
+      });
+
+      blueRB.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          if (blueRB.isSelected()) {
+            setBlue();
+          } else {
+            setGray();
+          }
+        }
+      });
+
+      greenRB.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          if (greenRB.isSelected()) {
+            setGreen();
+          } else {
+            setGray();
+          }
+        }
+      });
+
+      pinkRB.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          if (pinkRB.isSelected()) {
+            setPink();
+          } else {
+            setGray();
+          }
+        }
+      });
+
     // Panel is set up. If there is a current conversation, Populate the conversation list.
     getAllMessages(clientContext.conversation.getCurrent());
   }
@@ -214,4 +259,25 @@ public final class OriginalMessagePanel extends JPanel {
       messageListModel.addElement(displayString);
     }
   }
+
+  public void setRed() {
+    this.setBackground(Color.RED);
+  }
+
+  public void setBlue() {
+    this.setBackground(Color.CYAN);
+  }
+
+  public void setGreen() {
+    this.setBackground(Color.GREEN);
+  }
+
+  public void setPink() {
+    this.setBackground(Color.PINK);
+  }
+
+  public void setGray() {
+    this.setBackground(Color.LIGHT_GRAY);
+  }
+
 }
