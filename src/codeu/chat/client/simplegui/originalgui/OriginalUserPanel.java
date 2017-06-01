@@ -185,11 +185,8 @@ public final class OriginalUserPanel extends JPanel {
   private void getAllUsers(DefaultListModel<String> usersList) {
     clientContext.user.updateUsers();
     usersList.clear();
-    System.out.println("**UPDATE PANEL START**");
     for (Map.Entry<String, User> entry : clientContext.user.activeUsersByName.entrySet()) {
       usersList.addElement(entry.getKey());
-      System.out.println(entry.getKey());
     }
-    System.out.println("**UPDATE PANEL END**");
   }
 }

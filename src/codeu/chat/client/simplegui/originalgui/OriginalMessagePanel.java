@@ -123,6 +123,20 @@ public final class OriginalMessagePanel extends JPanel {
     final JButton addButton = new JButton("Add");
     buttonPanel.add(addButton);
 
+    // Color Button panel
+    final JPanel colorPanel = new JPanel();
+    final GridBagConstraints colorPanelC = new GridBagConstraints();
+
+    final JRadioButton redRB = new JRadioButton("Red");
+    final JRadioButton blueRB = new JRadioButton("Blue");
+    final JRadioButton greenRB = new JRadioButton("Green");
+    final JRadioButton pinkRB = new JRadioButton("Pink");
+   
+    colorPanel.add(redRB);
+    colorPanel.add(blueRB);
+    colorPanel.add(greenRB);
+    colorPanel.add(pinkRB);
+
     // Placement of title, list panel, buttons, and current user panel.
     titlePanelC.gridx = 0;
     titlePanelC.gridy = 0;
@@ -146,9 +160,17 @@ public final class OriginalMessagePanel extends JPanel {
     buttonPanelC.fill = GridBagConstraints.HORIZONTAL;
     buttonPanelC.anchor = GridBagConstraints.FIRST_LINE_START;
 
+    colorPanelC.gridx = 0;
+    colorPanelC.gridy = 14;
+    colorPanelC.gridwidth = 10;
+    colorPanelC.gridheight = 1;
+    colorPanelC.fill = GridBagConstraints.HORIZONTAL;
+    colorPanelC.anchor = GridBagConstraints.FIRST_LINE_START;
+
     this.add(titlePanel, titlePanelC);
     this.add(listShowPanel, listPanelC);
     this.add(buttonPanel, buttonPanelC);
+    this.add(colorPanel, colorPanelC);
 
     // User click Messages Add button - prompt for message body and add new Message to Conversation
     addButton.addActionListener(new ActionListener() {

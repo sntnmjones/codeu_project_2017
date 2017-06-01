@@ -150,18 +150,13 @@ public final class ClientUser {
   public void updateUsers() {
     usersById.clear();
     usersByName = new Store<>(String.CASE_INSENSITIVE_ORDER);
-    System.out.println("**UPDATE START**");
     for (final User user : view.getUsersExcluding(EMPTY)) {
       usersById.put(user.id, user);
       usersByName.insert(user.name, user);
       if (!(inactiveUsersByName.containsKey(user.name))) {
-        System.out.println("INcluding: " + user.name);
         activeUsersByName.put(user.name, user);
-      } else {
-        System.out.println("EXcluding: " + user.name);
       }
     }
-    System.out.println("**UPDATE END**");
   }
 
   public static String getUserInfoString(User user) {
