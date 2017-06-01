@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package codeu.chat.client.simplegui;
+package codeu.chat.client.simplegui.originalgui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,7 +27,7 @@ import codeu.chat.common.User;
 // NOTE: JPanel is serializable, but there is no need to serialize MessagePanel
 // without the @SuppressWarnings, the compiler will complain of no override for serialVersionUID
 @SuppressWarnings("serial")
-public final class MessagePanel extends JPanel {
+public final class OriginalMessagePanel extends JPanel {
 
   // These objects are modified by the Conversation Panel.
   private final JLabel messageOwnerLabel = new JLabel("Owner:", JLabel.RIGHT);
@@ -36,27 +36,32 @@ public final class MessagePanel extends JPanel {
 
   private final ClientContext clientContext;
 
-  public MessagePanel(ClientContext clientContext) {
+  public OriginalMessagePanel(ClientContext clientContext) {
     super(new GridBagLayout());
     this.clientContext = clientContext;
     initialize();
   }
 
-  // External agent calls this to trigger an update of this panel's contents.
+  /**
+   * External agent calls this to trigger an update of this panel's contents.
+   * 
+   * @param owningConversation  Instance to ConversationSummary class.
+   */
   public void update(ConversationSummary owningConversation) {
 
-    final User u = (owningConversation == null) ?
-        null :
-        clientContext.user.lookup(owningConversation.owner);
+    final User u = (owningConversation == null) 
+        ? null 
+        : clientContext.user.lookup(owningConversation.owner);
 
-    messageOwnerLabel.setText("Owner: " +
-        ((u==null) ?
-            ((owningConversation==null) ? "" : owningConversation.owner) :
-            u.name));
+    messageOwnerLabel.setText("Owner: " + ((u==null) 
+        ? ((owningConversation==null) 
+        ? "" 
+        : owningConversation.owner) 
+        : u.name));
 
     messageConversationLabel.setText("Conversation: " + owningConversation.title);
-
     getAllMessages(owningConversation);
+
   }
 
   private void initialize() {
@@ -118,6 +123,20 @@ public final class MessagePanel extends JPanel {
     final JButton addButton = new JButton("Add");
     buttonPanel.add(addButton);
 
+    // Color Button panel
+    final JPanel colorPanel = new JPanel();
+    final GridBagConstraints colorPanelC = new GridBagConstraints();
+
+    final JRadioButton redRB = new JRadioButton("Red");
+    final JRadioButton blueRB = new JRadioButton("Blue");
+    final JRadioButton greenRB = new JRadioButton("Green");
+    final JRadioButton pinkRB = new JRadioButton("Pink");
+   
+    colorPanel.add(redRB);
+    colorPanel.add(blueRB);
+    colorPanel.add(greenRB);
+    colorPanel.add(pinkRB);
+
     // Placement of title, list panel, buttons, and current user panel.
     titlePanelC.gridx = 0;
     titlePanelC.gridy = 0;
@@ -141,32 +160,85 @@ public final class MessagePanel extends JPanel {
     buttonPanelC.fill = GridBagConstraints.HORIZONTAL;
     buttonPanelC.anchor = GridBagConstraints.FIRST_LINE_START;
 
+    colorPanelC.gridx = 0;
+    colorPanelC.gridy = 14;
+    colorPanelC.gridwidth = 10;
+    colorPanelC.gridheight = 1;
+    colorPanelC.fill = GridBagConstraints.HORIZONTAL;
+    colorPanelC.anchor = GridBagConstraints.FIRST_LINE_START;
+
     this.add(titlePanel, titlePanelC);
     this.add(listShowPanel, listPanelC);
     this.add(buttonPanel, buttonPanelC);
+    this.add(colorPanel, colorPanelC);
 
     // User click Messages Add button - prompt for message body and add new Message to Conversation
     addButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         if (!clientContext.user.hasCurrent()) {
-          JOptionPane.showMessageDialog(MessagePanel.this, "You are not signed in.");
+          JOptionPane.showMessageDialog(OriginalMessagePanel.this, "You are not signed in.");
         } else if (!clientContext.conversation.hasCurrent()) {
-          JOptionPane.showMessageDialog(MessagePanel.this, "You must select a conversation.");
+          JOptionPane.showMessageDialog(OriginalMessagePanel.this, 
+                "You must select a conversation.");
         } else {
-          final String messageText = (String) JOptionPane.showInputDialog(
-              MessagePanel.this, "Enter message:", "Add Message", JOptionPane.PLAIN_MESSAGE,
-              null, null, "");
+            final String messageText = (String) JOptionPane.showInputDialog
+                (OriginalMessagePanel.this, "Enter message:", "Add Message",
+                JOptionPane.PLAIN_MESSAGE,null, null, "");
           if (messageText != null && messageText.length() > 0) {
             clientContext.message.addMessage(
                 clientContext.user.getCurrent().id,
-                clientContext.conversation.getCurrentId(),
-                messageText);
-            MessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());
+                clientContext.conversation.getCurrentId(),messageText);
+            OriginalMessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());
           }
         }
       }
     });
+
+  // Change colors of message panel
+      redRB.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          if (redRB.isSelected()) {
+            setRed();
+          } else {
+            setGray();
+          }
+        }
+      });
+
+      blueRB.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          if (blueRB.isSelected()) {
+            setBlue();
+          } else {
+            setGray();
+          }
+        }
+      });
+
+      greenRB.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          if (greenRB.isSelected()) {
+            setGreen();
+          } else {
+            setGray();
+          }
+        }
+      });
+
+      pinkRB.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          if (pinkRB.isSelected()) {
+            setPink();
+          } else {
+            setGray();
+          }
+        }
+      });
 
     // Panel is set up. If there is a current conversation, Populate the conversation list.
     getAllMessages(clientContext.conversation.getCurrent());
@@ -187,4 +259,25 @@ public final class MessagePanel extends JPanel {
       messageListModel.addElement(displayString);
     }
   }
+
+  public void setRed() {
+    this.setBackground(Color.RED);
+  }
+
+  public void setBlue() {
+    this.setBackground(Color.CYAN);
+  }
+
+  public void setGreen() {
+    this.setBackground(Color.GREEN);
+  }
+
+  public void setPink() {
+    this.setBackground(Color.PINK);
+  }
+
+  public void setGray() {
+    this.setBackground(Color.LIGHT_GRAY);
+  }
+
 }

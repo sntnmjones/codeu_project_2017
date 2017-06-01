@@ -19,6 +19,9 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public final class Store<KEY, VALUE> implements StoreAccessor<KEY, VALUE> {
 
   // To make the code simpler - use a dummy link for the first link in this

@@ -14,8 +14,6 @@
 
 package codeu.chat.client.simplegui;
 
-import codeu.chat.UserMap;
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -25,58 +23,60 @@ import codeu.chat.client.Controller;
 import codeu.chat.client.View;
 import codeu.chat.util.Logger;
 
-// Chat - top-level client application - Java Simple GUI (using Java Swing)
+/**
+ * Chat - top-level client application - Java Simple GUI (using Java Swing).
+ */
 public final class ChatSimpleGui {
 
-    UserMap userMap = new UserMap();    // creates new worthless map
-
     private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
-
-    public static JFrame mainFrame;
-
+    public JFrame mainFrame;
     private final ClientContext clientContext;
 
-    // Constructor - sets up the Chat Application
+    /**
+     * Constructor - sets up the Chat Application.
+     * 
+     * @param controller  An instance to the Controller class.
+     * @param view        An instance to the View class.    
+     */
     public ChatSimpleGui(Controller controller, View view) {
         clientContext = new ClientContext(controller, view);
     }
 
-    static public void hideFrame() {
-        mainFrame.setVisible(false);
-    }
-
-    static public void showFrame() {
+    public void showFrame() {
         mainFrame.setVisible(true);
     }
 
-    // Closes the main frame, returns nothing
-    protected void closeFrame() {
-        mainFrame.dispose();
-    }
-
-    // Run the GUI client
+    /**
+     * Runs the GUI client.
+     */
     public void run() {
-
         try {
-
             initialize();
             mainFrame.setVisible(true);
-
         } catch (Exception ex) {
             System.out.println("ERROR: Exception in ChatSimpleGui.run. Check log for details.");
             LOG.error(ex, "Exception in ChatSimpleGui.run");
             System.exit(1);
         }
     }
-
+    
+    /**
+     * Creates borders for panel on frame.
+     * 
+     * @return Border   Returns borders for JFrame.
+     */
     private Border paneBorder() {
         Border outside = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
         Border inside = BorderFactory.createEmptyBorder(8, 8, 8, 8);
         return BorderFactory.createCompoundBorder(outside, inside);
     }
 
-    // Initialize the GUI
+    /**
+     * Creates JFrame and loads JPanels into it.
+     */
     private void initialize() {
+        // Main View - outermost graphics panel.
+        final JPanel mainViewPanel = new JPanel(new GridBagLayout());
 
         // Outermost frame.
         // NOTE: may have to tweak size, or place in scrollable panel.
@@ -84,11 +84,7 @@ public final class ChatSimpleGui {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(790, 450);
 
-        // Main View - outermost graphics panel.
-        final JPanel mainViewPanel = new JPanel(new GridBagLayout());
-
         // Build main panels - Sign In, Create Account.
-
         // Panel with just label -- Cleaner to make a new class?
         final JPanel labelPanel = new JPanel();
         labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
@@ -97,13 +93,14 @@ public final class ChatSimpleGui {
         labelPanel.add(new JLabel("Please choose from an option below:"));
         final GridBagConstraints labelViewC = new GridBagConstraints();
 
-        final JPanel userSignIn = new SignInPanel();
+        // Panel that contains SignInPanel.
+        final JPanel userSignIn = new SignInPanel(clientContext, mainFrame);
         userSignIn.setBorder(paneBorder());
-        codeu.chat.client.simplegui.SignInPanel.setFrame(mainFrame);
         final GridBagConstraints usersViewC = new GridBagConstraints();
 
         // ConversationsPanel gets access to MessagesPanel
-        final CreateAccountPanel newAccountPanel = new CreateAccountPanel();
+        final CreateAccountPanel newAccountPanel = 
+                new CreateAccountPanel(clientContext, mainFrame);
         newAccountPanel.setBorder(paneBorder());
         newAccountPanel.setFrame(mainFrame);
         final GridBagConstraints newAccountViewC = new GridBagConstraints();

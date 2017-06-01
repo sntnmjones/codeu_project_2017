@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package codeu.chat.client.simplegui;
+package codeu.chat.client.simplegui.originalgui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,18 +23,28 @@ import javax.swing.event.ListSelectionListener;
 
 import codeu.chat.client.ClientContext;
 import codeu.chat.common.User;
+import java.util.Map;
 
 // NOTE: JPanel is serializable, but there is no need to serialize UserPanel
 // without the @SuppressWarnings, the compiler will complain of no override for serialVersionUID
 @SuppressWarnings("serial")
-public final class UserPanel extends JPanel {
+public final class OriginalUserPanel extends JPanel {
 
   private final ClientContext clientContext;
+  public String username;
+  private JFrame mainFrame;
+  private JFrame landingFrame;
 
-  public UserPanel(ClientContext clientContext) {
+  public OriginalUserPanel(ClientContext clientContext, String userName, JFrame mainFrame,
+      JFrame landingFrame) {
+
     super(new GridBagLayout());
     this.clientContext = clientContext;
+    this.username = userName;
+    this.mainFrame = mainFrame;
+    this.landingFrame = landingFrame;
     initialize();
+
   }
 
   private void initialize() {
@@ -46,7 +56,7 @@ public final class UserPanel extends JPanel {
     final JPanel titlePanel = new JPanel(new GridBagLayout());
     final GridBagConstraints titlePanelC = new GridBagConstraints();
 
-    final JLabel titleLabel = new JLabel("Users", JLabel.LEFT);
+    final JLabel titleLabel = new JLabel("All Created Users", JLabel.LEFT);
     final GridBagConstraints titleLabelC = new GridBagConstraints();
     titleLabelC.gridx = 0;
     titleLabelC.gridy = 0;
@@ -97,12 +107,10 @@ public final class UserPanel extends JPanel {
     final GridBagConstraints buttonPanelC = new GridBagConstraints();
 
     final JButton userUpdateButton = new JButton("Update");
-    final JButton userSignInButton = new JButton("Sign In");
-    final JButton userAddButton = new JButton("Add");
+    final JButton userLogoutButton = new JButton("Logout");
 
     buttonPanel.add(userUpdateButton);
-    buttonPanel.add(userSignInButton);
-    buttonPanel.add(userAddButton);
+    buttonPanel.add(userLogoutButton);
 
     // Placement of title, list panel, buttons, and current user panel.
     titlePanelC.gridx = 0;
@@ -139,34 +147,24 @@ public final class UserPanel extends JPanel {
     this.add(buttonPanel, buttonPanelC);
     this.add(currentPanel, currentPanelC);
 
+    // Auto-logs in user
+    clientContext.user.signInUser(username);
+    userSignedInLabel.setText("Hello " + username);
+
+
     userUpdateButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        UserPanel.this.getAllUsers(listModel);
+        OriginalUserPanel.this.getAllUsers(listModel);
       }
     });
 
-    userSignInButton.addActionListener(new ActionListener() {
-      @Override
+    userLogoutButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if (userList.getSelectedIndex() != -1) {
-          final String data = userList.getSelectedValue();
-          clientContext.user.signInUser(data);
-          userSignedInLabel.setText("Hello " + data);
-        }
-      }
-    });
-
-    userAddButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        final String s = (String) JOptionPane.showInputDialog(
-            UserPanel.this, "Enter user name:", "Add User", JOptionPane.PLAIN_MESSAGE,
-            null, null, "");
-        if (s != null && s.length() > 0) {
-          clientContext.user.addUser(s);
-          UserPanel.this.getAllUsers(listModel);
-        }
+        // TODO: enable logout
+        clientContext.user.signOutUser();
+        landingFrame.setVisible(true);
+        mainFrame.dispose();
       }
     });
 
@@ -187,9 +185,8 @@ public final class UserPanel extends JPanel {
   private void getAllUsers(DefaultListModel<String> usersList) {
     clientContext.user.updateUsers();
     usersList.clear();
-
-    for (final User u : clientContext.user.getUsers()) {
-      usersList.addElement(u.name);
+    for (Map.Entry<String, User> entry : clientContext.user.activeUsersByName.entrySet()) {
+      usersList.addElement(entry.getKey());
     }
   }
 }

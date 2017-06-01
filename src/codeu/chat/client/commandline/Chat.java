@@ -22,25 +22,30 @@ import codeu.chat.client.View;
 import codeu.chat.common.ConversationSummary;
 import codeu.chat.util.Logger;
 
-// Chat - top-level client application.
+/**
+ * Chat - top-level client application.
+ */
 public final class Chat {
 
   private final static Logger.Log LOG = Logger.newLog(Chat.class);
-
   private static final String PROMPT = ">>";
-
   private final static int PAGE_SIZE = 10;
-
   private boolean alive = true;
-
   private final ClientContext clientContext;
 
-  // Constructor - sets up the Chat Application
+  /**
+   * Constructor - sets up the Chat Application
+   * 
+   * @param controller  Passes in reference to Controller class.
+   * @param view        Passes in reference to View class.
+   */
   public Chat(Controller controller, View view) {
     clientContext = new ClientContext(controller, view);
   }
 
-  // Print help message.
+  /**
+   * Prints help message.
+   */
   private static void help() {
     System.out.println("Chat commands:");
     System.out.println("   exit      - exit the program.");
@@ -62,20 +67,26 @@ public final class Chat {
     System.out.println("   m-show <count>   - show next <count> messages.");
   }
 
-  // Prompt for new command.
+  /**
+   * Prompts for new command.
+   */
   private void promptForCommand() {
     System.out.print(PROMPT);
   }
 
-  // Parse and execute a single command.
+  /**
+   * Parse and execute a single command.
+   * 
+   * @param lineScanner Passes in Scanner.
+   */
   private void doOneCommand(Scanner lineScanner) {
 
     final Scanner tokenScanner = new Scanner(lineScanner.nextLine());
     if (!tokenScanner.hasNext()) {
       return;
     }
-    final String token = tokenScanner.next();
 
+    final String token = tokenScanner.next();
     if (token.equals("exit")) {
 
       alive = false;
@@ -94,7 +105,7 @@ public final class Chat {
 
     } else if (token.equals("sign-out")) {
 
-      if (!clientContext.user.hasCurrent()) {
+      if (!clientContext.user.hasCurrent()) {  
         System.out.println("ERROR: Not signed in.");
       } else {
         signOutUser();
@@ -192,37 +203,51 @@ public final class Chat {
     tokenScanner.close();
   }
 
-  // Sign in a user.
+  /**
+   * Signs in a user.
+   * 
+   * @param name  Passes in user name.
+   */
   private void signInUser(String name) {
     if (!clientContext.user.signInUser(name)) {
       System.out.println("Error: sign in failed (invalid name?)");
     }
   }
 
-  // Sign out a user.
+  /**
+   * Signs out a user.
+   */
   private void signOutUser() {
     if (!clientContext.user.signOutUser()) {
       System.out.println("Error: sign out failed (not signed in?)");
     }
   }
 
-  // Helper for showCurrent() - show message info.
+  /**
+   * Helper for showCurrent() - shows message info.
+   */
   private void showCurrentMessage() {
     if (clientContext.conversation.currentMessageCount() == 0) {
+
       System.out.println(" -- no messages in conversation --");
+    
     } else {
+
       System.out.format(" conversation has %d messages.\n",
-                        clientContext.conversation.currentMessageCount());
+          clientContext.conversation.currentMessageCount());
       if (!clientContext.message.hasCurrent()) {
         System.out.println(" -- no current message --");
       } else {
         System.out.println("\nCurrent Message:");
         clientContext.message.showCurrent();
       }
+    
     }
   }
 
-  // Show current user, conversation, message, if any
+  /**
+   * Shows current user, conversation, message, if any.
+   */
   private void showCurrent() {
     boolean displayed = false;
     if (clientContext.user.hasCurrent()) {
@@ -247,7 +272,9 @@ public final class Chat {
     }
   }
 
-  // Display current user.
+  /**
+   * Displays current user.
+   */
   private void showCurrentUser() {
     if (clientContext.user.hasCurrent()) {
       clientContext.user.showCurrent();
@@ -256,7 +283,9 @@ public final class Chat {
     }
   }
 
-  // Display current conversation.
+  /**
+   * Displays current conversation.
+   */
   private void showCurrentConversation() {
     if (clientContext.conversation.hasCurrent()) {
       clientContext.conversation.showCurrent();
@@ -265,16 +294,25 @@ public final class Chat {
     }
   }
 
-  // Add a new user.
+  /**
+   * Adds a new user.
+   */
   private void addUser(String name) {
     clientContext.user.addUser(name);
   }
 
-  // Display all users known to server.
+  /**
+   * Displays all users known to server.
+   */
   private void showAllUsers() {
     clientContext.user.showAllUsers();
   }
 
+  /**
+   * Handles console commands.
+   * 
+   * @param lineScanner Reference to Scanner class.
+   */
   public boolean handleCommand(Scanner lineScanner) {
 
     try {
@@ -291,6 +329,11 @@ public final class Chat {
     return alive;
   }
 
+  /**
+   * Selects conversation. I believe this is for console chat.
+   * 
+   * @param lineScanner Reference to Scanner class.
+   */
   public void selectConversation(Scanner lineScanner) {
 
     clientContext.conversation.updateAllConversations(false);
@@ -320,4 +363,5 @@ public final class Chat {
       clientContext.conversation.updateAllConversations(true);
     }
   }
+  
 }
