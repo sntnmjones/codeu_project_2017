@@ -233,10 +233,14 @@ public final class ClientMessage {
     } else {
 
       // Display author name if available.  Otherwise display the author UUID.
-      final String authorName = (userContext == null) ? null : userContext.getName(m.author);
+      final String authorName = (userContext == null) 
+      ? null 
+      : userContext.getName(m.author);
 
       System.out.format(" Author: %s   Id: %s created: %s\n   Body: %s\n",
-          (authorName == null) ? m.author : authorName, m.id, m.creation, m.content);
+          (authorName == null) 
+          ? m.author 
+          : authorName, m.id, m.creation, m.content);
     }
   }
 

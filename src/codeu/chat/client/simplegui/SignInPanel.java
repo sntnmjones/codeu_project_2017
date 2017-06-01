@@ -1,71 +1,82 @@
 package codeu.chat.client.simplegui;
 
 import javax.swing.*;
-import java.awt.*;
 
-<<<<<<< HEAD
-=======
+import codeu.chat.client.simplegui.originalgui.OriginalChatSimpleGui;
+import codeu.chat.client.ClientContext;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-/*import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import java.util.HashMap;
+import javax.swing.JFrame;
 
-import codeu.chat.client.ClientContext;
-import codeu.chat.common.User;*/
-
->>>>>>> refs/remotes/origin/master
 @SuppressWarnings("serial")
 /**
- * @author  Suveena
- * @date    5/18/17
- * @brief   This panel contains from top to bottom; 
- *          a user message, Username field, Password field, and button
+ * This class creates a panel that contains from top to bottom: a user message, Username field,
+ *         Password field, and button.
  */
 public final class SignInPanel extends JPanel {
 
-    public ChatSimpleGui mainFrame;
+    public JFrame frame;
+    ClientContext context;
 
-    public SignInPanel(ChatSimpleGui mainFrame) {
+    /**
+     * Constructor - Creates and displays panel that contains a textfield for user to enter
+     *         username and button to submit.
+     * 
+     * @param clientContext Reference to ClientContext class.
+     * @param mainFrame     Reference to mainFrame, which is the landing frame upon app launch.
+     */
+    public SignInPanel(ClientContext clientContext, JFrame mainFrame) {
         super(new GridBagLayout());
-        this.mainFrame = mainFrame;
+        this.context = clientContext;
+        frame = mainFrame;
         initialize();
     }
 
+    /**
+     * Creates and displays panel that contains a textfield for user to enter
+     *         username and button to submit.
+     */
     private void initialize() {
 
-        // Set layout within panel
-        JPanel InnerLayout = new JPanel();
-        InnerLayout.setLayout(new BoxLayout(InnerLayout, BoxLayout.Y_AXIS));
+        // Set layout within panel.
+        JPanel innerLayout = new JPanel();
+        innerLayout.setLayout(new BoxLayout(innerLayout, BoxLayout.Y_AXIS));
 
         JLabel userQuestionLabel = new JLabel("Already a user?");
         JLabel userLabel = new JLabel("Username");
         JTextField usernameField = new JTextField();
-        JLabel passwordLabel = new JLabel("Password");
-        JTextField passwordField = new JTextField();
         JButton signInButton = new JButton("Sign In");
 
-        InnerLayout.add(userQuestionLabel);
-        InnerLayout.add(userLabel);
-        InnerLayout.add(usernameField);
-        InnerLayout.add(passwordLabel);
-        InnerLayout.add(passwordField);
-        InnerLayout.add(signInButton);
-
-        this.add(InnerLayout);
-
-<<<<<<< HEAD
-=======
+        // Sign in button allows user, if valid, to sign in and transfers user to
+        //         OriginalConversationPanel.
         signInButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Check that both fields are filled with valid characters
-                // Database checks
-                // If (username and password match exactly)
-                mainFrame.closeFrame();
+            public void actionPerformed(ActionEvent ae) {
+                String userName = usernameField.getText();
+                context.user.updateUsers();
+                if(context.user.lookup(context.user.lookupByName(userName)) != null) {
+
+                    context.user.signInUser(userName);
+                    OriginalChatSimpleGui convoFrame = new OriginalChatSimpleGui(context.accessController, context.accessView, userName, frame);
+                    convoFrame.run();
+                    frame.setVisible(false);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(frame, "User name is not found.");
+                
+                }
             }
         });
+        innerLayout.add(userQuestionLabel);
+        innerLayout.add(userLabel);
+        innerLayout.add(usernameField);
+        innerLayout.add(signInButton);
 
->>>>>>> refs/remotes/origin/master
+        this.add(innerLayout);
+        frame.getRootPane().setDefaultButton(signInButton);
+
     }
 }
-
