@@ -54,10 +54,6 @@ public final class SignInPanel extends JPanel {
         //         OriginalConversationPanel.
         signInButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-<<<<<<< HEAD
-=======
-
->>>>>>> a1f1056c189d7bc7b8bca5702a435fed8c4f864e
                 String userName = usernameField.getText();
                 context.user.updateUsers();
                 if(context.user.lookup(context.user.lookupByName(userName)) != null) {
