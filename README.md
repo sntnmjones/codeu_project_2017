@@ -11,7 +11,7 @@ skills.
 
 ## REFACTORINGS
 
-### ClientUser.Java new method:
+### ClientUser.Java new method (lookupByName)
 - lookupByName is a method that takes in a String and checks the usersById map to see if there exists a user with the given String as their name
 - It is useful in performing checks, namely, in the login and create account features
 - Previously, there was just a method that looked up a user by the Uuid, however when the client only supplies a name to the GUI, that is the only information we have, and that needed to be enough to perform a lookup to check whether or not there is such a user
@@ -35,18 +35,18 @@ skills.
 - This was happening because we did not implement the same functionality from the sign in button's action listener to the create account's
 - We edited the action listener to create the account, close out of the startup GUI frame, and open up the conversation view GUI
 
-###Two users with the same name could be created
+### Two users with the same name could be created
 - We intended to have each username represent a unique user
 - However, we had an issue where we were not checking the user's name to see if it already existed in the map of created users
 - We created a new method that searched for existing users by name and performed a check on the map to check if a user with the name was already in the map, and if so, an error message would pop up
 
-###Logout functionality
+### Logout functionality
 - When users logged out, they were not being removed from the list of users on the client GUI
 - The logout function was only updating the specific user's list, it was not conveying this to any other ClientUser
 - A solution would be to send a message to the server saying that a User had left the chat room, however, we decided to change the panel's description to include all created users.
 - This was done in the interest of directing our time to adding more features and debugging more
 
-###Message panel changes colors to customize
+### Message panel changes colors to customize
 - When button was deselected, it stays the same color
 - Every time the radio button was clicked, it was to turn a certain color, but no checks were being made to see if it was actually selected or not
 - Added a conditional statement in the actionlistener, which, every other time the radio button was selected, set it to light gray
