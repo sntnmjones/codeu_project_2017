@@ -24,7 +24,6 @@ import codeu.chat.client.View;
 import codeu.chat.util.Logger;
 
 /**
-<<<<<<< HEAD
  * Chat - top-level client application - Java Simple GUI (using Java Swing).
  */
 public final class ChatSimpleGui {
@@ -38,43 +37,17 @@ public final class ChatSimpleGui {
      * 
      * @param controller  An instance to the Controller class.
      * @param view        An instance to the View class.    
-=======
- * Chat - top-level client application - Java Simple GUI (using Java Swing)
- */
-public final class ChatSimpleGui {
-    ///////////////////////
-    // PRIVATE VARIABLES //
-    ///////////////////////
-    private static JFrame mainFrame;
-    private ClientContext clientContext;
-    private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);
-    private UserMap userMap = new UserMap();    // Map for username and password storage.
-
-    ////////////////////
-    // PUBLIC METHODS //
-    ////////////////////
-    /**
-     * Constructor that instantiates clientContext.
-     * 
-     * @param controller    The Controller portion of the MVC architecture.
-     * @param view          The View portion of the MVC architecture. 
->>>>>>> origin/master
      */
     public ChatSimpleGui(Controller controller, View view) {
         clientContext = new ClientContext(controller, view);
     }
 
-<<<<<<< HEAD
     public void showFrame() {
         mainFrame.setVisible(true);
     }
 
     /**
      * Runs the GUI client.
-=======
-    /**
-     * Executes initialization of landing frame. 
->>>>>>> origin/master
      */
     public void run() {
         try {
@@ -86,7 +59,6 @@ public final class ChatSimpleGui {
             System.exit(1);
         }
     }
-<<<<<<< HEAD
     
     /**
      * Creates borders for panel on frame.
@@ -101,14 +73,6 @@ public final class ChatSimpleGui {
 
     /**
      * Creates JFrame and loads JPanels into it.
-=======
-
-    /////////////////////
-    // PRIVATE METHODS //
-    /////////////////////
-    /**
-     * Creates JFrame and JPanels. Passes ClientContext to each panel.
->>>>>>> origin/master
      */
     private void initialize() {
         // Main View - outermost graphics panel.
@@ -120,12 +84,6 @@ public final class ChatSimpleGui {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(790, 450);
 
-<<<<<<< HEAD
-=======
-        // Main View - outermost graphics panel.
-        JPanel mainViewPanel = new JPanel(new GridBagLayout());
-
->>>>>>> origin/master
         // Build main panels - Sign In, Create Account.
         // Panel with just label -- Cleaner to make a new class?
         JPanel labelPanel = new JPanel();
@@ -135,7 +93,6 @@ public final class ChatSimpleGui {
         labelPanel.add(new JLabel("Please choose from an option below:"));
         GridBagConstraints labelViewC = new GridBagConstraints();
 
-<<<<<<< HEAD
         // Panel that contains SignInPanel.
         final JPanel userSignIn = new SignInPanel(clientContext, mainFrame);
         userSignIn.setBorder(paneBorder());
@@ -144,15 +101,6 @@ public final class ChatSimpleGui {
         // ConversationsPanel gets access to MessagesPanel
         final CreateAccountPanel newAccountPanel = 
                 new CreateAccountPanel(clientContext, mainFrame);
-=======
-        // Creates new Jpanel for user sign in pane
-        JPanel userSignIn = new SignInPanel(clientContext);
-        userSignIn.setBorder(paneBorder());
-        GridBagConstraints usersViewC = new GridBagConstraints();
-
-        // ConversationsPanel gets access to MessagesPanel
-        CreateAccountPanel newAccountPanel = new CreateAccountPanel(clientContext);
->>>>>>> origin/master
         newAccountPanel.setBorder(paneBorder());
         GridBagConstraints newAccountViewC = new GridBagConstraints();
 
@@ -201,43 +149,5 @@ public final class ChatSimpleGui {
         mainFrame.add(mainViewPanel);
         mainFrame.pack();
     }
-<<<<<<< HEAD
 }
-=======
 
-    /**
-     * Creates borders for panel separation on landing frame.
-     * 
-     * @return Returns a created instance of Border.
-     */
-    private Border paneBorder() {
-        Border outside = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
-        Border inside = BorderFactory.createEmptyBorder(8, 8, 8, 8);
-        return BorderFactory.createCompoundBorder(outside, inside);
-    }
-
-    ///////////////////////
-    // PROTECTED METHODS //
-    ///////////////////////
-    /**
-     * Closes the landing frame.
-     */
-    protected void closeFrame() {
-        mainFrame.dispose();
-    }
-
-    /////////////////////
-    // STATIC METHODS  //
-    /////////////////////
-
-    /**
-     * Gives access to mainFrame.
-     * 
-     * @return Returns access to mainFrame.
-     */
-    static JFrame getMainFrame() {
-        return mainFrame;
-    }
-
-}
->>>>>>> origin/master
