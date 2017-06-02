@@ -9,18 +9,42 @@ engineers. This project is not an offical Google Product. This project is a
 playground for those looking to develop their coding and software engineering
 skills.
 
+## REFACTORINGS
 
-## ENVIRONMENT
++ ClientUser.Java new method:
+- lookupByName is a method that takes in a String and checks the usersById map to see if there exists a user with the given String as their name
+- It is useful in performing checks, namely, in the login and create account features
+- Previously, there was just a method that looked up a user by the Uuid, however when the client only supplies a name to the GUI, that is the only information we have, and that needed to be enough to perform a lookup to check whether or not there is such a user
+- The benefits of this method are to solve the above issues; however, in the implementation of this, we are only working with the client, and not asking the server for the information: to check if the username is valid or taken. - This is a good thing in that it means that it will take less time to fetch the data we need, yet there is a chance that if the method's logic was notimplemented correctly, that the client would hold the information and not update it for other clients to see.
 
-All instructions here are relative to a LINUX environment. There will be some
-differences if you are working on a non-LINUX system. We will not support any
-other development environment.
++ ChatSimpleGUI
+- We modified the ChatSimpleGUI class, because we needed it to to be our new sign in and create account default frame
+- Therefore, we created a file under the simplegui directory with the original GUI files, and prepended "Original" to the same class names to indicate which version was which (since we needed the original GUI files as well).
+- The benefits of this was that we did not have to make too many changes to class names in the existing code, and it the given name of the classes reflected what exactly the GUI was, so there was consistency in our understanding of which classes held what GUI components
+- The downside here was that there was confusion when it came time to rename the methods and data members called within these classes - because the new and old GUI class names were originally the same, it was fairly hard to spot which version, "Original" or New, of whatever class we referenced we were actually pointing to, without reading methods in detail
++ NewAccount Class
+- One completely new class we created was the NewAccount class, which separates the CreateAccountPanel from the actual text fields and JButtons that we had in the CreateAccountPanel class.
+- This was separated into a new class to keep the code clean and readable, since the initialize method was quite lengthy and becoming difficult for us to read
+- The benefits of doing so were that we ended up with neater, less buggy code; however, the downside was that we had to again pass in the Controller AND the JFrame holding the CreateAccountPanel so that we would be able to close the frame once a new user was created. Passing an entire GUI frame could cause lags, and in general, just gives more classes access to the frame, which is not ideal
 
-This project was built using JAVA 7. It is recommended that you install
-JAVA&nbsp;7 when working with this project.
+
+## BUG FIXES
+
+Created separate GUI to sign in & create account
+Itr. 1: Once you create an account, you must sign in separately
+Itr. 2: Creating account automatically signs you in
+Logout functionality
+Message panel changes colors to customize
 
 
-## GETTING STARTED
+The project must compile.
+It must be possible to run and connect a client to a server. Include instructions on how to run your client and server.
+It must be possible for multiple clients to talk to the same server and exchange messages.
+For features: the user must be able to activate/trigger the feature from the UI, or its effects must be evident to the user if it is enabled by default, supporting documentation on how to use the feature must be provided.
+For refactorings: provide supporting documentation explaining what was done, why it was done, and the pros/cons of the new code.
+For bug fixes: provide a bug description (symptom), a summary of what caused the bug (diagnosis), and how you fixed it (cure).
+
+## SETUP INSTRUCTIONS
 
   1. To build the project:
        ```
@@ -28,13 +52,22 @@ JAVA&nbsp;7 when working with this project.
        $ sh make.sh
        ```
 
-  1. To test the project:
+  2. To test the project:
        ```
        $ sh test.sh
        ```
 
-  1. To run the project you will need to run both the client and the server. Run
+  3. To run the project you will need to run both the client and the server. Run
      the following two commands in separate shells:
+
+      *Running Server (first) and Client (second) Instructions:*
+
+      ```
+       $ sh run_server.sh 100 ABABAB 2007 ./
+       $ sh run_simple_gui_client.sh
+       ```
+
+      *Alternatively, as provided*
 
        ```
        $ sh run_server.sh <team_id> <team_secret> <port> <persistent-dir>
@@ -68,6 +101,7 @@ JAVA&nbsp;7 when working with this project.
      + `<port>`: the port on which your server is listening. Must be the same
        port number you have specified when you launched `run_server.sh`.
 
+
 All running images write informational and exceptional events to log files.
 The default setting for log messages is "INFO". You may change this to get
 more or fewer messages, and you are encouraged to add more LOG statements
@@ -75,26 +109,8 @@ to the code. The logging is implemented in `codeu.chat.util.Logger.java`,
 which is built on top of `java.util.logging.Logger`, which you can refer to
 for more information.
 
-In addition to your team's client and server, the project also includes a
-Relay Server and a script that runs it (`run_relay.sh`).
-This is not needed to get started with the project.
 
-
-## Finding your way around the project
-
-All the source files (except test-related source files) are in
-`./src/codeu/chat`.  The test source files are in `./test/codeu/chat`. If you
-use the supplied scripts to build the project, the `.class` files will be placed
-in `./bin`. There is a `./third_party` directory that holds the jar files for
-JUnit (a Java testing framework). Your environment may or may not already have
-this installed. The supplied scripts use the version in `./third_party`.
-
-Finally, there are some high-level design documents in the project Wiki. Please
-review them as they can help you find your way around the sources.
-
-
-
-## Source Directories
+## Source Directories -- Provided Information
 
 The major project components have been separated into their own packages. The
 main packages/directories under `src/codeu/chat` are:
@@ -120,3 +136,4 @@ Classes that are shared by the clients and servers.
 ### codeu.chat.util
 
 Some basic infrastructure classes used throughout the project.
+
