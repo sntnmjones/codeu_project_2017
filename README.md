@@ -11,18 +11,18 @@ skills.
 
 ## REFACTORINGS
 
-+ ClientUser.Java new method:
+### ClientUser.Java new method:
 - lookupByName is a method that takes in a String and checks the usersById map to see if there exists a user with the given String as their name
 - It is useful in performing checks, namely, in the login and create account features
 - Previously, there was just a method that looked up a user by the Uuid, however when the client only supplies a name to the GUI, that is the only information we have, and that needed to be enough to perform a lookup to check whether or not there is such a user
 - The benefits of this method are to solve the above issues; however, in the implementation of this, we are only working with the client, and not asking the server for the information: to check if the username is valid or taken. - This is a good thing in that it means that it will take less time to fetch the data we need, yet there is a chance that if the method's logic was notimplemented correctly, that the client would hold the information and not update it for other clients to see.
 
-+ ChatSimpleGUI
+### ChatSimpleGUI
 - We modified the ChatSimpleGUI class, because we needed it to to be our new sign in and create account default frame
 - Therefore, we created a file under the simplegui directory with the original GUI files, and prepended "Original" to the same class names to indicate which version was which (since we needed the original GUI files as well).
 - The benefits of this was that we did not have to make too many changes to class names in the existing code, and it the given name of the classes reflected what exactly the GUI was, so there was consistency in our understanding of which classes held what GUI components
 - The downside here was that there was confusion when it came time to rename the methods and data members called within these classes - because the new and old GUI class names were originally the same, it was fairly hard to spot which version, "Original" or New, of whatever class we referenced we were actually pointing to, without reading methods in detail
-+ NewAccount Class
+### NewAccount Class
 - One completely new class we created was the NewAccount class, which separates the CreateAccountPanel from the actual text fields and JButtons that we had in the CreateAccountPanel class.
 - This was separated into a new class to keep the code clean and readable, since the initialize method was quite lengthy and becoming difficult for us to read
 - The benefits of doing so were that we ended up with neater, less buggy code; however, the downside was that we had to again pass in the Controller AND the JFrame holding the CreateAccountPanel so that we would be able to close the frame once a new user was created. Passing an entire GUI frame could cause lags, and in general, just gives more classes access to the frame, which is not ideal
@@ -30,18 +30,33 @@ skills.
 
 ## BUG FIXES
 
-Created separate GUI to sign in & create account
-Itr. 1: Once you create an account, you must sign in separately
-Itr. 2: Creating account automatically signs you in
-Logout functionality
-Message panel changes colors to customize
+### Once you create an account, you must sign in separately
+- We intended for the user to be automatically signed in once they created their account, yet they still had to log in separately
+- This was happening because we did not implement the same functionality from the sign in button's action listener to the create account's
+- We edited the action listener to create the account, close out of the startup GUI frame, and open up the conversation view GUI
 
+###Two users with the same name could be created
+- We intended to have each username represent a unique user
+- However, we had an issue where we were not checking the user's name to see if it already existed in the map of created users
+- We created a new method that searched for existing users by name and performed a check on the map to check if a user with the name was already in the map, and if so, an error message would pop up
 
-The project must compile.
-It must be possible to run and connect a client to a server. Include instructions on how to run your client and server.
-It must be possible for multiple clients to talk to the same server and exchange messages.
-For features: the user must be able to activate/trigger the feature from the UI, or its effects must be evident to the user if it is enabled by default, supporting documentation on how to use the feature must be provided.
-For refactorings: provide supporting documentation explaining what was done, why it was done, and the pros/cons of the new code.
+###Logout functionality
+- When users logged out, they were not being removed from the list of users on the client GUI
+- The logout function was only updating the specific user's list, it was not conveying this to any other ClientUser
+- A solution would be to send a message to the server saying that a User had left the chat room, however, we decided to change the panel's description to include all created users.
+- This was done in the interest of directing our time to adding more features and debugging more
+
+###Message panel changes colors to customize
+- When button was deselected, it stays the same color
+- Every time the radio button was clicked, it was to turn a certain color, but no checks were being made to see if it was actually selected or not
+- Added a conditional statement in the actionlistener, which, every other time the radio button was selected, set it to light gray
+
+## CHECKED REQUIREMENTS
+- The project must compile.
+- It must be possible to run and connect a client to a server. Include instructions on how to run your client and server.
+- It must be possible for multiple clients to talk to the same server and exchange messages.
+- For features: the user must be able to activate/trigger the feature from the UI, or its effects must be evident to the user if it is enabled by default, supporting documentation on how to use the feature must be provided.
+- For refactorings: provide supporting documentation explaining what was done, why it was done, and the pros/cons of the new code.
 For bug fixes: provide a bug description (symptom), a summary of what caused the bug (diagnosis), and how you fixed it (cure).
 
 ## SETUP INSTRUCTIONS
