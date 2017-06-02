@@ -150,4 +150,9 @@ public final class ChatSimpleGui {
         mainFrame.add(mainViewPanel);
         mainFrame.pack();
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> a1f1056c189d7bc7b8bca5702a435fed8c4f864e

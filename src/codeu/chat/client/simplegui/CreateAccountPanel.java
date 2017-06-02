@@ -68,4 +68,8 @@ public class CreateAccountPanel extends JPanel {
         this.add(innerLayout);
 
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a1f1056c189d7bc7b8bca5702a435fed8c4f864e

@@ -36,6 +36,10 @@ public class NewAccount extends JFrame {
         this.context = context;
 
         // Creates mainPanel.
+<<<<<<< HEAD
+=======
+
+>>>>>>> a1f1056c189d7bc7b8bca5702a435fed8c4f864e
         JPanel mainPanel = new JPanel();
         BoxLayout mainPanelLayout = new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
         mainPanel.setLayout(mainPanelLayout);
@@ -76,6 +80,10 @@ public class NewAccount extends JFrame {
                         JOptionPane.showMessageDialog(newAccountFrame,
                                 "User name is larger than 10 characters.");
                     } else {
+<<<<<<< HEAD
+=======
+
+>>>>>>> a1f1056c189d7bc7b8bca5702a435fed8c4f864e
                         context.user.addUser(userName);
                         // Starts chat.
                         if(!context.user.showUserInfo(userName).equals("Null user")) {
